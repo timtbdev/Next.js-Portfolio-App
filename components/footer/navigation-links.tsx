@@ -1,9 +1,6 @@
-import MenuEmoji from "@/components/ui/menu/menu-emoji";
-import MenuTitle from "@/components/ui/menu/menu-title";
-import menuConfig from "@/config/menu";
+import navigationLinks from "@/config/navigation-links";
 import { cn } from "@/lib/utils";
-import { MenuItemType } from "@/types";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 interface Props {
   className?: string;
@@ -18,15 +15,14 @@ const NavigationLinks = ({ className }: Props) => {
         className,
       )}
     >
-      {menuConfig.map((menu: MenuItemType) => (
+      {navigationLinks.map((link) => (
         <Link
-          key={menu.title}
-          href={menu.slug}
-          className="group inline-flex items-center gap-2"
+          key={link.href}
+          href={link.href}
+          className="group inline-flex items-center gap-2 text-lg font-semibold text-neutral-600 transition-colors hover:text-black"
           prefetch={true}
         >
-          <MenuEmoji currentPath={false} emoji={menu.emoji} />
-          <MenuTitle currentPath={false} title={menu.title} />
+          {link.label}
         </Link>
       ))}
     </nav>

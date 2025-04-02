@@ -3,6 +3,10 @@ import { PostType } from "@/types";
 import { JSX } from "react";
 import { levenshtein } from "./utils";
 
+interface SearchResult extends PostType {
+  score: number;
+}
+
 /**
  * Function to get all posts by search query.
  * @param query - The search query.
@@ -11,15 +15,59 @@ import { levenshtein } from "./utils";
 export async function getPostsBySearchQuery(query: string) {
   if (!query.trim()) return [];
 
-  const results: PostType[] = [];
+  const searchQuery = query.toLowerCase().trim();
+  const searchWords = searchQuery.split(/\s+/).filter(Boolean);
+  const results: SearchResult[] = [];
 
   for (const post of allPosts) {
-    // Search in title, description, and content
-    const searchableContent =
-      `${post.title} ${post.description} ${post.content}`.toLowerCase();
-    const searchQuery = query.toLowerCase();
+    let score = 0;
+    const searchableContent = {
+      title: post.title.toLowerCase(),
+      description: post.description.toLowerCase(),
+      content: post.content.toLowerCase(),
+      fileName: post._meta.path.toLowerCase(),
+    };
 
-    if (searchableContent.includes(searchQuery)) {
+    // Calculate score based on different factors
+    searchWords.forEach((word) => {
+      // Exact matches get highest score
+      if (searchableContent.title.includes(word)) {
+        score += 10;
+      }
+      if (searchableContent.fileName.includes(word)) {
+        score += 8;
+      }
+      if (searchableContent.description.includes(word)) {
+        score += 6;
+      }
+      if (searchableContent.content.includes(word)) {
+        score += 4;
+      }
+
+      // Fuzzy matches get lower scores
+      const fuzzyThreshold = 2; // Maximum Levenshtein distance for fuzzy matching
+
+      // Check fuzzy matches in title
+      if (
+        searchableContent.title
+          .split(/\s+/)
+          .some((term) => levenshtein(term, word) <= fuzzyThreshold)
+      ) {
+        score += 5;
+      }
+
+      // Check fuzzy matches in content
+      if (
+        searchableContent.content
+          .split(/\s+/)
+          .some((term) => levenshtein(term, word) <= fuzzyThreshold)
+      ) {
+        score += 2;
+      }
+    });
+
+    // Only include results with a minimum score
+    if (score > 0) {
       results.push({
         fileName: post._meta.path,
         data: {
@@ -33,13 +81,15 @@ export async function getPostsBySearchQuery(query: string) {
           tags: post.tags,
           seo: post.seo,
         },
-        content: getContextAroundMatch(post.content, query),
+        content: getContextAroundMatch(post.content, searchQuery),
         mdx: post.mdx,
+        score,
       });
     }
   }
 
-  return results;
+  // Sort results by score in descending order
+  return results.sort((a, b) => b.score - a.score);
 }
 
 /**
@@ -49,46 +99,50 @@ export async function getPostsBySearchQuery(query: string) {
  * @returns A string containing the context around the best match.
  */
 export function getContextAroundMatch(content: string, query: string) {
-  // Return the original content if it's empty or the query is empty after trimming.
   if (!content || !query.trim()) return content;
 
-  // Split the query into individual words, convert to lowercase, and filter out empty strings.
   const searchWords = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if (searchWords.length === 0) return content;
 
-  const windowSize = 150; // Size of the window to consider for context.
-  let bestScore = 0; // Variable to keep track of the best score.
-  let bestStart = 0; // Variable to keep track of the start index of the best match.
+  const windowSize = 150;
+  let bestScore = 0;
+  let bestStart = 0;
 
-  // Iterate over the content in steps of 50 characters.
+  // Iterate over the content in steps of 50 characters
   for (let i = 0; i < content.length - windowSize; i += 50) {
-    const window = content.slice(i, i + windowSize).toLowerCase(); // Extract a window of content and convert to lowercase.
-    let score = 0; // Initialize the score for the current window.
+    const window = content.slice(i, i + windowSize).toLowerCase();
+    let score = 0;
 
-    // Calculate the score for the current window based on the number of matches of each search word.
+    // Calculate score for the current window
     searchWords.forEach((word) => {
-      const matches = window.split(word).length - 1;
-      score += matches * word.length; // Weight longer word matches more heavily.
+      // Exact matches get higher scores
+      const exactMatches = window.split(word).length - 1;
+      score += exactMatches * word.length * 2;
+
+      // Fuzzy matches get lower scores
+      const fuzzyThreshold = 2;
+      window.split(/\s+/).forEach((term) => {
+        if (levenshtein(term, word) <= fuzzyThreshold) {
+          score += word.length;
+        }
+      });
     });
 
-    // Update the best score and start index if the current score is higher than the best score.
     if (score > bestScore) {
       bestScore = score;
       bestStart = i;
     }
   }
 
-  // Calculate the start and end indices for the context around the best match.
   const contextStart = Math.max(0, bestStart - 50);
   const contextEnd = Math.min(content.length, bestStart + windowSize);
 
-  let excerpt = content.slice(contextStart, contextEnd).trim(); // Extract the context and trim whitespace.
+  let excerpt = content.slice(contextStart, contextEnd).trim();
 
-  // Add ellipsis if the context was truncated.
   if (contextStart > 0) excerpt = "..." + excerpt;
   if (contextEnd < content.length) excerpt = excerpt + "...";
 
-  return excerpt; // Return the context around the best match.
+  return excerpt;
 }
 
 export function highlightMatches(text: string, query: string) {

@@ -1,5 +1,5 @@
-import NextJsIcon from "@/icons/pages/projects/nextjs-icon";
-import { getBaseUrlWithSlug } from "@/lib/utils";
+import NextJsIcon from "@/icons/nextjs-icon";
+import { getBaseUrl } from "@/lib/utils";
 import Link from "next/link";
 import { FaSitemap, FaSquareRss } from "react-icons/fa6";
 
@@ -20,7 +20,7 @@ const MobileCopyright = () => {
         </Link>
         <span> | </span>
         <Link
-          href={getBaseUrlWithSlug("rss.xml")}
+          href={getBaseUrl("/rss.xml")}
           target="_blank"
           rel="noopener noreferrer"
           className={defaultClass}

@@ -1,17 +1,12 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { JSX } from "react";
-import { IconType } from "react-icons/lib";
+import { IconType } from "react-icons";
 
-export type PageType = {
-  name: string;
+export type HeadType = {
+  page: string;
   title: string;
+  slug: string;
   description: string;
-  author: AuthorType;
-  openGraphImageUrl: string;
-  twitterImageUrl: string;
-  publishedDate?: string;
-  modifiedDate?: string;
-  keywords?: Array<string>;
 };
 
 export type AuthorType = {
@@ -22,18 +17,25 @@ export type AuthorType = {
 };
 
 export type SocialType = {
-  id: number;
-  name: string;
-  username?: string;
   href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+};
+
+export type SubMenuItemType = {
+  title: string;
+  slug: string;
+  description: string;
   icon: IconType;
-  tooltip: string;
 };
 
 export type MenuItemType = {
   emoji: string;
   title: string;
   slug: string;
+  description?: string;
+  icon?: React.ReactNode;
+  subcategories?: SubMenuItemType[];
 };
 
 export type PostType = {
@@ -77,4 +79,31 @@ type SearchResult = {
 export type Heading = {
   level: number;
   text: string;
+};
+
+export type CategoryType = {
+  name: string;
+  slug: string;
+  background?: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }>;
+  gradientColor?: string;
+  description: string;
+  weight?: number;
+};
+
+export type NavigationLink = {
+  href: string;
+  label: string;
+  description?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  subNavigationLinks?: NavigationLink[];
+  hoverColor?: string;
+};
+
+export type ProjectSubNavType = {
+  title: string;
+  description: string;
+  image?: string;
+  href: string;
+  icon?: IconType;
 };

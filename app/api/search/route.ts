@@ -1,22 +1,25 @@
-import { getPostsBySearchQuery } from "@/lib/search";
+import { searchPosts } from "@/actions/search";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const searchParams = req.nextUrl.searchParams;
-  const query = searchParams.get("query");
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const query = searchParams.get("query");
 
-  if (!query || typeof query !== "string") {
+    if (!query) {
+      return NextResponse.json(
+        { error: "Query parameter is required" },
+        { status: 400 },
+      );
+    }
+
+    const results = await searchPosts(query);
+    return NextResponse.json(results);
+  } catch (error) {
+    console.error("Search error:", error);
     return NextResponse.json(
-      { error: "Query parameter is required" },
-      { status: 400 },
+      { error: "An error occurred while searching" },
+      { status: 500 },
     );
   }
-
-  const searchResults = await getPostsBySearchQuery(query);
-
-  if (searchResults.length === 0) {
-    return NextResponse.json({ message: "No results found" }, { status: 404 });
-  }
-
-  return NextResponse.json(searchResults, { status: 200 });
 }

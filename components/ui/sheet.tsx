@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
-import { XIcon } from "lucide-react";
 import * as React from "react";
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
@@ -35,7 +34,7 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 top-16 bg-white/80 backdrop-blur-md sm:top-20",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 top-18 bg-white/80 backdrop-blur-md",
         className,
       )}
       {...props}
@@ -56,7 +55,7 @@ function SheetContent({
       <SheetOverlay />
       <SheetPrimitive.Content
         data-slot="sheet-content"
-        className="data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed inset-y-0 top-16 left-0 flex h-full w-3/4 flex-col gap-4 border-r shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 sm:top-20 sm:max-w-sm"
+        className="data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed inset-y-0 top-[var(--header-height)] left-0 flex h-full w-3/4 flex-col gap-4 border-r shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 sm:max-w-sm"
         {...props}
       >
         {children}
@@ -113,11 +112,11 @@ function SheetDescription({
 
 export {
   Sheet,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
   SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 };

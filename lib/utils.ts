@@ -1,20 +1,22 @@
-import { ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getBaseUrl() {
+export function getBaseUrl(slug?: string): string {
   const baseUrl =
-    process.env.NODE_ENV === "development"
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    (process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://www.timtb.dev";
-  return baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-}
+      : "https://www.timtb.dev");
 
-export function getBaseUrlWithSlug(slug: string) {
-  return `${getBaseUrl()}${slug}`;
+  if (!slug) return baseUrl;
+
+  // Ensure the slug starts with a forward slash
+  const normalizedSlug = slug.startsWith("/") ? slug : `/${slug}`;
+  return `${baseUrl}${normalizedSlug}`;
 }
 
 // BlurData for loading images with blur effect

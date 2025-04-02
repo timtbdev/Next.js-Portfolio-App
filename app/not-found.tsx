@@ -1,5 +1,5 @@
 import Card from "@/components/ui/card";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import React, { FC } from "react";
 
 const NotFoundPage = () => {

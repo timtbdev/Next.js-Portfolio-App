@@ -1,4 +1,4 @@
-import { getBaseUrlWithSlug } from "@/lib/utils";
+import { getBaseUrl } from "@/lib/utils";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/private/",
       },
     ],
-    sitemap: getBaseUrlWithSlug("sitemap.xml"),
+    sitemap: getBaseUrl("/sitemap.xml"),
   };
 }

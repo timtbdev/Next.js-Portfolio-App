@@ -1,13 +1,41 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 /*
   ---break---
 */
-@plugin "tailwindcss-animate";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* Custom color Sunset */
+  --color-sunset-25: oklch(0.98 0.02 70);
+  --color-sunset-50: oklch(0.96 0.04 70);
+  --color-sunset-100: oklch(0.92 0.08 70);
+  --color-sunset-200: oklch(0.86 0.12 70);
+  --color-sunset-300: oklch(0.8 0.16 70);
+  --color-sunset-400: oklch(0.74 0.2 70);
+  --color-sunset-500: oklch(0.68 0.24 70);
+  --color-sunset-600: oklch(0.62 0.28 70);
+  --color-sunset-700: oklch(0.56 0.32 70);
+  --color-sunset-800: oklch(0.5 0.36 70);
+  --color-sunset-900: oklch(0.44 0.4 70);
+  --color-sunset-950: oklch(0.38 0.44 70);
+
+  /* Custom color Cranberry */
+  --color-cranberry-5: oklch(0.98 0.02 350);
+  --color-cranberry-10: oklch(0.95 0.04 350);
+  --color-cranberry-20: oklch(0.9 0.08 350);
+  --color-cranberry-30: oklch(0.85 0.12 350);
+  --color-cranberry-40: oklch(0.8 0.16 350);
+  --color-cranberry-50: oklch(0.75 0.2 350);
+  --color-cranberry-60: oklch(0.7 0.24 350);
+  --color-cranberry-70: oklch(0.65 0.28 350);
+  --color-cranberry-80: oklch(0.6 0.32 350);
+  --color-cranberry-90: oklch(0.55 0.36 350);
+  --color-pale-cranberry: oklch(0.75 0.2 350 / 0.13);
+
+  /* Shadcn UI configuration */
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
@@ -66,6 +94,9 @@
       height: 0;
     }
   }
+  /* End of Shadcn UI configuration */
+
+  /* Custom Color Configurations */
 }
 
 @utility container {
@@ -162,8 +193,6 @@
 */
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
   --popover: oklch(1 0 0);
@@ -195,6 +224,8 @@
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.13 0.028 261.692);
 }
 
 /*

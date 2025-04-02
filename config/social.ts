@@ -1,57 +1,38 @@
-import { getBaseUrlWithSlug } from "@/lib/utils";
-import { SocialType } from "@/types";
-import { BiSolidUserRectangle as ResumeIcon } from "react-icons/bi";
-import { FaFacebook, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
-import { RiMailSendFill as EmailIcon } from "react-icons/ri";
+import {
+  FaEnvelope as EmailIcon,
+  FaFacebook as FacebookIcon,
+  FaGithub as GitHubIcon,
+  FaLinkedin as LinkedInIcon,
+  FaXTwitter as XPlatformIcon,
+} from "react-icons/fa6";
+import { SocialType } from "../types";
 
-export const socialConfigs: SocialType[] = [
+const socialConfig: SocialType[] = [
   {
-    id: 1,
-    name: "Email",
-    username: "Send email",
-    tooltip: "Send me an email",
     href: "mailto:timtb.dev@gmail.com",
     icon: EmailIcon,
+    label: "Email",
   },
   {
-    id: 2,
-    name: "Resume",
-    username: "View resume",
-    tooltip: "Download my resume",
-    href: getBaseUrlWithSlug("files/resume.pdf"),
-    icon: ResumeIcon,
-  },
-  {
-    id: 3,
-    name: "Twitter",
-    username: "@timtbdev",
-    tooltip: "Follow me on Twitter",
     href: "https://x.com/timtbdev",
-    icon: FaTwitter,
+    icon: XPlatformIcon,
+    label: "X (Twitter)",
   },
-
   {
-    id: 4,
-    name: "GitHub",
-    username: "timtbdev",
-    tooltip: "Check out my GitHub",
     href: "https://github.com/timtbdev",
-    icon: FaGithub,
+    icon: GitHubIcon,
+    label: "GitHub",
   },
   {
-    id: 5,
-    name: "LinkedIn",
-    username: "timtbdev",
-    tooltip: "Connect with me on LinkedIn",
     href: "https://www.linkedin.com/in/timtbdev/",
-    icon: FaLinkedin,
+    icon: LinkedInIcon,
+    label: "LinkedIn",
   },
   {
-    id: 6,
-    name: "Facebook",
-    username: "timtbaz",
-    tooltip: "Connect with me on Facebook",
     href: "https://www.facebook.com/timtbaz/",
-    icon: FaFacebook,
+    icon: FacebookIcon,
+    label: "Facebook",
   },
 ];
+
+export default socialConfig;

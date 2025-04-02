@@ -1,4 +1,4 @@
-import { getBaseUrlWithSlug } from "@/lib/utils";
+import { getBaseUrl } from "@/lib/utils";
 import Link from "next/link";
 import { Fragment } from "react";
 import { FaSitemap, FaSquareRss } from "react-icons/fa6";
@@ -25,7 +25,7 @@ const DesktopCopyright = () => {
         </div>
         <div className="flex flex-1 justify-end">
           <Link
-            href={getBaseUrlWithSlug("rss.xml")}
+            href={getBaseUrl("/rss.xml")}
             target="_blank"
             rel="noopener noreferrer"
             className={defaultClass}

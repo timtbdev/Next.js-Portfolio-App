@@ -1,5 +1,5 @@
 import { allPosts } from "@/.content-collections/generated";
-import { getBaseUrl, getBaseUrlWithSlug } from "@/lib/utils";
+import { getBaseUrl } from "@/lib/utils";
 import { Feed } from "feed";
 
 export async function GET() {
@@ -13,8 +13,8 @@ export async function GET() {
     id: getBaseUrl(),
     link: getBaseUrl(),
     language: "en",
-    image: getBaseUrlWithSlug("favicons/favicon-32x32.png"),
-    favicon: getBaseUrlWithSlug("favicons/favicon.ico"),
+    image: getBaseUrl("/favicons/favicon-32x32.png"),
+    favicon: getBaseUrl("/favicons/favicon.ico"),
     copyright: `All rights reserved ${new Date().getFullYear()}`,
     updated: new Date(),
   });
@@ -23,8 +23,8 @@ export async function GET() {
     const slug = post._meta.path.replace(/\.mdx?$/, "");
     feed.addItem({
       title: post.title,
-      id: getBaseUrlWithSlug(`blog/post/${slug}`),
-      link: getBaseUrlWithSlug(`blog/post/${slug}`),
+      id: getBaseUrl(`/blog/post/${slug}`),
+      link: getBaseUrl(`/blog/post/${slug}`),
       description: post.description,
       content: post.description,
       date: new Date(post.date),
