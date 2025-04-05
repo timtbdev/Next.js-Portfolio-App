@@ -9,7 +9,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { Metadata, Viewport } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { Toaster } from "react-hot-toast";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -175,8 +174,6 @@ export default function RootLayout({
               {children}
               {/* Vercel Analytics for tracking */}
               <Analytics />
-              {/* Toast notifications */}
-              <Toaster position="top-center" />
               {/* Tailwind CSS breakpoint indicator (development only) */}
               <TailwindIndicator />
             </ThemeProvider>
