@@ -17,7 +17,7 @@ import navigationLinks from "@/config/navigation-links";
 import { cn } from "@/lib/utils";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu, X } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import React, { FC, memo, useState } from "react";
 import SubNavigationItem from "./sub-navigation-item";
 
