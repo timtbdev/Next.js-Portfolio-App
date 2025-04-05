@@ -9,7 +9,7 @@ const NavigationAbout = () => {
   const aboutLinks = aboutSection?.subNavigationLinks || [];
 
   return (
-    <div className="grid w-[540px] grid-cols-[60%_40%] divide-x divide-neutral-200">
+    <div className="divide-border grid w-[540px] grid-cols-[60%_40%] divide-x">
       <div className="flex flex-col gap-4 p-4">
         {aboutLinks.map((item) => (
           <Card
@@ -18,7 +18,6 @@ const NavigationAbout = () => {
             title={item.label}
             description={item.description || ""}
             icon={item.icon || CircleUserIcon}
-            hoverColor={item.hoverColor || "#0284c7"}
             external={
               item.href.startsWith("http") || item.href.endsWith(".pdf")
             }

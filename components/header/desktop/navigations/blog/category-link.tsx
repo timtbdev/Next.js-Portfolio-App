@@ -1,13 +1,13 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { FC } from "react";
+import React, { FC } from "react";
 
 interface CategoryLinkProps {
   href: string;
   title: string;
   description: string;
-  icon?: React.ReactNode;
-  background?: React.ReactNode;
-  gradientColor?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  weight: number;
   className?: string;
 }
 
@@ -16,39 +16,69 @@ const CategoryLink: FC<CategoryLinkProps> = ({
   title,
   description,
   icon,
-  background,
-  gradientColor = "#0f1726",
-  className = "",
+  weight,
+  className,
 }) => {
   return (
     <Link
-      className={`group relative flex flex-col overflow-hidden rounded-xl border border-neutral-100 bg-neutral-50 transition-all duration-200 hover:border-neutral-200 hover:shadow-sm ${className}`}
+      className={cn(
+        "group bg-accent/50 border-border hover:bg-accent relative flex flex-col overflow-hidden rounded-xl border mask-r-from-30% transition-all duration-200 hover:mask-r-from-60% hover:shadow-sm",
+        className,
+      )}
       href={href}
       aria-label={`View articles about ${title}`}
     >
-      {background && (
-        <div className="relative grow overflow-hidden">{background}</div>
+      {weight === 1 && icon && (
+        <div className="relative mx-auto flex h-[200px] w-full items-center justify-center">
+          <svg
+            className={cn(
+              "text-border pointer-events-none absolute inset-0 h-full w-full mask-b-from-10%",
+              className,
+            )}
+            width="100%"
+            height="100%"
+          >
+            <defs>
+              <pattern
+                id="grid-:r1i:"
+                x="35"
+                y="43"
+                width="45"
+                height="45"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 40 0 L 0 0 0 40"
+                  fill="transparent"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                ></path>
+              </pattern>
+            </defs>
+            <rect fill="url(#grid-:r1i:)" width="100%" height="100%"></rect>
+          </svg>
+          {icon &&
+            React.createElement(icon, {
+              className:
+                "text-foreground group-hover:text-accent-foreground size-40 relative z-10",
+            })}
+        </div>
       )}
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,var(--gradient-color),transparent)] opacity-[0.07] transition-opacity duration-150 group-hover:opacity-[0.2]"
-        style={{ "--gradient-color": gradientColor } as React.CSSProperties}
-      ></div>
+
       <div className="p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="text-sm font-medium text-neutral-900">
+        <div className="flex flex-col gap-1">
+          <div className="inline-flex items-center gap-1">
+            {weight === 2 &&
+              icon &&
+              React.createElement(icon, {
+                className:
+                  "text-foreground group-hover:text-accent-foreground size-5",
+              })}
+            <span className="text-foreground group-hover:text-accent-foreground text-sm font-medium">
               {title}
             </span>
-            <p className="mt-1 text-sm text-neutral-500">{description}</p>
           </div>
-          {icon && (
-            <div
-              className="text-neutral-700 transition-colors duration-200 group-hover:text-[var(--hover-color)]"
-              style={{ "--hover-color": gradientColor } as React.CSSProperties}
-            >
-              {icon}
-            </div>
-          )}
+          <p className="text-foreground mt-1 text-sm">{description}</p>
         </div>
       </div>
     </Link>

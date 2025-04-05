@@ -2,9 +2,9 @@ import React, { Fragment } from "react";
 
 const AnimatedArrow = () => {
   return (
-    <div className="group relative flex items-center">
+    <div className="group relative z-10 flex items-center">
       <svg
-        className="invisible absolute -ml-6 h-4 w-4 text-neutral-700 transition-all group-hover:translate-x-1 group-hover:opacity-0 group-aria-selected:visible sm:group-hover:visible"
+        className="text-foreground invisible absolute -ml-6 h-4 w-4 transition-all group-hover:translate-x-1 group-hover:opacity-0 group-aria-selected:visible sm:group-hover:visible"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         viewBox="0 0 16 16"
@@ -17,7 +17,7 @@ const AnimatedArrow = () => {
         ></path>
       </svg>
       <svg
-        className="invisible absolute -ml-6 h-4 w-4 text-neutral-700 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 group-aria-selected:visible sm:group-hover:visible"
+        className="text-foreground invisible absolute -ml-6 h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 group-aria-selected:visible sm:group-hover:visible"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         viewBox="0 0 16 16"

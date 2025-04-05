@@ -19,7 +19,7 @@ const MoreProjectItem: FC<Props> = ({
   return (
     <Link
       key={title}
-      className="group -mx-2 rounded-[8px] p-2 transition-all duration-200 hover:bg-neutral-50 hover:shadow-sm active:bg-neutral-100"
+      className="group bg-background hover:bg-accent -mx-2 rounded-[8px] mask-r-from-80% p-2 transition-all duration-200 hover:shadow-sm"
       target="_blank"
       rel="noopener noreferrer"
       href={href}
@@ -27,17 +27,19 @@ const MoreProjectItem: FC<Props> = ({
     >
       <div className="flex items-center justify-between gap-3">
         <div
-          className="shrink-0 rounded-[10px] border border-neutral-200 bg-white/50 p-1 transition-transform duration-200 group-hover:scale-105"
+          className="border-border bg-background/50 shrink-0 rounded-[10px] border p-1 transition-transform duration-200"
           aria-hidden="true"
         >
-          <Icon className="size-5 text-neutral-700 group-hover:text-neutral-900" />
+          <Icon className="text-foreground group-hover:text-accent-foreground size-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium text-neutral-700">
+          <p className="text-foreground group-hover:text-accent-foreground truncate text-sm font-medium">
             {title}
           </p>
           {description && (
-            <p className="truncate text-xs text-neutral-500">{description}</p>
+            <p className="text-muted-foreground truncate text-xs">
+              {description}
+            </p>
           )}
         </div>
         <AnimatedArrow />

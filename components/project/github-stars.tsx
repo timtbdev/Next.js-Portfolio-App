@@ -3,12 +3,12 @@
 import { getGitHubStars } from "@/actions/github";
 import { Skeleton } from "@/components/ui/skeleton";
 import AndroidIcon from "@/icons/android-icon";
-import NextJsIcon from "@/icons/nextjs-icon";
 import { Separator } from "@radix-ui/react-separator";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { FC, Suspense } from "react";
 import { FaGithub } from "react-icons/fa";
+import { RiNextjsFill as NextJsIcon } from "react-icons/ri";
 
 interface Props {
   url: string;

@@ -8,7 +8,7 @@ const HeadingHome: React.FC<Props> = ({ children }) => {
   return (
     <div className="relative mx-auto w-full">
       <svg
-        className="pointer-events-none absolute inset-[unset] top-0 left-1/2 -z-10 h-80 w-full -translate-x-1/2 text-gray-300/50 [mask-image:linear-gradient(transparent,black_70%,black_90%)]"
+        className="text-border pointer-events-none absolute inset-[unset] top-0 left-1/2 -z-10 h-80 w-full -translate-x-1/2 [mask-image:linear-gradient(transparent,black_70%,black_90%)]"
         width="100%"
         height="100%"
       >

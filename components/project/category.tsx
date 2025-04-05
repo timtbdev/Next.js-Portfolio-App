@@ -1,8 +1,8 @@
 import AndroidIcon from "@/icons/android-icon";
 import HtmlIcon from "@/icons/html-icon";
-import NextJsIcon from "@/icons/nextjs-icon";
 import { cn } from "@/lib/utils";
 import { FC } from "react";
+import { RiNextjsFill as NextJsIcon } from "react-icons/ri";
 
 interface Props {
   category: string;

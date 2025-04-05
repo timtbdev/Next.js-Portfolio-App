@@ -3,6 +3,7 @@ import TailwindIndicator from "@/components/ui/tailwind-indicator";
 import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/config/seo";
 import { cn, getBaseUrl } from "@/lib/utils";
 import "@/styles/tailwind.css";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { HeadType } from "@/types";
 import { Analytics } from "@vercel/analytics/next";
 import { Metadata, Viewport } from "next";
@@ -154,21 +155,31 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <body
-        className={cn("antialiased", fontSans.variable)}
+        className={cn(
+          "dark:selection:bg-sunset-500 bg-white antialiased selection:bg-blue-500 selection:text-white dark:bg-zinc-900",
+          fontSans.variable,
+        )}
         suppressHydrationWarning={true}
       >
         {/* URL query state management provider */}
         <NuqsAdapter>
           {/* React Query provider for data fetching */}
           <TanStackQueryProvider>
-            {/* Main content */}
-            {children}
-            {/* Vercel Analytics for tracking */}
-            <Analytics />
-            {/* Toast notifications */}
-            <Toaster position="top-center" />
-            {/* Tailwind CSS breakpoint indicator (development only) */}
-            <TailwindIndicator />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {/* Main content */}
+              {children}
+              {/* Vercel Analytics for tracking */}
+              <Analytics />
+              {/* Toast notifications */}
+              <Toaster position="top-center" />
+              {/* Tailwind CSS breakpoint indicator (development only) */}
+              <TailwindIndicator />
+            </ThemeProvider>
           </TanStackQueryProvider>
         </NuqsAdapter>
       </body>

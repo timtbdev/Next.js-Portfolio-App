@@ -86,9 +86,9 @@ export type CategoryType = {
   slug: string;
   background?: React.ComponentType<{ className?: string }>;
   icon?: React.ComponentType<{ className?: string }>;
-  gradientColor?: string;
+  bigIcon?: React.ComponentType<{ className?: string }>;
   description: string;
-  weight?: number;
+  weight: number;
 };
 
 export type NavigationLink = {
@@ -97,7 +97,6 @@ export type NavigationLink = {
   description?: string;
   icon?: React.ComponentType<{ className?: string }>;
   subNavigationLinks?: NavigationLink[];
-  hoverColor?: string;
 };
 
 export type ProjectSubNavType = {

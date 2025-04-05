@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,11 +7,14 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Skeleton } from "@/components/ui/skeleton";
+import navigationLinks from "@/config/navigation-links";
 import { cn } from "@/lib/utils";
-import { SunIcon } from "lucide-react";
 import Link from "next/link";
-import { FC } from "react";
-import SearchButton from "../search";
+import { FC, memo, Suspense, useCallback } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import SearchButton from "../shared/search";
+import { ThemeSwitcher } from "../shared/theme-switcher";
 import LogoButton from "./logo";
 import NavigationAbout from "./navigations/about/navigation-about";
 import NavigationBlog from "./navigations/blog/navigation-blog";
@@ -22,9 +24,89 @@ interface Props {
   activePath: string;
 }
 
-const DesktopHeader: FC<Props> = ({ activePath }) => {
+// Reusable styles
+const navItemStyles = {
+  base: "text-md font-semibold transition-colors duration-200",
+  active: "bg-accent text-md font-semibold",
+};
+
+const NavigationContentFallback = () => (
+  <div className="w-[540px] p-4">
+    <Skeleton className="h-24 w-full" />
+  </div>
+);
+
+const NavigationErrorFallback = () => (
+  <div className="w-[540px] p-4 text-center text-sm text-red-500">
+    Failed to load navigation content. Please try again.
+  </div>
+);
+
+const DesktopHeader: FC<Props> = memo(({ activePath }) => {
+  const isActive = useCallback(
+    (path: string) => {
+      if (path === "/") return activePath === "/";
+      if (path === "/blog") return activePath.startsWith("/blog");
+      return activePath === path;
+    },
+    [activePath],
+  );
+
+  const getNavItemClassName = useCallback(
+    (path: string) =>
+      cn(
+        navigationMenuTriggerStyle(),
+        isActive(path) ? navItemStyles.active : navItemStyles.base,
+      ),
+    [isActive],
+  );
+
+  const renderNavigationItem = useCallback(
+    (link: (typeof navigationLinks)[0]) => {
+      const isDropdown =
+        link.subNavigationLinks && link.subNavigationLinks.length > 0;
+
+      if (isDropdown) {
+        return (
+          <NavigationMenuItem key={link.href}>
+            <NavigationMenuTrigger
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={getNavItemClassName(link.href)}
+            >
+              <Link href={link.href} className="flex items-center gap-1">
+                {link.label}
+              </Link>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ErrorBoundary FallbackComponent={NavigationErrorFallback}>
+                <Suspense fallback={<NavigationContentFallback />}>
+                  {link.label === "About" && <NavigationAbout />}
+                  {link.label === "Blog" && <NavigationBlog />}
+                  {link.label === "Projects" && <NavigationProjects />}
+                </Suspense>
+              </ErrorBoundary>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        );
+      }
+
+      return (
+        <NavigationMenuItem key={link.href}>
+          <NavigationMenuLink
+            href={link.href}
+            aria-current={isActive(link.href) ? "page" : undefined}
+            className={getNavItemClassName(link.href)}
+          >
+            <div className="flex items-center gap-1">{link.label}</div>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      );
+    },
+    [isActive, getNavItemClassName],
+  );
+
   return (
-    <NavigationMenu className="mx-auto w-full max-w-5xl">
+    <NavigationMenu className="mx-auto hidden w-full max-w-5xl md:block">
       <div className="flex h-18 w-full items-center justify-between">
         <div className="flex flex-1 justify-start">
           <LogoButton />
@@ -33,89 +115,18 @@ const DesktopHeader: FC<Props> = ({ activePath }) => {
           className="flex items-center gap-5"
           aria-label="Main navigation"
         >
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="/"
-              aria-current={activePath === "/" ? "page" : undefined}
-              className={cn(
-                navigationMenuTriggerStyle(),
-                activePath === "/" && "bg-accent",
-                "text-md font-semibold text-neutral-700",
-              )}
-            >
-              Home
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              aria-current={activePath === "/about" ? "page" : undefined}
-              className={cn(
-                activePath === "/about" && "bg-accent",
-                "text-md cursor-pointer font-semibold text-neutral-700",
-              )}
-            >
-              <Link href="/about">About</Link>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationAbout />
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              aria-current={activePath.startsWith("/blog") ? "page" : undefined}
-              className={cn(
-                activePath.startsWith("/blog") && "bg-accent",
-                "text-md cursor-pointer font-semibold text-neutral-700",
-              )}
-            >
-              <Link href="/blog">Blog</Link>
-            </NavigationMenuTrigger>
-
-            <NavigationMenuContent>
-              <NavigationBlog />
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              aria-current={activePath === "/projects" ? "page" : undefined}
-              className={cn(
-                activePath === "/projects" && "bg-accent",
-                "text-md cursor-pointer font-semibold text-neutral-700",
-              )}
-            >
-              <Link href="/projects">Projects</Link>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationProjects />
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="/contact"
-              aria-current={activePath === "/contact" ? "page" : undefined}
-              className={cn(
-                navigationMenuTriggerStyle(),
-                activePath === "/contact" && "bg-accent",
-                "text-md font-semibold text-neutral-700",
-              )}
-            >
-              Contact
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          {navigationLinks.map(renderNavigationItem)}
         </NavigationMenuList>
 
         <div className="flex flex-1 justify-end gap-2">
           <SearchButton />
-          <Button variant="outline" size="icon" className="rounded-full">
-            <SunIcon className="size-5 text-neutral-700" />
-          </Button>
+          <ThemeSwitcher />
         </div>
       </div>
     </NavigationMenu>
   );
-};
+});
+
+DesktopHeader.displayName = "DesktopHeader";
 
 export default DesktopHeader;

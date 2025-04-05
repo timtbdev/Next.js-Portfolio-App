@@ -9,7 +9,6 @@ interface Props {
     className?: string;
     style?: React.CSSProperties;
   }>;
-  hoverColor: string;
   external?: boolean;
 }
 
@@ -18,32 +17,26 @@ const Card: FC<Props> = ({
   title,
   description,
   icon: Icon,
-  hoverColor,
   external,
 }) => (
   <Link
-    className="group relative flex flex-col justify-center overflow-hidden rounded-xl border border-neutral-100 bg-neutral-50 transition-all duration-200 hover:border-neutral-200 hover:shadow-sm"
+    className="group border-border bg-accent/50 hover:bg-accent relative flex flex-col justify-center overflow-hidden rounded-xl border mask-r-from-30% transition-all duration-200 hover:mask-r-from-80%"
     href={href}
     aria-label={`${title} - ${description}`}
-    style={{ "--hover-color": hoverColor } as React.CSSProperties}
     {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
   >
-    <div className="flex items-center justify-between px-5 py-4">
-      <div>
-        <span className="text-sm font-medium text-neutral-900">{title}</span>
-        <p className="mt-1 text-sm text-neutral-500">{description}</p>
+    <div className="flex flex-col gap-1 px-5 py-4">
+      <div className="inline-flex items-center gap-1">
+        <Icon
+          className="text-foreground group-hover:text-accent-foreground size-5 transition-colors duration-200"
+          aria-hidden="true"
+        />
+        <span className="text-foreground group-hover:text-accent-foreground text-sm font-medium">
+          {title}
+        </span>
       </div>
-      <Icon
-        className="size-6 text-neutral-700 transition-colors duration-200 group-hover:text-[var(--hover-color)]"
-        aria-hidden="true"
-      />
+      <p className="text-muted-foreground text-sm">{description}</p>
     </div>
-    <div
-      className="pointer-events-none absolute inset-0 rounded-xl opacity-[0.07] transition-all duration-200 group-hover:opacity-[0.2] group-hover:backdrop-blur-[2px]"
-      style={{
-        background: `radial-gradient(circle at 10% 100%, var(--hover-color), transparent)`,
-      }}
-    />
   </Link>
 );
 

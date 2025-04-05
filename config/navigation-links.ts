@@ -1,14 +1,15 @@
-import { NavigationLink } from "@/types";
+import { NavigationLink, ProjectSubNavType } from "@/types";
 import {
-  CircleUserIcon as AboutMeIcon,
+  UserIcon as AboutMeIcon,
   RssIcon as BlogIcon,
   HomeIcon,
   MailIcon,
-  SquareUserRoundIcon as MyStoryIcon,
+  UserPenIcon as MyStoryIcon,
   ArchiveIcon as ProjectsIcon,
   FileTextIcon as ResumeIcon,
 } from "lucide-react";
 import categories from "./category";
+import projects from "./projects";
 
 const navigationLinks: NavigationLink[] = [
   {
@@ -26,21 +27,18 @@ const navigationLinks: NavigationLink[] = [
         label: "About Me",
         description: "Background and experience",
         icon: AboutMeIcon,
-        hoverColor: "#4d6bb8",
       },
       {
         href: "/about/my-story",
         label: "My Story",
         description: "My coding journey",
         icon: MyStoryIcon,
-        hoverColor: "#c48428",
       },
       {
         href: "/files/resume.pdf",
         label: "Resume",
         description: "View my resume",
         icon: ResumeIcon,
-        hoverColor: "#b91c1c",
       },
     ],
   },
@@ -48,6 +46,12 @@ const navigationLinks: NavigationLink[] = [
     icon: ProjectsIcon,
     href: "/projects",
     label: "Projects",
+    subNavigationLinks: projects.map((project: ProjectSubNavType) => ({
+      icon: project.icon,
+      href: project.href,
+      label: project.title,
+      description: project.description,
+    })),
   },
   {
     icon: BlogIcon,
@@ -57,6 +61,7 @@ const navigationLinks: NavigationLink[] = [
       icon: category.icon,
       href: `/blog/${category.slug}`,
       label: category.name,
+      description: category.description,
     })),
   },
   {

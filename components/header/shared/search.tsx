@@ -146,7 +146,7 @@ const SearchButton = () => {
         onClick={() => setIsOpen(true)}
         aria-label="Open search"
       >
-        <SearchIcon className="size-5 text-neutral-700" />
+        <SearchIcon className="text-foreground size-5" />
       </Button>
 
       <CommandDialog
@@ -174,7 +174,7 @@ const SearchButton = () => {
         <CommandList>
           {isLoading && (
             <div className="flex items-center justify-center p-4">
-              <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-neutral-700" />
+              <div className="border-border h-6 w-6 animate-spin rounded-full border-b-2" />
             </div>
           )}
 
@@ -193,7 +193,7 @@ const SearchButton = () => {
                       onSelect={() => setSearchTerm(term)}
                       className="flex items-center gap-2"
                     >
-                      <SearchIcon className="size-4 text-neutral-700" />
+                      <SearchIcon className="text-foreground size-4" />
                       {term}
                     </CommandItem>
                   ))}
@@ -217,21 +217,21 @@ const SearchButton = () => {
                       <div>
                         <h3
                           className={cn(
-                            "text-lg font-semibold text-neutral-800",
+                            "text-foreground text-lg font-semibold",
                             {
-                              "text-neutral-700": index === selectedIndex,
+                              "text-foreground": index === selectedIndex,
                             },
                           )}
                         >
                           {highlightMatches(result.fileName || "", searchTerm)}
                         </h3>
-                        <p className="mt-1 text-sm text-gray-600">
+                        <p className="text-foreground mt-1 text-sm">
                           {highlightMatches(
                             result.data?.title || "",
                             searchTerm,
                           )}
                         </p>
-                        <p className="mt-2 text-sm leading-relaxed text-neutral-700">
+                        <p className="text-foreground mt-2 text-sm leading-relaxed">
                           {result.content &&
                             renderMarkdownContent({
                               content: result.content,
@@ -260,7 +260,7 @@ const SearchButton = () => {
                     className="flex items-center gap-2"
                   >
                     {category.icon && (
-                      <category.icon className="size-4 text-neutral-700 group-hover:text-neutral-900" />
+                      <category.icon className="text-foreground group-hover:text-accent-foreground size-4" />
                     )}
                     {category.name}
                   </CommandItem>
@@ -276,7 +276,7 @@ const SearchButton = () => {
                     className="flex items-center gap-2"
                   >
                     {link.icon && (
-                      <link.icon className="size-4 text-neutral-700 group-hover:text-neutral-900" />
+                      <link.icon className="text-foreground group-hover:text-accent-foreground size-4" />
                     )}
                     {link.label}
                   </CommandItem>

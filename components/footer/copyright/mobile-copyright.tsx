@@ -1,4 +1,3 @@
-import NextJsIcon from "@/icons/nextjs-icon";
 import { getBaseUrl } from "@/lib/utils";
 import Link from "next/link";
 import { FaSitemap, FaSquareRss } from "react-icons/fa6";

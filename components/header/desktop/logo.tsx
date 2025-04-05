@@ -19,9 +19,9 @@ const LogoButton: FC<Props> = ({ className }) => {
         alt="Tim's avatar"
         width={176}
         height={176}
-        className="ring-brand-600 size-8 transform rounded-full transition-all duration-200"
+        className="size-8 transform rounded-full"
       />
-      <span className="text-md font-semibold text-neutral-700 group-hover:text-neutral-900">
+      <span className="text-md text-foreground group-hover:text-accent-foreground font-semibold">
         Tim
       </span>
     </Link>

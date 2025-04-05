@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-import AnimatedArrow from "./animated-arrow";
+import AnimatedArrow from "../animated-arrow";
 
 interface Props {
   href: string;
@@ -19,21 +19,23 @@ const MoreCategoryLink: FC<Props> = ({
 }) => {
   return (
     <Link
-      className={`group -mx-2 rounded-[8px] p-2 transition-colors hover:bg-neutral-50 active:bg-neutral-100 ${className}`}
+      className={`group hover:bg-accent -mx-2 rounded-[8px] mask-r-from-80% p-2 transition-colors ${className}`}
       href={href}
       aria-label={`View articles about ${title}`}
     >
       <div className="flex items-center justify-between gap-3">
-        <div className="shrink-0 rounded-[10px] border border-neutral-200 bg-white/50 p-2">
+        <div className="border-border bg-background shrink-0 rounded-[10px] border p-2">
           {icon}
         </div>
         <div className="flex-1">
-          <p className="text-sm font-medium text-neutral-700">{title}</p>
-          <p className="line-clamp-1 text-xs text-neutral-500">{description}</p>
+          <p className="text-foreground group-hover:text-accent-foreground text-sm font-medium">
+            {title}
+          </p>
+          <p className="text-muted-foreground line-clamp-1 text-xs">
+            {description}
+          </p>
         </div>
-        <div className="group relative size-4 shrink-0 items-center justify-end">
-          <AnimatedArrow />
-        </div>
+        <AnimatedArrow />
       </div>
     </Link>
   );
