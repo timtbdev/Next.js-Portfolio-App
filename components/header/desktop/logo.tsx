@@ -1,5 +1,5 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -13,14 +13,17 @@ const LogoButton: FC<Props> = ({ className }) => {
       href="/"
       className={cn("group inline-flex items-center gap-2", className)}
     >
-      <Image
-        src="/images/logo.png"
-        title="Tim's avatar"
-        alt="Tim's avatar"
-        width={176}
-        height={176}
-        className="size-8 transform rounded-full"
-      />
+      <Avatar>
+        <AvatarImage
+          src="/images/logo.png"
+          alt="Tim's avatar"
+          width={176}
+          height={176}
+          className="size-8 transform rounded-full"
+          title="Tim's avatar"
+        />
+        <AvatarFallback>TB</AvatarFallback>
+      </Avatar>
       <span className="text-md text-foreground group-hover:text-accent-foreground font-semibold">
         Tim
       </span>

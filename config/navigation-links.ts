@@ -1,3 +1,4 @@
+import { truncateDescription } from "@/lib/seo";
 import { NavigationLink, ProjectSubNavType } from "@/types";
 import {
   UserIcon as AboutMeIcon,
@@ -25,19 +26,19 @@ const navigationLinks: NavigationLink[] = [
       {
         href: "/about",
         label: "About Me",
-        description: "Background and experience",
+        description: truncateDescription("Background and experience", 30),
         icon: AboutMeIcon,
       },
       {
         href: "/about/my-story",
         label: "My Story",
-        description: "My coding journey",
+        description: truncateDescription("My coding journey", 30),
         icon: MyStoryIcon,
       },
       {
         href: "/files/resume.pdf",
         label: "Resume",
-        description: "View my resume",
+        description: truncateDescription("View my resume", 30),
         icon: ResumeIcon,
       },
     ],

@@ -18,7 +18,7 @@ const MobileHeader: FC<Props> = ({ currentPath }) => {
 
         <div className="flex flex-1 justify-end gap-2">
           <SearchButton />
-          <ThemeSwitcher />
+          <ThemeSwitcher variant="toggle" />
         </div>
       </div>
     </NavigationMenu>

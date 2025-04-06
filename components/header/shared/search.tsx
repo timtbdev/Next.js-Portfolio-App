@@ -142,11 +142,11 @@ const SearchButton = () => {
       <Button
         variant="outline"
         size="icon"
-        className="rounded-full"
+        className="group rounded-full"
         onClick={() => setIsOpen(true)}
         aria-label="Open search"
       >
-        <SearchIcon className="text-foreground size-5" />
+        <SearchIcon className="text-foreground group-hover:text-accent-foreground size-5" />
       </Button>
 
       <CommandDialog

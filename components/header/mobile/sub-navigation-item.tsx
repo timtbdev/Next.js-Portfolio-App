@@ -9,6 +9,7 @@ interface Props {
   description: string;
   className?: string;
   onClick?: () => void;
+  isLoading?: boolean;
 }
 
 const SubNavigationItem: FC<Props> = ({
@@ -18,16 +19,19 @@ const SubNavigationItem: FC<Props> = ({
   icon,
   className,
   onClick,
+  isLoading = false,
 }) => {
   return (
     <Link
       className={cn(
         "group flex w-full items-center gap-3",
         "hover:bg-accent hover:shadow-xs",
+        isLoading && "pointer-events-none opacity-50",
         className,
       )}
       href={href}
       onClick={onClick}
+      aria-disabled={isLoading}
     >
       <div className="border-border bg-accent/50 flex size-10 items-center justify-center rounded-lg border p-2">
         {icon}

@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
@@ -18,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import React, { FC, memo, useState } from "react";
+import React, { FC, memo, useCallback, useState } from "react";
 import SubNavigationItem from "./sub-navigation-item";
 
 interface Props {
@@ -33,23 +34,57 @@ const extractActivePath = (path: string): string => {
 const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
   const activePath = extractActivePath(currentPath);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const toggleSheet = () => {
+  const toggleSheet = useCallback(() => {
     setIsOpen((prev) => !prev);
-  };
+  }, []);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setIsOpen(false);
+    }
+  }, []);
+
+  const handleNavigation = useCallback(
+    (href: string) => {
+      setIsLoading(true);
+      toggleSheet();
+      // Reset loading state after a short delay to ensure smooth transition
+      setTimeout(() => setIsLoading(false), 300);
+    },
+    [toggleSheet],
+  );
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <button
+        <Button
           onClick={toggleSheet}
-          className="hover:bg-accent flex rounded-md p-2"
+          onKeyDown={handleKeyDown}
+          variant="outline"
+          size="icon"
+          className={cn(
+            "hover:bg-accent active:bg-accent/50 rounded-md border-none p-4 shadow-none transition-all duration-300 active:scale-95",
+            className,
+          )}
           aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
-          {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+          {isOpen ? (
+            <X className="text-foreground group-hover:text-accent-foreground size-6" />
+          ) : (
+            <Menu className="text-foreground group-hover:text-accent-foreground size-6" />
+          )}
+        </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="z-1 mt-10">
+      <SheetContent
+        side="left"
+        className="z-1 mt-10"
+        onKeyDown={handleKeyDown}
+        id="mobile-navigation"
+      >
         <VisuallyHidden>
           <SheetTitle>Mobile Navigation</SheetTitle>
         </VisuallyHidden>
@@ -69,6 +104,7 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                           "hover:bg-accent hover:shadow-xs": !isActive,
                         },
                       )}
+                      aria-label={`${menuItem.label} menu`}
                     >
                       <span className="text-foreground group-hover:text-accent-foreground">
                         {menuItem.label}
@@ -80,7 +116,7 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                           <li key={subItem.href}>
                             <SubNavigationItem
                               href={subItem.href}
-                              onClick={toggleSheet}
+                              onClick={() => handleNavigation(subItem.href)}
                               label={subItem.label ?? ""}
                               description={subItem.description ?? ""}
                               icon={
@@ -89,6 +125,7 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                                   : null
                               }
                               className="group flex w-full gap-2 px-6 py-4"
+                              isLoading={isLoading}
                             />
                           </li>
                         ))}
@@ -106,7 +143,8 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                           "hover:bg-accent hover:shadow-xs": !isActive,
                         },
                       )}
-                      onClick={toggleSheet}
+                      onClick={() => handleNavigation(menuItem.href)}
+                      aria-current={isActive ? "page" : undefined}
                     >
                       <span className="text-foreground group-hover:text-accent-foreground font-medium">
                         {menuItem.label}

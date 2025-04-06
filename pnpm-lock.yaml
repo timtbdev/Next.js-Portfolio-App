@@ -36,7 +36,7 @@ dependencies:
     specifier: ^1.1.8
     version: 1.1.8(@types/react-dom@19.0.2)(@types/react@19.0.1)(react-dom@19.0.0)(react@19.0.0)
   '@tanstack/react-query':
-    specifier: ^5.71.5
+    specifier: ^5.71.10
     version: 5.71.10(react@19.0.0)
   '@vercel/analytics':
     specifier: ^1.5.0
@@ -84,8 +84,8 @@ dependencies:
     specifier: ^5.5.0
     version: 5.5.0(react@19.0.0)
   react-scroll-to-top:
-    specifier: ^3.0.0
-    version: 3.0.0(react@19.0.0)
+    specifier: ^3.1.0
+    version: 3.1.0(react@19.0.0)
   reading-time:
     specifier: ^1.5.0
     version: 1.5.0
@@ -125,7 +125,7 @@ devDependencies:
     specifier: ^4.4.1
     version: 4.4.1(prettier@3.5.3)
   '@tailwindcss/postcss':
-    specifier: ^4.1.2
+    specifier: ^4.1.3
     version: 4.1.3
   '@tailwindcss/typography':
     specifier: ^0.5.16
@@ -155,7 +155,7 @@ devDependencies:
     specifier: ^0.6.11
     version: 0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1)(prettier@3.5.3)
   tailwindcss:
-    specifier: ^4.1.2
+    specifier: ^4.1.3
     version: 4.1.3
   ts-node:
     specifier: ^10.9.2
@@ -5130,10 +5130,10 @@ packages:
       use-sidecar: 1.1.3(@types/react@19.0.1)(react@19.0.0)
     dev: false
 
-  /react-scroll-to-top@3.0.0(react@19.0.0):
-    resolution: {integrity: sha512-I/k45Ujai097du59tHBbzGxN7Lyc6K8Uc3IChq6HMXaBfB8N/rrfm055T5Yv0DWfVpf6pOFaBmhD3LOfH5unGw==}
+  /react-scroll-to-top@3.1.0(react@19.0.0):
+    resolution: {integrity: sha512-hD3bJQgCblywG2gcI515BcxP43MZkBidsYEVt9ak5pu1UOoQDJzIJp89zwccbpFuqeHZ29Lxs00T9DSxQr4cmw==}
     peerDependencies:
-      react: ^16.8.0 || 17.x || ^18
+      react: ^16.8.0 || 17.x || ^18 || ^19
     dependencies:
       react: 19.0.0
     dev: false

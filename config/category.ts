@@ -7,6 +7,7 @@ import {
   TreePalmIcon as TanStackQueryIcon,
 } from "lucide-react";
 import "react-icons/ri";
+import { truncateDescription } from "@/lib/seo";
 import {
   FileCode2Icon as NextJsIcon,
   PawPrintIcon as ZustandIcon,
@@ -19,49 +20,49 @@ const categories: CategoryType[] = [
     slug: "nextjs",
     icon: NextJsIcon,
     bigIcon: NextJsBigIcon,
-    description: "Articles about Next.js",
+    description: truncateDescription("Articles about Next.js", 30),
     weight: 1,
   },
   {
     name: "Supabase",
     slug: "supabase",
     icon: SupabaseIcon,
-    description: "Articles about Supabase",
+    description: truncateDescription("Articles about Supabase", 30),
     weight: 2,
   },
   {
     name: "Tailwind CSS",
     slug: "tailwind-css",
     icon: TailwindCssIcon,
-    description: "Articles about Tailwind CSS",
+    description: truncateDescription("Articles about Tailwind CSS", 30),
     weight: 2,
   },
   {
     name: "Shadcn UI",
     slug: "shadcn-ui",
     icon: ShadcnUiIcon,
-    description: "Articles about Shadcn UI",
+    description: truncateDescription("Articles about Shadcn UI", 30),
     weight: 2,
   },
   {
     name: "Tanstack Query",
     slug: "tanstack-query",
     icon: TanStackQueryIcon,
-    description: "Articles about Tanstack Query",
+    description: truncateDescription("Articles about Tanstack Query", 30),
     weight: 3,
   },
   {
     name: "Zustand",
     slug: "zustand",
     icon: ZustandIcon,
-    description: "Articles about Zustand",
+    description: truncateDescription("Articles about Zustand", 30),
     weight: 3,
   },
   {
     name: "Drizzle",
     slug: "drizzle",
     icon: DrizzleIcon,
-    description: "Articles about Drizzle",
+    description: truncateDescription("Articles about Drizzle", 30),
     weight: 3,
   },
 ];
