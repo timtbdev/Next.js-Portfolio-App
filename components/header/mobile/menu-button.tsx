@@ -62,12 +62,9 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
         <Button
           onClick={toggleSheet}
           onKeyDown={handleKeyDown}
-          variant="outline"
+          variant="ghost"
           size="icon"
-          className={cn(
-            "hover:bg-accent active:bg-accent/50 rounded-md border-none p-4 shadow-none transition-all duration-300 active:scale-95",
-            className,
-          )}
+          className={cn("group hover:bg-accent rounded-full", className)}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"

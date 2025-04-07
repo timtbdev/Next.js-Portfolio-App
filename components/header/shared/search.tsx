@@ -19,14 +19,21 @@ import { PostType } from "@/types";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 
-const SearchButton = () => {
+const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLUListElement>(null);
   const queryClient = useQueryClient();
@@ -36,13 +43,26 @@ const SearchButton = () => {
 
   const prevResultsRef = useRef<any>([]);
 
+  // Add keyboard shortcut for opening search
+  useEffect(() => {
+    const handleKeyDown = (e: globalThis.KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const {
     data: results,
     isRefetching,
     isLoading,
     error: queryError,
   } = useQuery({
-    queryKey: ["search", debouncedSearchTerm],
+    queryKey: ["search", debouncedSearchTerm, retryCount],
     queryFn: async () => {
       if (!debouncedSearchTerm) return [];
       try {
@@ -67,12 +87,16 @@ const SearchButton = () => {
         return newResults;
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
+        if (retryCount < 3) {
+          setRetryCount((prev) => prev + 1);
+        }
         return [];
       }
     },
     initialData: [],
     enabled: debouncedSearchTerm.length > 0,
     placeholderData: () => prevResultsRef.current,
+    retry: false,
   });
 
   const displayedResults = isRefetching ? prevResultsRef.current : results;
@@ -118,6 +142,7 @@ const SearchButton = () => {
     setIsOpen(false);
     setSelectedIndex(-1);
     setError(null);
+    setRetryCount(0);
   };
 
   useEffect(() => {
@@ -138,28 +163,42 @@ const SearchButton = () => {
   }, [isOpen]);
 
   return (
-    <>
+    <Fragment>
       <Button
         variant="outline"
         size="icon"
-        className="group rounded-full"
+        className="group hidden rounded-full md:flex"
         onClick={() => setIsOpen(true)}
         aria-label="Open search"
       >
         <SearchIcon className="text-foreground group-hover:text-accent-foreground size-5" />
       </Button>
 
+      <Button
+        variant="outline"
+        className="w-full gap-2 md:hidden"
+        onClick={() => setIsOpen(true)}
+        aria-label="Search"
+      >
+        <SearchIcon className="size-4" />
+        Search
+      </Button>
+
       <CommandDialog
         open={isOpen}
         onOpenChange={(open) => {
           setIsOpen(open);
-          if (open === false) {
+          if (!open) {
+            if (onOpenChange) {
+              onOpenChange();
+            }
             queryClient.removeQueries({
               queryKey: ["search", debouncedSearchTerm],
             });
             setSearchTerm("");
             setSelectedIndex(-1);
             setError(null);
+            setRetryCount(0);
           }
         }}
       >
@@ -175,10 +214,27 @@ const SearchButton = () => {
           {isLoading && (
             <div className="flex items-center justify-center p-4">
               <div className="border-border h-6 w-6 animate-spin rounded-full border-b-2" />
+              <span className="text-muted-foreground ml-2 text-sm">
+                Searching...
+              </span>
             </div>
           )}
 
-          {error && <div className="p-4 text-sm text-red-500">{error}</div>}
+          {error && (
+            <div className="flex flex-col items-center justify-center p-4">
+              <div className="text-sm text-red-500">{error}</div>
+              {retryCount < 3 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mt-2"
+                  onClick={() => setRetryCount((prev) => prev + 1)}
+                >
+                  Retry
+                </Button>
+              )}
+            </div>
+          )}
 
           {!isLoading && !error && (
             <>
@@ -208,13 +264,13 @@ const SearchButton = () => {
                       value={result.fileName}
                       onSelect={() => handleResultClick(result.fileName)}
                       className={cn(
-                        "mt-2 cursor-pointer rounded-md px-4 py-5",
+                        "mt-2 cursor-pointer rounded-md px-4 py-5 transition-colors",
                         index === selectedIndex && "bg-neutral-100",
                         index !== selectedIndex && "hover:bg-neutral-100",
                       )}
                       aria-selected={index === selectedIndex}
                     >
-                      <div>
+                      <div className="space-y-2">
                         <h3
                           className={cn(
                             "text-foreground text-lg font-semibold",
@@ -243,6 +299,16 @@ const SearchButton = () => {
                               ),
                             )}
                         </p>
+                        {result.data?.category && (
+                          <div className="mt-2 flex items-center gap-2">
+                            <span className="text-muted-foreground text-xs">
+                              Category:
+                            </span>
+                            <span className="rounded-full bg-neutral-100 px-2 py-1 text-xs">
+                              {result.data.category}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </CommandItem>
                   ))}
@@ -286,7 +352,7 @@ const SearchButton = () => {
           )}
         </CommandList>
       </CommandDialog>
-    </>
+    </Fragment>
   );
 };
 

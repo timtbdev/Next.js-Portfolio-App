@@ -1,21 +1,29 @@
 import socialConfig from "@/config/social";
 import Link from "next/link";
 import { FC } from "react";
+import { Button } from "../ui/button";
 
 const SocialMediaAccounts: FC = () => {
   return (
-    <div className="mt-8 flex justify-center space-x-6">
+    <div className="mt-6 flex justify-center space-x-4">
       {socialConfig.map((social) => (
-        <Link
+        <Button
           key={social.label}
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={social.label}
-          className="group text-neutral-600 transition-colors"
+          variant="ghost"
+          size="icon"
+          asChild
+          className="group text-foreground transition-colors"
         >
-          <social.icon className="size-5 transition-colors duration-200 group-hover:text-neutral-900" />
-        </Link>
+          <Link
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            className="group text-foreground transition-colors"
+          >
+            <social.icon className="text-foreground group-hover:text-accent-foreground size-5 transition-colors duration-200" />
+          </Link>
+        </Button>
       ))}
     </div>
   );

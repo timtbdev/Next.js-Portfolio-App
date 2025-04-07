@@ -1,12 +1,20 @@
-import DesktopCopyright from "./desktop-copyright";
-import MobileCopyright from "./mobile-copyright";
+import { Fragment } from "react";
+import CopyrightText from "./copyright-text";
+import DesktopFooterLinks from "./desktop-footer-links";
+import MobileFooterLinks from "./mobile-footer-links";
+import TechStacks from "./tech-stacks";
 
-const Copyright = () => {
+const FooterCopyright = () => {
   return (
-    <>
-      <DesktopCopyright />
-      <MobileCopyright />
-    </>
+    <Fragment>
+      <DesktopFooterLinks />
+      <div className="lg:hidden">
+        <MobileFooterLinks />
+        <CopyrightText />
+      </div>
+      <TechStacks />
+    </Fragment>
   );
 };
-export default Copyright;
+
+export default FooterCopyright;

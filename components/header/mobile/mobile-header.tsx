@@ -1,8 +1,7 @@
 import { NavigationMenu } from "@/components/ui/navigation-menu";
 import { FC } from "react";
-import SearchButton from "../shared/search";
-import { ThemeSwitcher } from "../shared/theme-switcher";
 import MenuButton from "./menu-button";
+import MoreMenuButton from "./more-menu-button";
 
 interface Props {
   currentPath: string;
@@ -17,8 +16,7 @@ const MobileHeader: FC<Props> = ({ currentPath }) => {
         </div>
 
         <div className="flex flex-1 justify-end gap-2">
-          <SearchButton />
-          <ThemeSwitcher variant="toggle" />
+          <MoreMenuButton />
         </div>
       </div>
     </NavigationMenu>

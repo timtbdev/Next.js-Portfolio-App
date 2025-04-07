@@ -7,8 +7,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { Moon, Sun, MonitorIcon as SystemIcon } from "lucide-react";
+import { Moon, Sun, Monitor as SystemIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
@@ -39,7 +40,6 @@ export function ThemeSwitcher({
         size="icon"
         className={cn("group animate-pulse rounded-full", className)}
         aria-label="Loading theme"
-        disabled
       >
         <div className="bg-muted size-5 rounded-full" />
       </Button>
@@ -48,19 +48,26 @@ export function ThemeSwitcher({
 
   if (variant === "toggle") {
     return (
-      <Button
-        variant="outline"
-        size="icon"
-        className={cn("group rounded-full", className)}
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      <Tabs
+        defaultValue={theme}
+        className="w-full"
+        onValueChange={(value: string) => setTheme(value)}
       >
-        {theme === "dark" ? (
-          <Sun className="text-foreground group-hover:text-accent-foreground size-5" />
-        ) : (
-          <Moon className="text-foreground group-hover:text-accent-foreground size-5" />
-        )}
-      </Button>
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="light" className="gap-2">
+            <Sun className="size-4" />
+            Light
+          </TabsTrigger>
+          <TabsTrigger value="dark" className="gap-2">
+            <Moon className="size-4" />
+            Dark
+          </TabsTrigger>
+          <TabsTrigger value="system" className="gap-2">
+            <SystemIcon className="size-4" />
+            System
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
     );
   }
 
@@ -81,23 +88,50 @@ export function ThemeSwitcher({
         <DropdownMenuItem
           onClick={() => setTheme("light")}
           className="group flex items-center gap-2"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setTheme("light");
+            }
+          }}
         >
           <Sun className="text-foreground group-hover:text-accent-foreground size-4" />
           Light
+          {theme === "light" && (
+            <span className="text-muted-foreground ml-auto text-xs">✓</span>
+          )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme("dark")}
           className="group flex items-center gap-2"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setTheme("dark");
+            }
+          }}
         >
           <Moon className="text-foreground group-hover:text-accent-foreground size-4" />
           Dark
+          {theme === "dark" && (
+            <span className="text-muted-foreground ml-auto text-xs">✓</span>
+          )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme("system")}
           className="group flex items-center gap-2"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setTheme("system");
+            }
+          }}
         >
           <SystemIcon className="text-foreground group-hover:text-accent-foreground size-4" />
           System
+          {theme === "system" && (
+            <span className="text-muted-foreground ml-auto text-xs">✓</span>
+          )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

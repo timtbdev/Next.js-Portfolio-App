@@ -19,7 +19,7 @@ const NavigationLinks = ({ className }: Props) => {
         <Link
           key={link.href}
           href={link.href}
-          className="group inline-flex items-center gap-2 text-lg font-semibold text-neutral-600 transition-colors hover:text-black"
+          className="group text-foreground hover:text-accent-foreground text-md inline-flex items-center gap-2 font-semibold transition-colors"
           prefetch={true}
         >
           {link.label}
