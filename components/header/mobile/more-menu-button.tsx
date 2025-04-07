@@ -11,9 +11,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { EllipsisVerticalIcon as MoreMenuIcon } from "lucide-react";
+import { EllipsisVerticalIcon as MoreMenuIcon, SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import SearchButton from "../shared/search";
 import { ThemeSwitcher } from "../shared/theme-switcher";
 
 const MoreMenuButton = () => {
@@ -23,6 +22,12 @@ const MoreMenuButton = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleSearchClick = () => {
+    // Dispatch a custom event to trigger the search dialog
+    window.dispatchEvent(new CustomEvent("openSearchDialog"));
+    setIsDrawerOpen(false);
+  };
 
   if (!mounted) {
     return (
@@ -60,11 +65,17 @@ const MoreMenuButton = () => {
           </DrawerHeader>
           <div className="flex flex-col gap-6 p-4">
             <div className="flex items-center justify-center space-x-2">
-              <SearchButton
-                onOpenChange={() => {
-                  setIsDrawerOpen(false);
-                }}
-              />
+              <DrawerClose asChild>
+                <Button
+                  variant="outline"
+                  aria-label="Search"
+                  className="group text-foreground hover:text-accent-foreground w-full gap-2"
+                  onClick={handleSearchClick}
+                >
+                  <SearchIcon className="size-4" />
+                  Search
+                </Button>
+              </DrawerClose>
             </div>
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Theme</h3>

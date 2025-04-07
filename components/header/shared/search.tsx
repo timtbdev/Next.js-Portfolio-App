@@ -52,8 +52,17 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
       }
     };
 
+    const handleOpenSearchDialog = () => {
+      setIsOpen(true);
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("openSearchDialog", handleOpenSearchDialog);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("openSearchDialog", handleOpenSearchDialog);
+    };
   }, []);
 
   const {
@@ -172,16 +181,6 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
         aria-label="Open search"
       >
         <SearchIcon className="text-foreground group-hover:text-accent-foreground size-5" />
-      </Button>
-
-      <Button
-        variant="outline"
-        className="w-full gap-2 md:hidden"
-        onClick={() => setIsOpen(true)}
-        aria-label="Search"
-      >
-        <SearchIcon className="size-4" />
-        Search
       </Button>
 
       <CommandDialog
