@@ -1,5 +1,6 @@
 import Footer from "@/components/footer/main";
-import HeadingDefault from "@/components/heading/heading-default";
+import Header from "@/components/header/main";
+import Heading from "@/components/heading/main";
 import ProjectItem from "@/components/project/main";
 import MainTitle from "@/components/ui/main-title";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
@@ -42,14 +43,14 @@ export default async function ProjectPage() {
 
   return (
     <Fragment>
-      {/* <Header /> */}
-      <HeadingDefault>
+      <Header />
+      <Heading variant="default">
         <MainTitle
           title={page.title}
           description={page.description}
           className="mx-auto mt-6 mb-14 max-w-3xl px-4 sm:px-6 lg:px-8"
         />
-      </HeadingDefault>
+      </Heading>
       <div className="relative mx-auto -mt-12 max-w-3xl px-4 sm:px-6 lg:px-8">
         {projects.map((project, index) => (
           <ProjectItem key={index} project={project} className="mb-8" />

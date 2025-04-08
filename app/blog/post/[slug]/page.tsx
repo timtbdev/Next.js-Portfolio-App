@@ -3,7 +3,7 @@ import BlogPostDetailHeading from "@/components/blog/detail-blog-post/heading/bl
 import DetailBlogPost from "@/components/blog/detail-blog-post/main";
 import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
-import HeadingBlog from "@/components/heading/heading-blog";
+import Heading from "@/components/heading/main";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { getBaseUrl } from "@/lib/utils";
 import { Metadata } from "next";
@@ -73,8 +73,8 @@ export default async function BlogPost({ params }: Props) {
 
   return (
     <Fragment>
-      {/* <Header showProgressBar={true} /> */}
-      <HeadingBlog>
+      <Header showProgressBar={true} />
+      <Heading variant="blog">
         <BlogPostDetailHeading
           title={post.title}
           description={post.description}
@@ -84,7 +84,7 @@ export default async function BlogPost({ params }: Props) {
           category={post.category}
           readTime={readingTime(post.content, { wordsPerMinute: 100 }).minutes}
         />
-      </HeadingBlog>
+      </Heading>
 
       <div className="mx-auto -mt-18 w-full max-w-5xl">
         <DetailBlogPost post={post} />

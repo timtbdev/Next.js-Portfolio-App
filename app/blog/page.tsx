@@ -1,7 +1,8 @@
 import SingleBlogPostLoading from "@/components/blog/single-blog-post/loading";
 import SingleBlogPost from "@/components/blog/single-blog-post/main";
 import Footer from "@/components/footer/main";
-import HeadingDefault from "@/components/heading/heading-default";
+import Header from "@/components/header/main";
+import Heading from "@/components/heading/main";
 import MainTitle from "@/components/ui/main-title";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { HEAD } from "@/config/seo";
@@ -51,14 +52,14 @@ export default async function BlogPage() {
 
   return (
     <Fragment>
-      {/* <Header /> */}
-      <HeadingDefault>
+      <Header />
+      <Heading variant="default">
         <MainTitle
           title={page.title}
           description={page.description}
           className="mx-auto mt-6 mb-4 max-w-3xl px-4 sm:px-6 lg:px-8"
         />
-      </HeadingDefault>
+      </Heading>
       <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-3 py-10 md:grid-cols-3 lg:px-4 xl:px-0">
         {posts?.map((post, index) => (
           <Suspense key={index} fallback={<SingleBlogPostLoading />}>

@@ -1,4 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
@@ -22,22 +28,34 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
         className="group relative mb-8 block"
         aria-label="View Tim's profile"
       >
-        <Avatar
-          className="ring-border bg-background hover:ring-accent/50 mx-auto size-32 rounded-full object-cover shadow-lg ring-4 transition-all duration-300 hover:scale-105"
-          role="img"
-          aria-label="Tim's profile picture"
-        >
-          <AvatarImage
-            src="/images/profile.jpg"
-            alt="Tim's profile picture"
-            width={128}
-            height={128}
-            className="transition-transform duration-300 group-hover:scale-110"
-          />
-          <AvatarFallback className="bg-accent">
-            <UserIcon className="text-foreground size-16" aria-hidden="true" />
-          </AvatarFallback>
-        </Avatar>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Avatar
+                className="ring-border bg-background hover:ring-accent/50 mx-auto size-32 rounded-full object-cover shadow-lg ring-4 transition-all duration-300"
+                role="img"
+                aria-label="Tim's profile picture"
+              >
+                <AvatarImage
+                  src="/images/profile.jpg"
+                  alt="Tim's profile picture"
+                  width={128}
+                  height={128}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
+                <AvatarFallback className="bg-accent">
+                  <UserIcon
+                    className="text-foreground size-16"
+                    aria-hidden="true"
+                  />
+                </AvatarFallback>
+              </Avatar>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Learn more about Tim</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </Link>
 
       <h1 className="text-accent-foreground mb-4 text-center text-5xl leading-none font-bold tracking-tight">

@@ -1,5 +1,6 @@
 import Footer from "@/components/footer/main";
-import HeadingDefault from "@/components/heading/heading-default";
+import Header from "@/components/header/main";
+import Heading from "@/components/heading/main";
 import Card from "@/components/ui/card";
 import MainTitle from "@/components/ui/main-title";
 import { HEAD } from "@/config/seo";
@@ -41,14 +42,14 @@ export const metadata: Metadata = {
 export default async function AboutPage() {
   return (
     <Fragment>
-      {/* <Header /> */}
-      <HeadingDefault>
+      <Header />
+      <Heading variant="default">
         <MainTitle
           title={page.title}
           description={page.description}
           className="mx-auto mt-6 mb-14 max-w-3xl px-4 sm:px-6 lg:px-8"
         />
-      </HeadingDefault>
+      </Heading>
       <div className="relative mx-auto -mt-12 max-w-3xl items-center px-4 sm:px-6 lg:px-8">
         <Card className="mb-6">
           <div className="shrink-0">
