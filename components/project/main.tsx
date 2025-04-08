@@ -1,22 +1,58 @@
-import mdxComponents from "@/components/mdx/mdx-components";
 import Card from "@/components/ui/card";
 import { MDXContent } from "@content-collections/mdx/react";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
-import {
-  FaGlobeAmericas as EarthIcon,
-  FaYoutube as YoutubeIcon,
-} from "react-icons/fa";
 import { ProjectType } from "types";
 import Category from "./category";
 import GithubButton from "./github-stars";
-import LinkButton from "./link-button";
-import Title from "./title";
+import LinkButtons from "./link-buttons";
 
 interface Props {
   project: ProjectType;
   className?: string;
 }
+
+const renderMdxComponents = {
+  p: (props: React.HTMLProps<HTMLParagraphElement>) => (
+    <p
+      className="text-foreground my-2 text-lg leading-relaxed text-pretty"
+      {...props}
+    />
+  ),
+  a: (props: React.HTMLProps<HTMLAnchorElement>) => {
+    const className =
+      "text-foreground hover:text-accent-foreground underline underline-offset-4";
+    if (props.href?.startsWith("/")) {
+      return (
+        <Link href={props.href} className={className} {...props}>
+          {props.children}
+        </Link>
+      );
+    }
+    if (props.href?.startsWith("#")) {
+      return (
+        <a href={props.href} className={className} {...props}>
+          {props.children}
+        </a>
+      );
+    }
+    return (
+      <a
+        href={props.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        {...props}
+      >
+        {props.children}
+      </a>
+    );
+  },
+  strong: (props: React.HTMLProps<HTMLElement>) => (
+    <strong className="text-foreground font-medium" {...props} />
+  ),
+};
 
 const ProjectImages: FC<{ image: string; title: string }> = ({
   image,
@@ -24,7 +60,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 }) => (
   <>
     <Image
-      className="mx-auto mt-6 hidden max-w-full sm:block"
+      className="z-10 mx-auto mt-6 hidden max-w-full sm:block"
       src={`/images/projects/${image}`}
       alt={`Screenshot of ${title}`}
       width={1024}
@@ -36,7 +72,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
       sizes="(max-width: 640px) 100vw, 1024px"
     />
     <Image
-      className="mx-auto mt-6 block max-w-full sm:hidden"
+      className="z-10 mx-auto mt-6 block max-w-full sm:hidden"
       src={`/images/projects/mobile/${image}`}
       alt={`Screenshot of ${title} - Mobile view`}
       width={512}
@@ -52,50 +88,41 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 const ProjectItem: FC<Props> = ({ project, className }) => {
   return (
     <Card className={className}>
-      <div className="mx-auto mt-1 flex max-w-xs flex-col items-center justify-center gap-x-2 gap-y-2 text-center sm:flex sm:flex-row">
+      <article className="z-10 mx-auto mt-4 gap-x-4 px-8 py-4 pb-3 text-center sm:px-10 sm:pb-0">
+        <h2 className="text-accent-foreground text-3xl font-bold tracking-tight text-pretty sm:text-4xl">
+          {project.title}
+        </h2>
         {project.githubUrl ? (
           <div className="mx-auto flex justify-center">
             <GithubButton
               url={project.githubUrl}
               repo={project.githubUrl.split("/").pop() || ""}
               category={project.category}
+              liveUrl={
+                project.webUrl === null
+                  ? project.youtubeUrl || ""
+                  : project.webUrl
+              }
             />
           </div>
         ) : (
           <Category
             category={project.category}
-            className="text-md mt-6 mb-2 font-semibold text-gray-600"
+            className="text-md text-foreground mt-6 mb-2 font-semibold"
           />
         )}
-      </div>
-
-      <article className="mx-auto px-8 pb-3 text-center sm:px-10 sm:pb-0">
-        <Title
-          title={project.title}
-          className="text-3xl text-black sm:text-4xl"
-        />
 
         {/* Description */}
-        <div className="prose prose-sm dark:prose-invert mx-auto mt-4">
-          <MDXContent code={project.mdx} components={mdxComponents} />
+        <div className="prose prose-sm dark:prose-invert mx-auto">
+          <MDXContent code={project.mdx} components={renderMdxComponents} />
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          {project.webUrl && (
-            <LinkButton
-              title="Live Demo"
-              Icon={EarthIcon}
-              url={project.webUrl}
-            />
-          )}
-          {project.youtubeUrl && (
-            <LinkButton
-              title="Watch on Youtube"
-              Icon={YoutubeIcon}
-              url={project.youtubeUrl}
-            />
-          )}
-        </div>
+        <LinkButtons
+          learnMoreUrl={project.githubUrl || ""}
+          liveDemoUrl={
+            project.webUrl === null ? project.youtubeUrl || "" : project.webUrl
+          }
+        />
       </article>
 
       <ProjectImages image={project.image} title={project.title} />

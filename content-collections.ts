@@ -62,7 +62,14 @@ const projects = defineCollection({
   schema: (z) => ({
     order: z.number(),
     title: z.string(),
-    category: z.string(),
+    category: z.enum([
+      "Android",
+      "Next.js",
+      "Web",
+      "Mobile",
+      "HTML, CSS, JS",
+      "Other",
+    ] as const),
     created_at: z.string(),
     image: z.string(),
     featured: z.boolean(),

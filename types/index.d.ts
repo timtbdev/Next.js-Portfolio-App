@@ -48,6 +48,13 @@ export type PostType = {
   };
 };
 
+export type ProjectCategory =
+  | "Android"
+  | "Next.js"
+  | "Web"
+  | "Mobile"
+  | "Other";
+
 // This is return type of content-collections
 export type ProjectType = {
   order: number;
