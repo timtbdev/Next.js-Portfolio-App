@@ -60,7 +60,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 }) => (
   <>
     <Image
-      className="z-10 mx-auto mt-6 hidden max-w-full sm:block"
+      className="mx-auto mt-6 hidden max-w-full sm:block"
       src={`/images/projects/${image}`}
       alt={`Screenshot of ${title}`}
       width={1024}
@@ -72,7 +72,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
       sizes="(max-width: 640px) 100vw, 1024px"
     />
     <Image
-      className="z-10 mx-auto mt-6 block max-w-full sm:hidden"
+      className="mx-auto mt-6 block max-w-full sm:hidden"
       src={`/images/projects/mobile/${image}`}
       alt={`Screenshot of ${title} - Mobile view`}
       width={512}
@@ -88,7 +88,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 const ProjectItem: FC<Props> = ({ project, className }) => {
   return (
     <Card className={className}>
-      <article className="z-10 mx-auto mt-4 gap-x-4 px-8 py-4 pb-3 text-center sm:px-10 sm:pb-0">
+      <article className="z-1 mx-auto mt-4 gap-x-4 px-8 py-4 pb-3 text-center sm:px-10 sm:pb-0">
         <h2 className="text-accent-foreground text-3xl font-bold tracking-tight text-pretty sm:text-4xl">
           {project.title}
         </h2>
