@@ -60,7 +60,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 }) => (
   <>
     <Image
-      className="mx-auto mt-6 hidden max-w-full sm:block"
+      className="z-1 mx-auto mt-6 hidden max-w-full sm:block"
       src={`/images/projects/${image}`}
       alt={`Screenshot of ${title}`}
       width={1024}
@@ -72,7 +72,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
       sizes="(max-width: 640px) 100vw, 1024px"
     />
     <Image
-      className="mx-auto mt-6 block max-w-full sm:hidden"
+      className="z-1 mx-auto mt-6 block max-w-full sm:hidden"
       src={`/images/projects/mobile/${image}`}
       alt={`Screenshot of ${title} - Mobile view`}
       width={512}
