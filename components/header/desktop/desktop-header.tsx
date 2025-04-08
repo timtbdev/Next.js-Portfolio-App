@@ -73,7 +73,11 @@ const DesktopHeader: FC<Props> = memo(({ activePath }) => {
               aria-current={isActive(link.href) ? "page" : undefined}
               className={getNavItemClassName(link.href)}
             >
-              <Link href={link.href} className="flex items-center gap-1">
+              <Link
+                href={link.href}
+                className="flex items-center gap-1"
+                prefetch
+              >
                 {link.label}
               </Link>
             </NavigationMenuTrigger>
