@@ -171,6 +171,25 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
     }
   }, [isOpen]);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Button
+        variant="outline"
+        size="icon"
+        className="group bg-background animate-pulse rounded-full"
+        aria-label="Loading theme"
+      >
+        <div className="bg-accent size-5 rounded-full" />
+      </Button>
+    );
+  }
+
   return (
     <Fragment>
       <Button

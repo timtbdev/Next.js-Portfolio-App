@@ -35,7 +35,7 @@ const ScrollToTopButton = () => {
       onClick={scrollToTop}
       variant="outline"
       size="icon"
-      className="group bg-background border-border fixed right-5 bottom-5 h-10 w-10 rounded-full border p-2.5 shadow-xs"
+      className="group bg-background border-border fixed right-5 bottom-5 size-10 rounded-full border p-2.5 shadow-xs"
       aria-label="Scroll to top"
     >
       <UpArrowIcon className="text-foreground group-hover:text-accent-foreground size-5" />

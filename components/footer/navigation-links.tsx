@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import navigationLinks from "@/config/navigation-links";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -11,7 +12,7 @@ const NavigationLinks = ({ className }: Props) => {
     <nav
       aria-label="Bottom navigation"
       className={cn(
-        "mx-auto flex w-full items-center justify-center gap-12",
+        "mx-auto flex w-full items-center justify-center gap-6",
         className,
       )}
     >
@@ -19,10 +20,16 @@ const NavigationLinks = ({ className }: Props) => {
         <Link
           key={link.href}
           href={link.href}
-          className="group text-foreground hover:text-accent-foreground text-md inline-flex items-center gap-2 font-semibold transition-colors"
+          className="group inline-flex items-center gap-2"
           prefetch={true}
+          aria-label={link.label}
         >
-          {link.label}
+          <Button
+            variant="link"
+            className="text-foreground group-hover:text-accent-foreground text-md font-semibold transition-colors duration-200"
+          >
+            {link.label}
+          </Button>
         </Link>
       ))}
     </nav>

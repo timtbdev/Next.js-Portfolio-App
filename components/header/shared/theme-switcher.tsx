@@ -38,10 +38,13 @@ export function ThemeSwitcher({
       <Button
         variant="outline"
         size="icon"
-        className={cn("group animate-pulse rounded-full", className)}
+        className={cn(
+          "group bg-background animate-pulse rounded-full",
+          className,
+        )}
         aria-label="Loading theme"
       >
-        <div className="bg-muted size-5 rounded-full" />
+        <div className="bg-accent size-5 rounded-full" />
       </Button>
     );
   }

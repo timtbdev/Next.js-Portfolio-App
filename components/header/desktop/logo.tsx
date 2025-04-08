@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -22,7 +23,9 @@ const LogoButton: FC<Props> = ({ className }) => {
           className="size-8 transform rounded-full"
           title="Tim's avatar"
         />
-        <AvatarFallback>TB</AvatarFallback>
+        <AvatarFallback className="bg-accent">
+          <UserIcon className="text-foreground size-5" aria-hidden="true" />
+        </AvatarFallback>
       </Avatar>
       <span className="text-md text-foreground group-hover:text-accent-foreground font-semibold">
         Tim
