@@ -60,12 +60,14 @@ export default async function BlogPage() {
           className="mx-auto mt-6 mb-4 max-w-3xl px-4 sm:px-6 lg:px-8"
         />
       </Heading>
-      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-3 py-10 md:grid-cols-3 lg:px-4 xl:px-0">
-        {posts?.map((post, index) => (
-          <Suspense key={index} fallback={<SingleBlogPostLoading />}>
-            <SingleBlogPost key={index} post={post} />
-          </Suspense>
-        ))}
+      <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-3 py-10 md:grid-cols-3 lg:px-4 xl:px-0">
+          {posts?.map((post, index) => (
+            <Suspense key={index} fallback={<SingleBlogPostLoading />}>
+              <SingleBlogPost key={index} post={post} />
+            </Suspense>
+          ))}
+        </div>
       </div>
       <Footer />
       <ScrollToTopButton />
