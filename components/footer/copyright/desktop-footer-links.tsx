@@ -9,17 +9,19 @@ interface FooterLinkProps {
   href: string;
   icon: React.ReactNode;
   label: string;
+  ariaLabel?: string;
 }
 
 const defaultStyle =
   "text-foreground group-hover:text-accent-foreground transition-colors duration-200";
 
-const FooterLink = ({ href, icon, label }: FooterLinkProps) => (
+const FooterLink = ({ href, icon, label, ariaLabel }: FooterLinkProps) => (
   <Button variant="link" asChild className="group">
     <Link
       href={href}
       className="group flex items-center gap-2"
-      aria-label={label}
+      aria-label={ariaLabel || label}
+      prefetch={true}
     >
       {icon}
       <span className={cn(defaultStyle)}>{label}</span>
@@ -41,6 +43,7 @@ const DesktopFooterLinks = () => {
               />
             }
             label="Sitemap"
+            ariaLabel="View website sitemap"
           />
         </div>
         <CopyrightText />
@@ -54,6 +57,7 @@ const DesktopFooterLinks = () => {
               />
             }
             label="RSS Feed"
+            ariaLabel="Subscribe to RSS feed"
           />
         </div>
       </div>
