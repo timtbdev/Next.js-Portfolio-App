@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { Moon, Sun, Monitor as SystemIcon } from "lucide-react";
+import { CheckIcon, Moon, Sun, Monitor as SystemIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
@@ -101,7 +101,7 @@ export function ThemeSwitcher({
           <Sun className="text-foreground group-hover:text-accent-foreground size-4" />
           Light
           {theme === "light" && (
-            <span className="text-muted-foreground ml-auto text-xs">✓</span>
+            <CheckIcon className="text-muted-foreground ml-auto size-4" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -117,7 +117,7 @@ export function ThemeSwitcher({
           <Moon className="text-foreground group-hover:text-accent-foreground size-4" />
           Dark
           {theme === "dark" && (
-            <span className="text-muted-foreground ml-auto text-xs">✓</span>
+            <CheckIcon className="text-muted-foreground ml-auto size-4" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -133,7 +133,7 @@ export function ThemeSwitcher({
           <SystemIcon className="text-foreground group-hover:text-accent-foreground size-4" />
           System
           {theme === "system" && (
-            <span className="text-muted-foreground ml-auto text-xs">✓</span>
+            <CheckIcon className="text-muted-foreground ml-auto size-4" />
           )}
         </DropdownMenuItem>
       </DropdownMenuContent>
