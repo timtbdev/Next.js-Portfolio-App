@@ -55,7 +55,7 @@ export default async function BlogPage() {
       <Header />
       <Heading variant="default">
         <MainTitle
-          title={page.title}
+          title={page.page}
           description={page.description}
           className="mx-auto mt-6 mb-4 max-w-3xl px-4 sm:px-6 lg:px-8"
         />

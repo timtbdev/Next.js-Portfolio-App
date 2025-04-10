@@ -190,7 +190,7 @@ export default async function AboutPage() {
                 </ul>
               </article>
               <div className="mt-6 flex w-fit max-w-xs gap-2">
-                <Link href="/story" target="_blank" rel="noopener noreferrer">
+                <Link href="/story">
                   <Button className="hover:ring-border px-5 py-2 hover:ring-2">
                     Learn more
                   </Button>
