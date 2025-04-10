@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { ProjectType } from "types";
+import BrowserWrapper from "./browser";
 import Category from "./category";
 import GithubButton from "./github-stars";
 import LinkButtons from "./link-buttons";
@@ -60,7 +61,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 }) => (
   <>
     <Image
-      className="z-1 mx-auto mt-6 hidden max-w-full sm:block"
+      className="z-1 mx-auto hidden max-w-full grayscale group-hover:grayscale-0 sm:block"
       src={`/images/projects/${image}`}
       alt={`Screenshot of ${title}`}
       width={1024}
@@ -72,7 +73,7 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
       sizes="(max-width: 640px) 100vw, 1024px"
     />
     <Image
-      className="z-1 mx-auto mt-6 block max-w-full sm:hidden"
+      className="z-1 mx-auto block max-w-full grayscale group-hover:grayscale-0 sm:hidden"
       src={`/images/projects/mobile/${image}`}
       alt={`Screenshot of ${title} - Mobile view`}
       width={512}
@@ -125,7 +126,13 @@ const ProjectItem: FC<Props> = ({ project, className }) => {
         />
       </article>
 
-      <ProjectImages image={project.image} title={project.title} />
+      <div className="mt-6 px-8">
+        <Link href={project.githubUrl || ""} target="_blank" className="group">
+          <BrowserWrapper>
+            <ProjectImages image={project.image} title={project.title} />
+          </BrowserWrapper>
+        </Link>
+      </div>
     </Card>
   );
 };
