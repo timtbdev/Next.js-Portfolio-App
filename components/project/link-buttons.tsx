@@ -13,10 +13,15 @@ const LinkButtons: FC<Props> = ({ learnMoreUrl, liveDemoUrl }) => {
   return (
     <div className="mx-auto mt-4 flex w-fit max-w-xs gap-2">
       <Link href={learnMoreUrl} target="_blank" rel="noopener noreferrer">
-        <Button className="px-5 py-2">Learn more</Button>
+        <Button className="hover:ring-border px-5 py-2 hover:border-black/20 hover:ring-2 dark:hover:border-white/20">
+          Learn more
+        </Button>
       </Link>
       <Link href={liveDemoUrl} target="_blank" rel="noopener noreferrer">
-        <Button variant="outline" className="px-5 py-2">
+        <Button
+          variant="outline"
+          className="hover:ring-border px-5 py-2 hover:border-black/20 hover:ring-2 dark:hover:border-white/20"
+        >
           Live Demo
           <ArrowUpRightIcon className="size-4" aria-hidden="true" />
         </Button>

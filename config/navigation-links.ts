@@ -30,7 +30,7 @@ const navigationLinks: NavigationLink[] = [
         icon: AboutMeIcon,
       },
       {
-        href: "/about/my-story",
+        href: "/story",
         label: "My Story",
         description: truncateDescription("My coding journey", 30),
         icon: MyStoryIcon,

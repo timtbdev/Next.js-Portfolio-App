@@ -15,11 +15,11 @@ const MainTitle: FC<Props> = ({ title, description, className = "" }) => {
         className,
       )}
     >
-      <h1 className="mb-2 justify-start text-3xl font-bold capitalize tracking-tight text-black md:text-4xl">
+      <h1 className="text-accent-foreground mb-2 justify-start text-3xl font-bold tracking-tight capitalize md:text-4xl">
         {title}
       </h1>
       {description && (
-        <h2 className="mb-2 text-lg text-gray-600">{description}</h2>
+        <h2 className="text-foreground mb-2 text-lg">{description}</h2>
       )}
     </div>
   );
