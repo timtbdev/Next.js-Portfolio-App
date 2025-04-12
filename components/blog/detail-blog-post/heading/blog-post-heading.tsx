@@ -1,6 +1,5 @@
 import { Separator } from "@radix-ui/react-separator";
-import { format, parseISO } from "date-fns";
-import React, { FC } from "react";
+import { FC } from "react";
 import BackButton from "./back-button";
 import InfoBarDetailDesktop from "./info-bar/info-bar-desktop";
 import InfoBarDetailMobile from "./info-bar/info-bar-mobile";
@@ -29,12 +28,12 @@ const BlogPostDetailHeading: FC<Props> = ({
       <div className="flex items-center space-x-4">
         <BackButton />
       </div>
-      <h1 className="font-display mt-4 mb-4 max-w-3xl text-left text-4xl font-medium text-ellipsis text-neutral-900 sm:mb-0 sm:text-4xl sm:leading-[1.25]">
+      <h1 className="font-display text-accent-foreground mt-4 mb-4 max-w-3xl text-left text-4xl font-medium text-ellipsis sm:mb-0 sm:text-4xl sm:leading-[1.25]">
         {title}
       </h1>
       <Separator
         orientation="horizontal"
-        className="my-2 hidden h-[1px] w-full max-w-3xl bg-gray-200 sm:block"
+        className="bg-border my-2 hidden h-[1px] w-full max-w-3xl sm:block"
       />
       <InfoBarDetailDesktop
         authorImage={authorImage}
@@ -52,7 +51,7 @@ const BlogPostDetailHeading: FC<Props> = ({
         readTime={readTime}
         className="sm:hidden"
       />
-      <p className="text-md line-clamp-3 max-w-3xl py-4 text-gray-600 sm:text-lg">
+      <p className="text-md text-foreground line-clamp-3 max-w-3xl py-4 sm:text-lg">
         {description}
       </p>
     </div>

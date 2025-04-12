@@ -91,7 +91,8 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
             <Accordion type="single" collapsible>
               {navigationLinks.map((menuItem) => {
                 const isActive = activePath === menuItem.href;
-                return menuItem.subNavigationLinks ? (
+                return menuItem.href === "/about" &&
+                  menuItem.subNavigationLinks ? (
                   <AccordionItem key={menuItem.href} value={menuItem.href}>
                     <AccordionTrigger
                       className={cn(
@@ -109,23 +110,24 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="divide-border divide-y">
-                        {menuItem.subNavigationLinks.map((subItem) => (
-                          <li key={subItem.href}>
-                            <SubNavigationItem
-                              href={subItem.href}
-                              onClick={() => handleNavigation(subItem.href)}
-                              label={subItem.label ?? ""}
-                              description={subItem.description ?? ""}
-                              icon={
-                                subItem.icon
-                                  ? React.createElement(subItem.icon)
-                                  : null
-                              }
-                              className="group flex w-full gap-2 px-6 py-4"
-                              isLoading={isLoading}
-                            />
-                          </li>
-                        ))}
+                        {menuItem.href === "/about" &&
+                          menuItem.subNavigationLinks.map((subItem) => (
+                            <li key={subItem.href}>
+                              <SubNavigationItem
+                                href={subItem.href}
+                                onClick={() => handleNavigation(subItem.href)}
+                                label={subItem.label ?? ""}
+                                description={subItem.description ?? ""}
+                                icon={
+                                  subItem.icon
+                                    ? React.createElement(subItem.icon)
+                                    : null
+                                }
+                                className="group flex w-full gap-2 px-6 py-4"
+                                isLoading={isLoading}
+                              />
+                            </li>
+                          ))}
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
@@ -134,7 +136,7 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                     <Link
                       href={menuItem.href}
                       className={cn(
-                        "group inline-flex w-full gap-2 px-6 py-4",
+                        "group border-border inline-flex w-full gap-2 border-b px-6 py-4",
                         {
                           "bg-accent/50 shadow-xs": isActive,
                           "hover:bg-accent hover:shadow-xs": !isActive,

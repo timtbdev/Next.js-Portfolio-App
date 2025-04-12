@@ -30,7 +30,7 @@ const InfoBarDetailMobile: FC<Props> = ({
         className,
       )}
     >
-      <div className="flex flex-row items-center gap-1 border-r border-b border-gray-300 pb-2">
+      <div className="border-border flex flex-row items-center gap-2 border-b pb-2">
         <Image
           src={authorImage}
           alt={authorName}
@@ -39,15 +39,15 @@ const InfoBarDetailMobile: FC<Props> = ({
           className="size-6 rounded-full"
           loading="lazy"
         />
-        <span className="text-md flex font-medium text-gray-600">
+        <span className="text-md text-foreground flex font-medium">
           {authorName}
         </span>
       </div>
-      <div className="inline-flex items-center gap-x-1 border-b border-gray-300 px-4 pb-2">
+      <div className="border-border inline-flex items-center gap-2 border-b px-4 pb-2">
         <FolderIcon size={20} className="size-5" aria-hidden="true" />
         <span className="text-md">{category}</span>
       </div>
-      <div className="inline-flex items-center gap-x-1 border-r border-gray-300 py-2">
+      <div className="border-border inline-flex items-center gap-2 border-r py-2">
         <CalendarIcon size={20} className="size-5" aria-hidden="true" />
         <span className="text-md">
           {format(parseISO(date), "MMM dd, yyyy")}

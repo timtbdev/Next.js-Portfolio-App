@@ -29,10 +29,10 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
 
   return (
     <div className="relative">
-      <div className="absolute top-52 h-[calc(100%-13rem)] w-full border-t border-neutral-200 bg-gradient-to-b from-neutral-50"></div>
+      <div className="border-border bg-background absolute top-52 h-[calc(100%-13rem)] w-full border-t"></div>
       <div className="mx-auto grid w-full max-w-screen-lg grid-cols-4 gap-5 px-0 pt-10 lg:gap-10 lg:px-4 xl:px-0">
-        <div className="relative col-span-4 sm:rounded-xl sm:border sm:border-neutral-200 md:col-span-3">
-          <div className="bg-white sm:rounded-t-xl">
+        <div className="sm:border-border relative col-span-4 sm:rounded-xl sm:border md:col-span-3">
+          <div className="dark:bg-accent bg-white sm:rounded-t-xl">
             <Image
               alt={title}
               draggable={false}

@@ -85,11 +85,11 @@ export default async function BlogPost({ params }: Props) {
           readTime={readingTime(post.content, { wordsPerMinute: 100 }).minutes}
         />
       </Heading>
-
-      <div className="mx-auto -mt-18 w-full max-w-5xl">
-        <DetailBlogPost post={post} />
+      <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
+        <div className="mx-auto -mt-18 w-full max-w-5xl">
+          <DetailBlogPost post={post} />
+        </div>
       </div>
-
       <Footer />
       <ScrollToTopButton />
     </Fragment>
