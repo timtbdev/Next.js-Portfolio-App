@@ -254,4 +254,20 @@
   body {
     @apply bg-background text-foreground;
   }
+  @keyframes to-down {
+    0% {
+      transform: translateY(calc(var(--height) * -1));
+    }
+
+    100% {
+      transform: translateY(100%);
+    }
+  }
+}
+
+@layer utilities {
+  .animate-to-down {
+    --height: 100%;
+    animation: to-down 1s ease-in-out infinite;
+  }
 }
