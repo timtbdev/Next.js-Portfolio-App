@@ -29,10 +29,10 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
 
   return (
     <div className="relative">
-      <div className="border-border bg-background absolute top-52 h-[calc(100%-13rem)] w-full border-t"></div>
+      <div className="bg-background absolute top-18 h-[calc(100%-13rem)] w-full"></div>
       <div className="mx-auto grid w-full max-w-screen-lg grid-cols-4 gap-5 px-0 pt-10 lg:gap-10 lg:px-4 xl:px-0">
         <div className="sm:border-border relative col-span-4 sm:rounded-xl sm:border md:col-span-3">
-          <div className="dark:bg-accent bg-white sm:rounded-t-xl">
+          <div className="bg-background sm:rounded-t-xl">
             <Image
               alt={title}
               draggable={false}
@@ -60,7 +60,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                       </div>
                     ),
                     Frame: ({ children }) => (
-                      <div className="my-8 inline-block h-full w-full rounded-xl bg-zinc-500/10 p-2 ring-1 ring-zinc-700 ring-inset lg:rounded-2xl lg:p-3">
+                      <div className="ring-border bg-background my-8 inline-block h-full w-full rounded-xl p-2 ring-1 ring-inset lg:rounded-2xl lg:p-3">
                         <div className="h-full w-full overflow-hidden rounded-lg">
                           {children}
                         </div>
@@ -83,12 +83,12 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                     },
                     hr: () => (
                       <div className="py-6">
-                        <hr className="h-0.5 border-none bg-[#2e2e32]" />
+                        <hr className="bg-border h-0.5 border-none" />
                       </div>
                     ),
                     code: (props) => {
                       return (
-                        <code className="text-brand-400 rounded bg-[#2e2e32] px-1.5 py-0.5 font-mono">
+                        <code className="text-brand-400 bg-border rounded px-1.5 py-0.5 font-mono">
                           {props.children}
                         </code>
                       );
@@ -186,7 +186,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
               </div>
             </ActiveSectionObserver>
           </div>
-          <div className="border-t border-neutral-200 bg-gradient-to-b from-white/50 to-transparent p-10 backdrop-blur-lg">
+          <div className="border-border bg-background border-t to-transparent p-10 backdrop-blur-lg">
             <div className="flex flex-col gap-y-4">
               <p className="font-display py-2 text-xl font-medium">Read more</p>
               <ul className="flex flex-col gap-y-6">
@@ -203,17 +203,17 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                         height={100}
                         decoding="async"
                         data-nimg="1"
-                        className="blur-0 aspect-video w-full rounded-lg border border-neutral-200 sm:w-[200px]"
+                        className="blur-0 border-border aspect-video w-full rounded-lg border sm:w-[200px]"
                         src={relatedPost.image}
                       />
                       <div className="flex flex-col space-y-2">
-                        <p className="font-display line-clamp-1 font-medium text-neutral-700 underline-offset-4 group-hover:underline">
+                        <p className="font-display text-foreground line-clamp-1 font-medium underline-offset-4 group-hover:underline">
                           {relatedPost.title}
                         </p>
-                        <p className="line-clamp-2 text-sm text-neutral-500 underline-offset-2 group-hover:underline">
+                        <p className="text-muted-foreground line-clamp-2 text-sm underline-offset-2 group-hover:underline">
                           {relatedPost.description}
                         </p>
-                        <p className="text-xs text-neutral-400 underline-offset-2 group-hover:underline">
+                        <p className="text-muted-foreground text-xs underline-offset-2 group-hover:underline">
                           {relatedPost.date}
                         </p>
                       </div>
@@ -227,7 +227,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
         {/* Sidebar */}
         <div className="sticky mt-48 hidden flex-col sm:flex">
           <div className="flex flex-col gap-y-4 py-5">
-            <p className="text-sm text-neutral-500">Written by</p>
+            <p className="text-muted-foreground text-sm">Written by</p>
             <Image
               alt={author}
               loading="lazy"
@@ -239,10 +239,12 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
               src={authorAvatar}
             />
             <div className="flex flex-col">
-              <p className="text-sm font-medium whitespace-nowrap text-neutral-700">
+              <p className="text-foreground text-sm font-medium whitespace-nowrap">
                 {author}
               </p>
-              <p className="text-sm text-neutral-500">Frontend Developer</p>
+              <p className="text-muted-foreground text-sm">
+                Frontend Developer
+              </p>
             </div>
           </div>
           <div className="sticky top-16 col-span-1 self-start pt-4 pb-8">

@@ -70,10 +70,10 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
       </h1>
 
       <div className="space-y-2">
-        <p className="text-foreground text-xl font-semibold">
+        <p className="text-foreground text-xl font-medium">
           The Best Frontend Developer
         </p>
-        <p className="text-foreground text-lg font-semibold">
+        <p className="text-foreground text-lg font-medium">
           in the 🇺🇸 San Francisco Bay Area
         </p>
       </div>

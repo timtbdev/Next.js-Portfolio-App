@@ -11,7 +11,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { EllipsisVerticalIcon as MoreMenuIcon, SearchIcon } from "lucide-react";
+import {
+  CircleXIcon,
+  EllipsisVerticalIcon as MoreMenuIcon,
+  SearchIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { ThemeSwitcher } from "../shared/theme-switcher";
 
@@ -85,6 +89,7 @@ const MoreMenuButton = () => {
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="outline" aria-label="Close settings menu">
+                <CircleXIcon className="size-4" />
                 Close
               </Button>
             </DrawerClose>
