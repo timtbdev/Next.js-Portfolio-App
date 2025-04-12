@@ -51,7 +51,7 @@ const BlogPostDetailHeading: FC<Props> = ({
         readTime={readTime}
         className="sm:hidden"
       />
-      <p className="text-md text-foreground line-clamp-3 max-w-3xl py-4 sm:text-lg">
+      <p className="text-md text-foreground line-clamp-3 max-w-3xl py-6 sm:text-lg md:py-4">
         {description}
       </p>
     </div>

@@ -35,7 +35,7 @@ const SingleBlogPost: FC<Props> = ({ post, className }) => {
 
   return (
     <Card
-      className={`relative flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${className}`}
+      className={`group relative flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${className}`}
     >
       <div className="relative aspect-[1200/630] overflow-hidden md:rounded-t-xl">
         <Image

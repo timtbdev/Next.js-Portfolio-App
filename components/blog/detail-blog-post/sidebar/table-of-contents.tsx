@@ -155,9 +155,6 @@ export const TableOfContents = ({
           <AlignLeftIcon className="size-4" aria-hidden="true" />
           {label}
         </p>
-        <div className="text-muted-foreground text-xs">
-          {Math.round(scrollProgress)}%
-        </div>
       </div>
       <p id="toc-description" className="sr-only">
         {description}

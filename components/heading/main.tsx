@@ -7,6 +7,7 @@ interface HeadingStyles {
   height: string;
   patternSize: number;
   patternOffset: { x: number; y: number };
+  mask: string;
 }
 
 interface Props {
@@ -19,19 +20,22 @@ interface Props {
 
 const HEADING_VARIANTS: Record<HeadingVariant, HeadingStyles> = {
   home: {
-    height: "h-80",
-    patternSize: 70,
+    height: "h-100",
+    patternSize: 80,
     patternOffset: { x: 35, y: 43 },
+    mask: "mask-t-from-50% mask-r-from-90% mask-l-from-90%",
   },
   blog: {
     height: "h-100",
     patternSize: 70,
     patternOffset: { x: 35, y: 43 },
+    mask: "mask-t-from-50% mask-r-from-90% mask-l-from-90% mask-b-from-20% mask-b-to-45%",
   },
   default: {
     height: "h-40",
     patternSize: 60,
     patternOffset: { x: 35, y: 43 },
+    mask: "mask-t-from-50% mask-r-from-90% mask-l-from-90%",
   },
 };
 
@@ -56,7 +60,8 @@ const Heading: React.FC<Props> = ({
     >
       <svg
         className={cn(
-          "text-border pointer-events-none absolute inset-[unset] top-0 left-1/2 -z-10 w-full -translate-x-1/2 mask-t-from-50% mask-r-from-90% mask-b-from-60% mask-l-from-90%",
+          "text-border pointer-events-none absolute inset-[unset] top-0 left-1/2 -z-10 w-full -translate-x-1/2",
+          styles.mask,
           styles.height,
         )}
         width="100%"

@@ -51,10 +51,12 @@ export default async function ProjectPage() {
           className="mx-auto mt-6 mb-14 max-w-3xl px-4 sm:px-6 lg:px-8"
         />
       </Heading>
-      <div className="relative mx-auto -mt-12 max-w-3xl px-4 sm:px-6 lg:px-8">
-        {projects.map((project, index) => (
-          <ProjectItem key={index} project={project} className="mb-8" />
-        ))}
+      <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
+        <div className="relative mx-auto -mt-12 max-w-3xl px-4 sm:px-6 lg:px-8">
+          {projects.map((project, index) => (
+            <ProjectItem key={index} project={project} className="mb-8" />
+          ))}
+        </div>
       </div>
       <Footer />
       <ScrollToTopButton />
