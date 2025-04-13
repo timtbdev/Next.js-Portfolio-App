@@ -7,7 +7,12 @@ import MainTitle from "@/components/ui/main-title";
 import { HEAD } from "@/config/seo";
 import { getBaseUrl } from "@/lib/utils";
 import { HeadType } from "@/types";
-import { ArrowUpRightIcon, CheckIcon } from "lucide-react";
+import {
+  ArrowUpRightIcon,
+  CheckIcon,
+  PaperclipIcon as FileIcon,
+  TextIcon as LearnMoreIcon,
+} from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -144,7 +149,7 @@ export default async function AboutPage() {
                         target="_blank"
                         className="text-foreground hover:text-accent-foreground font-semibold underline"
                       >
-                        🌟370+ GitHub stars
+                        🌟380+ GitHub stars
                       </a>{" "}
                       and is used by over{" "}
                       <a
@@ -192,6 +197,7 @@ export default async function AboutPage() {
               <div className="mt-6 flex w-fit max-w-xs gap-2">
                 <Link href="/story">
                   <Button className="hover:ring-border px-5 py-2 hover:ring-2">
+                    <LearnMoreIcon className="size-4" aria-hidden="true" />
                     Learn more
                   </Button>
                 </Link>
@@ -204,6 +210,7 @@ export default async function AboutPage() {
                     variant="outline"
                     className="hover:ring-border px-5 py-2 hover:border-black/20 hover:ring-2 dark:hover:border-white/20"
                   >
+                    <FileIcon className="size-4" aria-hidden="true" />
                     Download Resume
                     <ArrowUpRightIcon className="size-4" aria-hidden="true" />
                   </Button>

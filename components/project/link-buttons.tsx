@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowUpRightIcon } from "lucide-react";
+import {
+  TextIcon as LearnMoreIcon,
+  ArrowUpRightIcon as LinkIcon,
+  ChromeIcon as LiveDemoIcon,
+} from "lucide-react";
 import Link from "next/link";
 import React, { FC } from "react";
 
@@ -14,6 +18,7 @@ const LinkButtons: FC<Props> = ({ learnMoreUrl, liveDemoUrl }) => {
     <div className="mx-auto mt-4 flex w-fit max-w-xs gap-2">
       <Link href={learnMoreUrl} target="_blank" rel="noopener noreferrer">
         <Button className="hover:ring-border px-5 py-2 hover:border-black/20 hover:ring-2 dark:hover:border-white/20">
+          <LearnMoreIcon className="size-4" aria-hidden="true" />
           Learn more
         </Button>
       </Link>
@@ -22,8 +27,9 @@ const LinkButtons: FC<Props> = ({ learnMoreUrl, liveDemoUrl }) => {
           variant="outline"
           className="hover:ring-border px-5 py-2 hover:border-black/20 hover:ring-2 dark:hover:border-white/20"
         >
+          <LiveDemoIcon className="size-4" aria-hidden="true" />
           Live Demo
-          <ArrowUpRightIcon className="size-4" aria-hidden="true" />
+          <LinkIcon className="size-4" aria-hidden="true" />
         </Button>
       </Link>
     </div>
