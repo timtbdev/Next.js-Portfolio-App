@@ -31,7 +31,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
     <div className="relative">
       <div className="bg-background absolute top-18 h-[calc(100%-13rem)] w-full"></div>
       <div className="mx-auto grid w-full max-w-screen-lg grid-cols-4 gap-5 px-0 pt-10 lg:gap-10 lg:px-4 xl:px-0">
-        <div className="sm:border-border relative col-span-4 sm:rounded-xl sm:border md:col-span-3">
+        <div className="sm:border-border relative col-span-4 mb-10 sm:rounded-t-xl sm:border md:col-span-3">
           <div className="bg-background sm:rounded-t-xl">
             <Image
               alt={title}
