@@ -4,6 +4,7 @@ import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/config/seo";
 import { cn, getBaseUrl } from "@/lib/utils";
 import "@/styles/tailwind.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import { HeadType } from "@/types";
 import { Analytics } from "@vercel/analytics/next";
 import { Metadata, Viewport } from "next";
@@ -179,6 +180,7 @@ export default function RootLayout({
             </ThemeProvider>
           </TanStackQueryProvider>
         </NuqsAdapter>
+        <Toaster />
       </body>
     </html>
   );

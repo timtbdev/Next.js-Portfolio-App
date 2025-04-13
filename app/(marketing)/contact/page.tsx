@@ -1,13 +1,12 @@
-import SocialAccountButton from "@/components/contact/social-account-button";
+import { ContactForm } from "@/components/contact/contact-form";
 import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
 import Card from "@/components/ui/card";
 import MainTitle from "@/components/ui/main-title";
 import { HEAD } from "@/config/seo";
-import socialConfig from "@/config/social";
 import { getBaseUrl, shimmer, toBase64 } from "@/lib/utils";
-import { HeadType, SocialType } from "@/types";
+import { HeadType } from "@/types";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Fragment } from "react";
@@ -58,29 +57,8 @@ export default async function ContactPage() {
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="relative mx-auto -mt-12 max-w-3xl px-4 sm:px-6 lg:px-8">
           <Card>
-            <div className="mx-auto py-6 sm:py-8">
-              <div>
-                <div className="text-center">
-                  <Image
-                    src={imageUrl}
-                    alt={imageAlt}
-                    className="mx-auto size-24 rounded-full shadow-md ring-1 ring-gray-300"
-                    placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(96, 96))}`}
-                    width={96}
-                    height={96}
-                  />
-                </div>
-              </div>
-              <ul
-                role="list"
-                className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2"
-              >
-                {socialConfig.map((social: SocialType) => (
-                  <li key={social.href}>
-                    <SocialAccountButton social={social} />
-                  </li>
-                ))}
-              </ul>
+            <div className="mx-auto w-full px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+              <ContactForm />
             </div>
           </Card>
         </div>
