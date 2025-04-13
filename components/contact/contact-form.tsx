@@ -12,6 +12,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  LoaderCircleIcon as LoadingIcon,
+  SendHorizonalIcon as SendIcon,
+} from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -145,6 +149,11 @@ export function ContactForm() {
         />
         {/* Submit button with loading state */}
         <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <LoadingIcon className="size-4 animate-spin" />
+          ) : (
+            <SendIcon className="size-4" />
+          )}
           {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
       </form>
