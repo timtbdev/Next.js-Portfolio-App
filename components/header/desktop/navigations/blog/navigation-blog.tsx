@@ -27,7 +27,11 @@ const NavigationBlog = memo(() => {
           .map((category) => (
             <CategoryLink
               key={category.slug}
-              href={`/blog/category/${category.slug}`}
+              href={
+                category.slug === "/blog"
+                  ? category.slug
+                  : `/blog/category/${category.slug}`
+              }
               title={category.name}
               description={category.description}
               icon={category.bigIcon}
@@ -42,7 +46,11 @@ const NavigationBlog = memo(() => {
               .map((category) => (
                 <CategoryLink
                   key={category.slug}
-                  href={`/blog/category/${category.slug}`}
+                  href={
+                    category.slug === "/blog"
+                      ? category.slug
+                      : `/blog/category/${category.slug}`
+                  }
                   title={category.name}
                   description={category.description}
                   icon={category.icon}
@@ -64,7 +72,11 @@ const NavigationBlog = memo(() => {
               return Icon ? (
                 <MoreCategoryLink
                   key={category.slug}
-                  href={`/blog/category/${category.slug}`}
+                  href={
+                    category.slug === "/blog"
+                      ? category.slug
+                      : `/blog/category/${category.slug}`
+                  }
                   title={category.name}
                   description={category.description}
                   icon={
