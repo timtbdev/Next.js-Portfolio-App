@@ -9,19 +9,27 @@ import {
 import "react-icons/ri";
 import { truncateDescription } from "@/lib/seo";
 import {
+  RssIcon as BlogBigIcon,
+  RssIcon as BlogIcon,
   FileCode2Icon as NextJsIcon,
   PawPrintIcon as ZustandIcon,
 } from "lucide-react";
-import { RiNextjsFill as NextJsBigIcon } from "react-icons/ri";
 
 const categories: CategoryType[] = [
+  {
+    name: "All Articles",
+    slug: "/blog",
+    icon: BlogIcon,
+    bigIcon: BlogBigIcon,
+    description: truncateDescription("Read all articles", 30),
+    weight: 1,
+  },
   {
     name: "Next.js",
     slug: "nextjs",
     icon: NextJsIcon,
-    bigIcon: NextJsBigIcon,
     description: truncateDescription("Articles about Next.js", 30),
-    weight: 1,
+    weight: 2,
   },
   {
     name: "Supabase",
@@ -42,7 +50,7 @@ const categories: CategoryType[] = [
     slug: "shadcn-ui",
     icon: ShadcnUiIcon,
     description: truncateDescription("Articles about Shadcn UI", 30),
-    weight: 2,
+    weight: 3,
   },
   {
     name: "Tanstack Query",

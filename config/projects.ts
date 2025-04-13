@@ -11,7 +11,14 @@ import {
 
 const projects: ProjectSubNavType[] = [
   {
-    title: "Blog App",
+    title: "All Projects",
+    description: truncateDescription("Overview of all projects", 30),
+    image: "/images/navigation/all-projects.jpg",
+    href: "/projects",
+    icon: BlogIcon,
+  },
+  {
+    title: "Full Stack Blog App",
     description: truncateDescription(
       "A blog app built with Next.js, Tailwind CSS",
       30,
@@ -23,7 +30,6 @@ const projects: ProjectSubNavType[] = [
   {
     title: "Energy Project",
     description: truncateDescription("HTML, CSS, JavaScript, PHP, MySQL", 30),
-    image: "/images/navigation/featured-project-02.jpg",
     href: "https://ioco-5c746.web.app/eg/index.html",
     icon: DamIcon,
   },
@@ -34,22 +40,13 @@ const projects: ProjectSubNavType[] = [
     icon: MongolFoodIcon,
   },
   {
-    title: "Portfolio App v2",
+    title: "Portfolio App",
     description: truncateDescription(
       "Android, Kotlin, MVVM, Room, Retrofit, Coroutine",
       30,
     ),
     href: "https://www.youtube.com/watch?v=YjVJyqcv5I8",
     icon: RoundUserIcon,
-  },
-  {
-    title: "Portfolio App v1",
-    description: truncateDescription(
-      "Android, Java, MVC, XML, Butterknife, Retrofit, Coroutine",
-      30,
-    ),
-    href: "https://www.youtube.com/watch?v=j56fSGqF7Ho",
-    icon: SquareUserIcon,
   },
   {
     title: "Portfolio Web",
