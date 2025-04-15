@@ -36,7 +36,7 @@ interface SvgData {
  */
 export const TableOfContents = ({
   className,
-  label = "Table of contents",
+  label = "On this page",
   description = "Navigate through the sections of this article",
   ...props
 }: TableOfContentsProps) => {
