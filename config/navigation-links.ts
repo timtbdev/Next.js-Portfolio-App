@@ -3,9 +3,9 @@ import { NavigationLink, ProjectSubNavType } from "@/types";
 import {
   UserIcon as AboutMeIcon,
   RssIcon as BlogIcon,
+  UserPenIcon as ContactIcon,
   HomeIcon,
   MailIcon,
-  UserPenIcon as MyStoryIcon,
   ArchiveIcon as ProjectsIcon,
   FileTextIcon as ResumeIcon,
 } from "lucide-react";
@@ -30,16 +30,16 @@ const navigationLinks: NavigationLink[] = [
         icon: AboutMeIcon,
       },
       {
-        href: "/story",
-        label: "My Story",
-        description: truncateDescription("My coding journey", 30),
-        icon: MyStoryIcon,
-      },
-      {
         href: "/files/resume.pdf",
         label: "Resume",
         description: truncateDescription("View my resume", 30),
         icon: ResumeIcon,
+      },
+      {
+        href: "/contact",
+        label: "Contact",
+        description: truncateDescription("Contact me", 30),
+        icon: ContactIcon,
       },
     ],
   },

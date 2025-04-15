@@ -19,6 +19,14 @@ const HEAD: HeadType[] = [
     slug: "/about",
   },
   {
+    page: "Story",
+    title: truncateTitle("Story | Frontend Developer for Hire | Tim"),
+    description: truncateDescription(
+      "Learn more about Tim's journey and experiences as a frontend developer.",
+    ),
+    slug: "/story",
+  },
+  {
     page: "Blog",
     title: truncateTitle("Blog | Next.js, Tailwind CSS, and Supabase | Tim"),
     description: truncateDescription("Explore Tim's latest blog posts"),
