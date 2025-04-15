@@ -198,9 +198,9 @@ export default async function AboutPage() {
                   </li>
                 </ul>
               </article>
-              <div className="mt-8 flex w-fit max-w-xs flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex w-full flex-col gap-3 sm:mx-auto sm:flex-row">
                 <Link href="/story">
-                  <Button className="group w-full transition-colors duration-200">
+                  <Button className="group hover:ring-border w-full px-5 py-2 transition-colors duration-200 hover:border-black/20 hover:ring-2 dark:hover:border-white/20">
                     <LearnMoreIcon className="size-4" aria-hidden="true" />
                     Learn more
                   </Button>
@@ -212,7 +212,7 @@ export default async function AboutPage() {
                 >
                   <Button
                     variant="outline"
-                    className="group w-full transition-colors duration-200"
+                    className="group hover:ring-border w-full px-5 py-2 transition-colors duration-200 hover:border-black/20 hover:ring-2 dark:hover:border-white/20"
                   >
                     <FileIcon className="size-4" aria-hidden="true" />
                     Download Resume
