@@ -81,7 +81,7 @@ export default async function AboutPage() {
               </div>
               <article id="about-me" className="mt-4">
                 <p className="text-foreground w-full text-center text-lg sm:w-auto sm:text-left">
-                  Here's Why He's the Perfect Addition to Your Team!
+                  Here&apos;s Why He&apos;s the Perfect Addition to Your Team!
                 </p>
 
                 <ul
