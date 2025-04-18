@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { FC, memo } from "react";
-import { FadeUp } from "../ui/fade-up";
+import { MotionEffect } from "../ui/animations/motion-effect";
 
 interface ProfileProps {
   className?: string;
@@ -59,7 +59,15 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
         </TooltipProvider>
       </Link>
 
-      <FadeUp>
+      <MotionEffect
+        fade
+        blur="10px"
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }}
+        inView
+      >
         <h1 className="text-accent-foreground mb-4 text-center text-5xl leading-none font-bold tracking-tight">
           <span className="relative inline-block">
             <span
@@ -70,8 +78,6 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
           </span>{" "}
           Tim
         </h1>
-      </FadeUp>
-      <FadeUp delay={0.2} duration={0.5}>
         <div className="space-y-2">
           <p className="text-foreground text-xl font-medium">
             The Best Frontend Developer
@@ -80,7 +86,7 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
             in the 🇺🇸 San Francisco Bay Area
           </p>
         </div>
-      </FadeUp>
+      </MotionEffect>
     </section>
   );
 });

@@ -3,6 +3,8 @@ import SingleBlogPost from "@/components/blog/single-blog-post/main";
 import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
+import { MotionEffect } from "@/components/ui/animations/motion-effect";
+import { FadeUp } from "@/components/ui/fade-up";
 import MainTitle from "@/components/ui/main-title";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { HEAD } from "@/config/seo";
@@ -54,18 +56,30 @@ export default async function BlogPage() {
     <Fragment>
       <Header />
       <Heading variant="default">
-        <MainTitle
-          title={page.page}
-          description={page.description}
-          className="mx-auto mt-6 mb-4 max-w-3xl px-4 sm:px-6 lg:px-8"
-        />
+        <MotionEffect
+          fade
+          blur="10px"
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+          }}
+          inView
+        >
+          <MainTitle
+            title={page.page}
+            description={page.description}
+            className="mx-auto mt-6 mb-4 max-w-3xl px-4 sm:px-6 lg:px-8"
+          />
+        </MotionEffect>
       </Heading>
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-3 py-10 md:grid-cols-3 lg:px-4 xl:px-0">
           {posts?.map((post, index) => (
-            <Suspense key={index} fallback={<SingleBlogPostLoading />}>
-              <SingleBlogPost key={index} post={post} />
-            </Suspense>
+            <FadeUp key={index} delay={0.6} duration={0.3}>
+              <Suspense key={index} fallback={<SingleBlogPostLoading />}>
+                <SingleBlogPost key={index} post={post} />
+              </Suspense>
+            </FadeUp>
           ))}
         </div>
       </div>

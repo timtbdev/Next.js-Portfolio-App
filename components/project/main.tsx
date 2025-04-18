@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { ProjectType } from "types";
+import { MotionEffect } from "../ui/animations/motion-effect";
+import { FadeUp } from "../ui/fade-up";
 import BrowserWrapper from "./browser";
 import Category from "./category";
 import GithubButton from "./github-stars";
@@ -88,52 +90,70 @@ const ProjectImages: FC<{ image: string; title: string }> = ({
 
 const ProjectItem: FC<Props> = ({ project, className }) => {
   return (
-    <Card className={className}>
-      <article className="z-1 mx-auto mt-4 gap-x-4 px-8 py-4 pb-3 text-center sm:px-10 sm:pb-0">
-        <h2 className="text-accent-foreground text-3xl font-bold tracking-tight text-pretty sm:text-4xl">
-          {project.title}
-        </h2>
-        {project.githubUrl ? (
-          <div className="mx-auto flex justify-center">
-            <GithubButton
-              url={project.githubUrl}
-              repo={project.githubUrl.split("/").pop() || ""}
-              category={project.category}
-              liveUrl={
+    <FadeUp delay={0.6} duration={0.3}>
+      <Card className={className}>
+        <MotionEffect
+          fade
+          blur="10px"
+          delay={0.5}
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+          }}
+          inView
+        >
+          <article className="z-1 mx-auto mt-4 gap-x-4 px-8 py-4 pb-3 text-center sm:px-10 sm:pb-0">
+            <h2 className="text-accent-foreground text-3xl font-bold tracking-tight text-pretty sm:text-4xl">
+              {project.title}
+            </h2>
+            {project.githubUrl ? (
+              <div className="mx-auto flex justify-center">
+                <GithubButton
+                  url={project.githubUrl}
+                  repo={project.githubUrl.split("/").pop() || ""}
+                  category={project.category}
+                  liveUrl={
+                    project.webUrl === null
+                      ? project.youtubeUrl || ""
+                      : project.webUrl
+                  }
+                />
+              </div>
+            ) : (
+              <Category
+                category={project.category}
+                className="text-md text-foreground mt-6 mb-2 font-semibold"
+              />
+            )}
+
+            {/* Description */}
+            <div className="prose prose-sm dark:prose-invert mx-auto">
+              <MDXContent code={project.mdx} components={renderMdxComponents} />
+            </div>
+
+            <LinkButtons
+              learnMoreUrl={project.githubUrl || ""}
+              liveDemoUrl={
                 project.webUrl === null
                   ? project.youtubeUrl || ""
                   : project.webUrl
               }
             />
-          </div>
-        ) : (
-          <Category
-            category={project.category}
-            className="text-md text-foreground mt-6 mb-2 font-semibold"
-          />
-        )}
-
-        {/* Description */}
-        <div className="prose prose-sm dark:prose-invert mx-auto">
-          <MDXContent code={project.mdx} components={renderMdxComponents} />
+          </article>
+        </MotionEffect>
+        <div className="mt-6 px-8">
+          <Link
+            href={project.githubUrl || ""}
+            target="_blank"
+            className="group"
+          >
+            <BrowserWrapper>
+              <ProjectImages image={project.image} title={project.title} />
+            </BrowserWrapper>
+          </Link>
         </div>
-
-        <LinkButtons
-          learnMoreUrl={project.githubUrl || ""}
-          liveDemoUrl={
-            project.webUrl === null ? project.youtubeUrl || "" : project.webUrl
-          }
-        />
-      </article>
-
-      <div className="mt-6 px-8">
-        <Link href={project.githubUrl || ""} target="_blank" className="group">
-          <BrowserWrapper>
-            <ProjectImages image={project.image} title={project.title} />
-          </BrowserWrapper>
-        </Link>
-      </div>
-    </Card>
+      </Card>
+    </FadeUp>
   );
 };
 

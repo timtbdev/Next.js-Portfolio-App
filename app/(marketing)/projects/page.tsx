@@ -2,6 +2,7 @@ import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
 import ProjectItem from "@/components/project/main";
+import { MotionEffect } from "@/components/ui/animations/motion-effect";
 import MainTitle from "@/components/ui/main-title";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { HEAD } from "@/config/seo";
@@ -9,7 +10,7 @@ import { getBaseUrl } from "@/lib/utils";
 import { HeadType, ProjectType } from "@/types";
 import { allProjects } from "content-collections";
 import { Metadata } from "next";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -45,11 +46,21 @@ export default async function ProjectPage() {
     <Fragment>
       <Header />
       <Heading variant="default">
-        <MainTitle
-          title={page.page}
-          description={page.description}
-          className="mx-auto mt-6 mb-14 max-w-3xl px-4 sm:px-6 lg:px-8"
-        />
+        <MotionEffect
+          fade
+          blur="10px"
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+          }}
+          inView
+        >
+          <MainTitle
+            title={page.page}
+            description={page.description}
+            className="mx-auto mt-6 mb-14 max-w-3xl px-4 sm:px-6 lg:px-8"
+          />
+        </MotionEffect>
       </Heading>
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="relative mx-auto -mt-12 max-w-3xl px-4 sm:px-6 lg:px-8">
