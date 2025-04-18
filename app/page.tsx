@@ -3,6 +3,7 @@ import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
 import Profile from "@/components/home/profile";
 import ProjectItem from "@/components/project/main";
+import { FadeUp } from "@/components/ui/fade-up";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { ProjectType } from "@/types";
 import { allProjects } from "content-collections";
@@ -22,9 +23,11 @@ export default async function HomePage() {
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="relative mx-auto -mt-10 max-w-3xl items-center px-4 sm:px-6 lg:px-8">
           {projects.map((project, index) => (
-            <div key={index} className="mb-8">
-              <ProjectItem project={project} />
-            </div>
+            <FadeUp key={index} delay={0.6} duration={0.5}>
+              <div key={index} className="mb-8">
+                <ProjectItem project={project} />
+              </div>
+            </FadeUp>
           ))}
         </div>
       </div>

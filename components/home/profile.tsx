@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { FC, memo } from "react";
+import { FadeUp } from "../ui/fade-up";
 
 interface ProfileProps {
   className?: string;
@@ -58,25 +59,28 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
         </TooltipProvider>
       </Link>
 
-      <h1 className="text-accent-foreground mb-4 text-center text-5xl leading-none font-bold tracking-tight">
-        <span className="relative inline-block">
-          <span
-            className="bg-accent absolute -top-[2.5%] -left-[2.5%] z-0 h-[105%] w-[105%] -rotate-1"
-            aria-hidden="true"
-          />
-          <span className="relative">✨Hire</span>
-        </span>{" "}
-        Tim
-      </h1>
-
-      <div className="space-y-2">
-        <p className="text-foreground text-xl font-medium">
-          The Best Frontend Developer
-        </p>
-        <p className="text-foreground text-lg font-medium">
-          in the 🇺🇸 San Francisco Bay Area
-        </p>
-      </div>
+      <FadeUp>
+        <h1 className="text-accent-foreground mb-4 text-center text-5xl leading-none font-bold tracking-tight">
+          <span className="relative inline-block">
+            <span
+              className="bg-accent absolute -top-[2.5%] -left-[2.5%] z-0 h-[105%] w-[105%] -rotate-1"
+              aria-hidden="true"
+            />
+            <span className="relative">✨Hire</span>
+          </span>{" "}
+          Tim
+        </h1>
+      </FadeUp>
+      <FadeUp delay={0.2} duration={0.5}>
+        <div className="space-y-2">
+          <p className="text-foreground text-xl font-medium">
+            The Best Frontend Developer
+          </p>
+          <p className="text-foreground text-lg font-medium">
+            in the 🇺🇸 San Francisco Bay Area
+          </p>
+        </div>
+      </FadeUp>
     </section>
   );
 });
