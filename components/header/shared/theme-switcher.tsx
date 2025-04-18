@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionHighlight } from "@/components/ui/animations/motion-highlight";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

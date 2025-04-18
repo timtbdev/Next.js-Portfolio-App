@@ -1,10 +1,10 @@
 import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
+import { FadeUp } from "@/components/ui/animations/fade-up";
 import { MotionEffect } from "@/components/ui/animations/motion-effect";
 import { Button } from "@/components/ui/button";
 import Card from "@/components/ui/card";
-import { FadeUp } from "@/components/ui/fade-up";
 import MainTitle from "@/components/ui/main-title";
 import { HEAD } from "@/config/seo";
 import { getBaseUrl } from "@/lib/utils";

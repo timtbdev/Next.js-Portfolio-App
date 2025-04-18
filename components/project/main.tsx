@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { ProjectType } from "types";
+import { FadeUp } from "../ui/animations/fade-up";
+import { GitHubStarsButton } from "../ui/animations/github-stars-button";
 import { MotionEffect } from "../ui/animations/motion-effect";
-import { FadeUp } from "../ui/fade-up";
 import BrowserWrapper from "./browser";
 import Category from "./category";
-import GithubButton from "./github-stars";
 import LinkButtons from "./link-buttons";
 
 interface Props {
@@ -106,28 +106,24 @@ const ProjectItem: FC<Props> = ({ project, className }) => {
             <h2 className="text-accent-foreground text-3xl font-bold tracking-tight text-pretty sm:text-4xl">
               {project.title}
             </h2>
-            {project.githubUrl ? (
-              <div className="mx-auto flex justify-center">
-                <GithubButton
-                  url={project.githubUrl}
+
+            <div className="mx-auto mt-4 flex justify-center">
+              {project.githubUrl ? (
+                <GitHubStarsButton
+                  username="timtbdev"
                   repo={project.githubUrl.split("/").pop() || ""}
-                  category={project.category}
-                  liveUrl={
-                    project.webUrl === null
-                      ? project.youtubeUrl || ""
-                      : project.webUrl
-                  }
+                  className="mx-auto"
                 />
-              </div>
-            ) : (
-              <Category
-                category={project.category}
-                className="text-md text-foreground mt-6 mb-2 font-semibold"
-              />
-            )}
+              ) : (
+                <Category
+                  category={project.category}
+                  className="text-md text-foreground font-semibold"
+                />
+              )}
+            </div>
 
             {/* Description */}
-            <div className="prose prose-sm dark:prose-invert mx-auto">
+            <div className="prose prose-sm dark:prose-invert mx-auto mt-4">
               <MDXContent code={project.mdx} components={renderMdxComponents} />
             </div>
 
