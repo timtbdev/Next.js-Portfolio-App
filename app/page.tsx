@@ -23,7 +23,7 @@ export default async function HomePage() {
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="relative mx-auto -mt-10 max-w-3xl items-center px-4 sm:px-6 lg:px-8">
           {projects.map((project, index) => (
-            <FadeUp key={index} delay={0.6} duration={0.5}>
+            <FadeUp key={index} delay={0.6} duration={0.3}>
               <div key={index} className="mb-8">
                 <ProjectItem project={project} />
               </div>
