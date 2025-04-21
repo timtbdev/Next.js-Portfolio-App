@@ -254,7 +254,7 @@ export default async function AboutPage() {
                   >
                     <Button
                       variant="outline"
-                      className="group hover:ring-border w-full px-5 py-2 transition-colors duration-200 hover:border-black/20 hover:ring-2 dark:hover:border-white/20"
+                      className="hover:ring-border cursor-pointer overflow-hidden rounded-lg px-5 py-2 [--liquid-button-color:var(--accent)] [background:_linear-gradient(var(--liquid-button-color)_0_0)_no-repeat_calc(200%-var(--liquid-button-fill,0%))_100%/200%_var(--liquid-button-fill,0.2em)] [transition:_background_0.3s_var(--liquid-button-delay,0s),_color_0.3s_var(--liquid-button-delay,0s),_background-position_0.3s_calc(0.3s_-_var(--liquid-button-delay,0s))] hover:ring-2 hover:[--liquid-button-delay:0.3s] hover:[--liquid-button-fill:100%]"
                     >
                       <FileIcon className="size-4" aria-hidden="true" />
                       Download Resume
