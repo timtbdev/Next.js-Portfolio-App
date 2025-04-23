@@ -49,10 +49,6 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
 
   const techStack = [
     {
-      name: "Typescript",
-      icon: TypescriptLogo,
-    },
-    {
       name: "React",
       icon: ReactLogo,
     },
