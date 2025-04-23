@@ -122,7 +122,7 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
         <div className="relative mt-6 w-full overflow-hidden">
           <InfiniteSlider
             speed={40}
-            className="flex h-full w-full items-center mask-x-from-70% mask-x-to-90%"
+            className="flex h-full w-full items-center mask-x-from-80% mask-x-to-90% sm:mask-x-from-70% sm:mask-x-to-90%"
           >
             {techStack.map((tech, index) => (
               <div
@@ -137,12 +137,12 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
             ))}
           </InfiniteSlider>
           <ProgressiveBlur
-            className="pointer-events-none absolute top-0 left-0 h-full w-[200px]"
+            className="pointer-events-none absolute top-0 left-0 h-full w-[50px] sm:w-[100px]"
             direction="left"
             blurIntensity={1}
           />
           <ProgressiveBlur
-            className="pointer-events-none absolute top-0 right-0 h-full w-[200px]"
+            className="pointer-events-none absolute top-0 right-0 h-full w-[50px] sm:w-[100px]"
             direction="right"
             blurIntensity={1}
           />
