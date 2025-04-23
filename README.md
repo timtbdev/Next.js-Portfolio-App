@@ -1,6 +1,6 @@
 # 🤩 Next.js Portfolio App
 
-![Portfolio-App-Product-Hunt](https://github.com/user-attachments/assets/88c60d3b-4ff9-4605-b938-78df11fb27f5)
+![Portfolio-App-Product-Hunt](https://github.com/user-attachments/assets/e344041d-564d-4439-af63-c926a97b14d8)
 ![Portfolio-App-Product-Hunt (desktop)](https://github.com/user-attachments/assets/8aae7620-4839-4a15-8e05-cfa5070ebf12)
 ![Portfolio-App-Product-Hunt (mobile)](https://github.com/user-attachments/assets/14497c59-44e0-4982-8f53-0217c1281600)
 
