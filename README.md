@@ -1,5 +1,5 @@
 ![Portfolio-App-Product-Hunt](https://github.com/user-attachments/assets/e344041d-564d-4439-af63-c926a97b14d8)
-![Portfolio-App-Product-Hunt (desktop)](https://github.com/user-attachments/assets/8aae7620-4839-4a15-8e05-cfa5070ebf12)
+![Banner-02](https://github.com/user-attachments/assets/d354f9c5-2eb1-47f6-be04-61999ed6893e)
 ![Portfolio-App-Product-Hunt (mobile)](https://github.com/user-attachments/assets/14497c59-44e0-4982-8f53-0217c1281600)
 
 A **blazing-fast**, **SEO-optimized**, and **fully responsive** portfolio website built with modern web technologies.
