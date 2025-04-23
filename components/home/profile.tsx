@@ -3,7 +3,16 @@ import { cn } from "@/lib/utils";
 import { Variants } from "framer-motion";
 import { UserIcon } from "lucide-react";
 import { FC, memo } from "react";
+import { FaReact as ReactLogo } from "react-icons/fa";
+import {
+  RiNextjsFill as NextJsLogo,
+  RiSupabaseFill as SupabaseLogo,
+  RiTailwindCssFill as TailwindcssLogo,
+} from "react-icons/ri";
+import { SiTypescript as TypescriptLogo } from "react-icons/si";
+import { InfiniteSlider } from "../ui/animations/infinite-slider";
 import { MotionEffect } from "../ui/animations/motion-effect";
+import { ProgressiveBlur } from "../ui/animations/progressive-blur";
 import WordReveal from "../ui/animations/word-reveal";
 
 interface ProfileProps {
@@ -38,10 +47,33 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
     }),
   };
 
+  const techStack = [
+    {
+      name: "Typescript",
+      icon: TypescriptLogo,
+    },
+    {
+      name: "React",
+      icon: ReactLogo,
+    },
+    {
+      name: "Next.js",
+      icon: NextJsLogo,
+    },
+    {
+      name: "TailwindCSS",
+      icon: TailwindcssLogo,
+    },
+    {
+      name: "Supabase",
+      icon: SupabaseLogo,
+    },
+  ];
+
   return (
     <section
       className={cn(
-        "mx-auto max-w-2xl items-center justify-center text-center",
+        "mx-auto mb-4 max-w-2xl items-center justify-center text-center",
         className,
       )}
       aria-label="Profile section"
@@ -76,12 +108,48 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
         inView
       >
         <div className="space-y-2">
-          <p className="text-foreground text-xl font-medium">
+          <p className="text-foreground text-xl font-semibold">
             The Best Frontend Developer
           </p>
-          <p className="text-foreground text-lg font-medium">
-            in the 🇺🇸 San Francisco Bay Area
-          </p>
+        </div>
+      </MotionEffect>
+      <MotionEffect
+        fade
+        blur="10px"
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+          delay: 0.25,
+        }}
+        inView
+      >
+        <div className="relative mt-6 w-full overflow-hidden">
+          <InfiniteSlider
+            speed={40}
+            className="flex h-full w-full items-center mask-x-from-70% mask-x-to-90%"
+          >
+            {techStack.map((tech, index) => (
+              <div
+                key={tech.name}
+                className="inline-flex items-center gap-2 transition-all duration-300"
+              >
+                <tech.icon className={cn("text-muted-foreground size-6")} />
+                <span className="text-foreground/80 text-xl font-semibold">
+                  {tech.name}
+                </span>
+              </div>
+            ))}
+          </InfiniteSlider>
+          <ProgressiveBlur
+            className="pointer-events-none absolute top-0 left-0 h-full w-[200px]"
+            direction="left"
+            blurIntensity={1}
+          />
+          <ProgressiveBlur
+            className="pointer-events-none absolute top-0 right-0 h-full w-[200px]"
+            direction="right"
+            blurIntensity={1}
+          />
         </div>
       </MotionEffect>
     </section>
