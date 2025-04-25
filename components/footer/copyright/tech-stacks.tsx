@@ -37,7 +37,7 @@ const TechLinkButton: React.FC<{ link: TechLink }> = ({ link }) => (
 );
 
 const TechStacks: React.FC = () => (
-  <div className="mx-auto mt-4 max-w-xl items-center justify-center">
+  <div className="mx-auto mt-4 hidden max-w-xl items-center justify-center sm:flex">
     <p className="text-foreground text-center text-sm leading-5">
       Loosely designed in{" "}
       <Link

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { HeadType } from "@/types";
 import { Analytics } from "@vercel/analytics/next";
+import { RootProvider } from "fumadocs-ui/provider";
 import { Metadata, Viewport } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -165,14 +166,18 @@ export default function RootLayout({
         <NuqsAdapter>
           {/* React Query provider for data fetching */}
           <TanStackQueryProvider>
+            {/* Theme provider for dark/light mode support */}
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange
             >
-              {/* Main content */}
-              {children}
+              {/* Root provider for Fumadocs UI components */}
+              <RootProvider>
+                {/* Main content */}
+                {children}
+              </RootProvider>
               {/* Vercel Analytics for tracking */}
               <Analytics />
               {/* Tailwind CSS breakpoint indicator (development only) */}
@@ -180,6 +185,7 @@ export default function RootLayout({
             </ThemeProvider>
           </TanStackQueryProvider>
         </NuqsAdapter>
+        {/* Toast notifications provider */}
         <Toaster />
       </body>
     </html>

@@ -1,8 +1,29 @@
 import { slugify } from "@/lib/utils";
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
+import {
+  createDocSchema,
+  createMetaSchema,
+  transformMDX,
+} from "@fumadocs/content-collections/configuration";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeParseCodeBlocks } from "./shiki-rehype.mjs";
+
+const docs = defineCollection({
+  name: "docs",
+  directory: "content/docs",
+  include: "**/*.mdx",
+  schema: createDocSchema,
+  transform: transformMDX,
+});
+
+const metas = defineCollection({
+  name: "meta",
+  directory: "content/docs",
+  include: "**/meta.json",
+  parser: "json",
+  schema: createMetaSchema,
+});
 
 const posts = defineCollection({
   name: "posts",
@@ -89,5 +110,5 @@ const projects = defineCollection({
 });
 
 export default defineConfig({
-  collections: [posts, projects],
+  collections: [posts, projects, docs, metas],
 });

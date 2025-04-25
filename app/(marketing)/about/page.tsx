@@ -88,7 +88,7 @@ export default async function AboutPage() {
               </div>
 
               <div className="relative mx-auto flex max-w-3xl flex-col px-8 pt-6 pb-8 text-pretty sm:px-14">
-                <div className="flex items-center justify-start">
+                <div className="flex items-center justify-center sm:justify-start">
                   <MotionEffect
                     fade
                     blur="10px"
