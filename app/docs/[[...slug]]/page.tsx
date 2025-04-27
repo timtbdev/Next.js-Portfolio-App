@@ -1,13 +1,12 @@
+import Footer from "@/components/footer/main";
+import { DocsLayout } from "@/components/fuma/doc-layout";
+import Header from "@/components/header/main";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 import { MDXContent } from "@content-collections/mdx/react";
-import {
-  DocsBody,
-  DocsDescription,
-  DocsPage,
-  DocsTitle,
-} from "fumadocs-ui/page";
+import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -17,13 +16,24 @@ export default async function Page(props: {
   if (!page) notFound();
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
-      <DocsBody>
-        <MDXContent code={page.data.body} components={getMDXComponents()} />
-      </DocsBody>
-    </DocsPage>
+    <Fragment>
+      <Header />
+      <div className="border-border bg-background relative min-h-52 max-w-full border-t">
+        <div className="mx-auto w-full max-w-5xl">
+          <DocsLayout tree={source.pageTree}>
+            <DocsPage toc={page.data.toc} full={page.data.full}>
+              <DocsBody>
+                <MDXContent
+                  code={page.data.body}
+                  components={getMDXComponents()}
+                />
+              </DocsBody>
+            </DocsPage>
+          </DocsLayout>
+        </div>
+      </div>
+      <Footer />
+    </Fragment>
   );
 }
 

@@ -1,0 +1,133 @@
+---
+title: "Implementing next-mdx-remote in Next.js"
+description: "Learn how to implement next-mdx-remote in Next.js 15 using the App Router to dynamically render raw MDX content. This guide covers setup, serialization, and rendering for a seamless MDX integration."
+image: "/images/posts/how-to-implement-next-mdx-remote-with-nextjs/cover.jpg"
+author: "Tim Baz"
+authorAvatar: "/images/avatar.jpg"
+date: "2025-02-08"
+category: "Next.js"
+tags: ["Next.js", "next-mdx-remote", "App Router", "MDX", "Dynamic MDX"]
+seo:
+  [
+    "Next.js 15",
+    "next-mdx-remote",
+    "Next.js App Router",
+    "MDX with Next.js",
+    "Next.js dynamic MDX",
+    "rendering MDX in Next.js",
+    "Next.js markdown support",
+    "Next.js tutorial",
+    "Next.js MDX integration",
+    "Next.js static site",
+    "Next.js server components",
+    "MDX serialization Next.js",
+    "Next.js MDXRenderer",
+    "dynamic content Next.js",
+    "Next.js App Router tutorial",
+  ]
+---
+
+## Introduction
+
+Markdown with JSX (MDX) is a powerful way to write content-rich applications in Next.js. The `next-mdx-remote` library allows us to load MDX from various sources, such as CMSs or APIs, and render it dynamically. In this tutorial, we will explore how to integrate `next-mdx-remote` in a Next.js 15 application using the App Router and load raw MDX content.
+
+## Prerequisites
+
+Before getting started, ensure you have:
+
+- **Node.js 18+** installed
+- A Next.js 15 project set up (`npx create-next-app@latest`)
+- Basic knowledge of Next.js and MDX
+
+## Step 1: Install Dependencies
+
+Run the following command to install the required dependencies:
+
+```sh
+npm install next-mdx-remote next-mdx-remote/serialize remark-gfm remark-math rehype-slug
+```
+
+## Step 2: Create an MDX Rendering Component
+
+Create a new component `MDXRenderer.tsx` inside the `components` folder:
+
+```tsx
+"use client";
+
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import React from "react";
+
+interface MDXRendererProps {
+  source: MDXRemoteSerializeResult;
+}
+
+const MDXRenderer: React.FC<MDXRendererProps> = ({ source }) => {
+  return <MDXRemote {...source} />;
+};
+
+export default MDXRenderer;
+```
+
+## Step 3: Create an MDX Fetching Function
+
+Next, create a helper function to serialize and fetch the MDX content in `lib/mdx.ts`:
+
+```tsx
+import { serialize } from "next-mdx-remote/serialize";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+
+export async function getMdxContent(content: string) {
+  return await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm, remarkMath],
+      rehypePlugins: [rehypeSlug],
+    },
+  });
+}
+```
+
+## Step 4: Implement Dynamic MDX Rendering in a Page
+
+Now, create a dynamic page to display the MDX content. Inside `app/mdx/page.tsx`, add the following code:
+
+```tsx
+import MDXRenderer from "@/components/MDXRenderer";
+import { getMdxContent } from "@/lib/mdx";
+
+const mdxContent = `
+# Hello MDX
+
+This is a sample MDX content with **bold text** and a [link](https://nextjs.org/).
+
+> Blockquotes work too!
+
+\`\`\`tsx
+console.log("Hello, Next.js 15!");
+\`\`\`
+`;
+
+export default async function MdxPage() {
+  const mdxSource = await getMdxContent(mdxContent);
+  return (
+    <div className="prose mx-auto p-5">
+      <MDXRenderer source={mdxSource} />
+    </div>
+  );
+}
+```
+
+## Step 5: Test the MDX Integration
+
+Start the development server:
+
+```sh
+npm run dev
+```
+
+Navigate to `http://localhost:3000/mdx`, and you should see the rendered MDX content!
+
+## Conclusion
+
+Using `next-mdx-remote`, you can load and render raw MDX dynamically in Next.js 15 with the App Router. This approach enables fetching MDX from various sources, making it ideal for blog engines, CMS integrations, and dynamic documentation sites.
