@@ -138,11 +138,7 @@ const ProjectItem: FC<Props> = ({ project, className }) => {
           </article>
         </MotionEffect>
         <div className="mt-6 px-8">
-          <Link
-            href={project.githubUrl || ""}
-            target="_blank"
-            className="group"
-          >
+          <Link href={project.webUrl || ""} target="_blank" className="group">
             <BrowserWrapper>
               <ProjectImages image={project.image} title={project.title} />
             </BrowserWrapper>
