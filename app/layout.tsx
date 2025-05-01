@@ -169,8 +169,8 @@ export default function RootLayout({
             {/* Theme provider for dark/light mode support */}
             <ThemeProvider
               attribute="class"
-              defaultTheme="system"
-              enableSystem
+              defaultTheme="light"
+              enableSystem={false}
               disableTransitionOnChange
             >
               {/* Root provider for Fumadocs UI components */}
