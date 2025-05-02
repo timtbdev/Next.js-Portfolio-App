@@ -14,7 +14,7 @@ const socialConfig: SocialType[] = [
     label: "Email",
   },
   {
-    href: "https://x.com/timtbdev",
+    href: "https://x.com/hire_tim_com",
     icon: XPlatformIcon,
     label: "X (Twitter)",
   },

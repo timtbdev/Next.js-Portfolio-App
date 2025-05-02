@@ -1,7 +1,7 @@
 const AUTHOR = {
   name: "Tim Baz",
-  twitterUrl: "https://x.com/timtbdev",
-  twitterAddress: "@timtbdev",
+  twitterUrl: "https://x.com/hire_tim_com",
+  twitterAddress: "@hire_tim_com",
   email: "timtb.dev@gmail.com",
 };
 
