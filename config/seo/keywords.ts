@@ -1,4 +1,10 @@
 const KEYWORDS = [
+  "hire tim",
+  "Tumur Bazarragchaa",
+  "Tim Baz",
+  "Tumur",
+  "Bazarragchaa",
+  "Tim",
   "frontend",
   "developer",
   "hire",
