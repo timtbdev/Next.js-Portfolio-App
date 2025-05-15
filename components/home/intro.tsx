@@ -170,7 +170,7 @@ const Intro = ({ className }: Props) => {
                 and learning the latest frontend technologies. Right now,
                 I&apos;m building a{" "}
                 <Link
-                  href="/projects/nextjs-supabase-boilerplate"
+                  href="https://github.com/timtbdev/your-next-web"
                   className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
                   target="_blank"
                 >
