@@ -47,23 +47,11 @@ const navigationLinks: NavigationLink[] = [
     icon: ProjectsIcon,
     href: "/projects",
     label: "Projects",
-    subNavigationLinks: projects.map((project: ProjectSubNavType) => ({
-      icon: project.icon,
-      href: project.href,
-      label: project.title,
-      description: project.description,
-    })),
   },
   {
     icon: BlogIcon,
     href: "/blog",
     label: "Blog",
-    subNavigationLinks: categories.map((category) => ({
-      icon: category.icon,
-      href: `/blog/${category.slug}`,
-      label: category.name,
-      description: category.description,
-    })),
   },
   {
     icon: MailIcon,

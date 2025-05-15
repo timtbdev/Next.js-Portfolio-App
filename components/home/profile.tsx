@@ -9,7 +9,6 @@ import {
   RiSupabaseFill as SupabaseLogo,
   RiTailwindCssFill as TailwindcssLogo,
 } from "react-icons/ri";
-import { SiTypescript as TypescriptLogo } from "react-icons/si";
 import { InfiniteSlider } from "../ui/animations/infinite-slider";
 import { MotionEffect } from "../ui/animations/motion-effect";
 import { ProgressiveBlur } from "../ui/animations/progressive-blur";
