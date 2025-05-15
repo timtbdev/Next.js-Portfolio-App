@@ -4352,6 +4352,11 @@ react-medium-image-zoom@^5.2.14:
   resolved "https://registry.npmjs.org/react-medium-image-zoom/-/react-medium-image-zoom-5.2.14.tgz"
   integrity sha512-nfTVYcAUnBzXQpPDcZL+cG/e6UceYUIG+zDcnemL7jtAqbJjVVkA85RgneGtJeni12dTyiRPZVM6Szkmwd/o8w==
 
+react-photo-view@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.npmjs.org/react-photo-view/-/react-photo-view-1.2.7.tgz"
+  integrity sha512-MfOWVPxuibncRLaycZUNxqYU8D9IA+rbGDDaq6GM8RIoGJal592hEJoRAyRSI7ZxyyJNJTLMUWWL3UIXHJJOpw==
+
 react-promise-suspense@0.3.4:
   version "0.3.4"
   resolved "https://registry.npmjs.org/react-promise-suspense/-/react-promise-suspense-0.3.4.tgz"

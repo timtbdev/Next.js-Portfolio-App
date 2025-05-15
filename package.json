@@ -46,7 +46,7 @@
     "react-error-boundary": "^5.0.0",
     "react-hook-form": "^7.55.0",
     "react-icons": "^5.5.0",
-    "react-medium-image-zoom": "^5.2.14",
+    "react-photo-view": "^1.2.7",
     "react-use-measure": "^2.1.7",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",

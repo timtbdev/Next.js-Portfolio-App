@@ -1,9 +1,22 @@
+"use client";
+
 import Card from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeUp } from "../ui/animations/fade-up";
 import { MotionEffect } from "../ui/animations/motion-effect";
+import "react-photo-view/dist/react-photo-view.css";
+
+const PhotoProvider = dynamic(
+  () => import("react-photo-view").then((mod) => mod.PhotoProvider),
+  { ssr: false },
+);
+const PhotoView = dynamic(
+  () => import("react-photo-view").then((mod) => mod.PhotoView),
+  { ssr: false },
+);
 
 interface Props {
   className?: string;
@@ -24,70 +37,78 @@ const Intro = ({ className }: Props) => {
           inView
         >
           <div className="relative mx-auto mt-8 flex w-full justify-center">
-            <div className="relative flex gap-4">
-              <MotionEffect
-                slide={{
-                  direction: "down",
-                }}
-                fade
-                zoom
-                inView
-                delay={0.5}
-              >
-                <Image
-                  src="/images/about/about_me_01.jpg"
-                  alt="Wedding photo"
-                  className="z-2 translate-x-12 -rotate-3 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
-                  width={200}
-                  height={300}
-                  priority={true}
-                />
-              </MotionEffect>
-              <MotionEffect
-                slide={{
-                  direction: "down",
-                }}
-                fade
-                zoom
-                inView
-                delay={0.7}
-              >
-                <Image
-                  src="/images/about/about_me_02.jpg"
-                  alt="Family photo"
-                  className="z-1 rotate-2 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
-                  width={200}
-                  height={300}
-                  priority={true}
-                />
-              </MotionEffect>
-              <MotionEffect
-                slide={{
-                  direction: "down",
-                }}
-                fade
-                zoom
-                inView
-                delay={0.9}
-              >
-                <Image
-                  src="/images/about/about_me_03.jpg"
-                  alt="Running photo"
-                  className="z-0 -translate-x-12 rotate-2 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
-                  width={200}
-                  height={300}
-                  priority={true}
-                />
-              </MotionEffect>
-            </div>
+            <PhotoProvider>
+              <div className="relative flex gap-4">
+                <MotionEffect
+                  slide={{
+                    direction: "down",
+                  }}
+                  fade
+                  zoom
+                  inView
+                  delay={0.5}
+                >
+                  <PhotoView src="/images/about/about_me_01.jpg">
+                    <Image
+                      src="/images/about/about_me_01.jpg"
+                      alt="Wedding photo"
+                      className="z-2 translate-x-12 -rotate-3 cursor-pointer rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
+                      width={200}
+                      height={300}
+                      priority={true}
+                    />
+                  </PhotoView>
+                </MotionEffect>
+                <MotionEffect
+                  slide={{
+                    direction: "down",
+                  }}
+                  fade
+                  zoom
+                  inView
+                  delay={0.7}
+                >
+                  <PhotoView src="/images/about/about_me_02.jpg">
+                    <Image
+                      src="/images/about/about_me_02.jpg"
+                      alt="Family photo"
+                      className="z-1 rotate-2 cursor-pointer rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
+                      width={200}
+                      height={300}
+                      priority={true}
+                    />
+                  </PhotoView>
+                </MotionEffect>
+                <MotionEffect
+                  slide={{
+                    direction: "down",
+                  }}
+                  fade
+                  zoom
+                  inView
+                  delay={0.9}
+                >
+                  <PhotoView src="/images/about/about_me_03.jpg">
+                    <Image
+                      src="/images/about/about_me_03.jpg"
+                      alt="Running photo"
+                      className="z-0 -translate-x-12 rotate-2 cursor-pointer rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
+                      width={200}
+                      height={300}
+                      priority={true}
+                    />
+                  </PhotoView>
+                </MotionEffect>
+              </div>
+            </PhotoProvider>
           </div>
 
           <div className="mx-auto mt-6 max-w-2xl px-6 text-center md:px-2 lg:px-2">
-            <h1 className="text-accent-foreground mb-4 text-3xl font-bold">
+            <h2 className="text-accent-foreground mb-4 text-2xl font-bold sm:text-3xl">
               Frontend Developer & Runner
-            </h1>
+            </h2>
             <div className="text-foreground space-y-6 text-lg leading-8">
-              <p className="text-foreground text-left text-lg">
+              <p className="text-foreground text-md text-justify sm:text-left sm:text-lg">
                 Hi, I&apos;m{" "}
                 <span className="text-accent-foreground">
                   Tumur Bazarragchaa
@@ -106,7 +127,7 @@ const Intro = ({ className }: Props) => {
                 <span className="text-accent-foreground">Walnut Creek, CA</span>{" "}
                 with my wife and daughter.
               </p>
-              <p className="text-foreground text-left text-lg">
+              <p className="text-foreground text-md text-justify sm:text-left sm:text-lg">
                 Originally from{" "}
                 <span className="text-accent-foreground">Mongolia</span>, I
                 studied Computer Science at the{" "}
@@ -118,7 +139,7 @@ const Intro = ({ className }: Props) => {
                 <span className="text-accent-foreground">German</span>, and{" "}
                 <span className="text-accent-foreground">Mongolian</span>.
               </p>
-              <p className="text-foreground text-left text-lg">
+              <p className="text-foreground text-md text-justify sm:text-left sm:text-lg">
                 I drive for <span className="text-accent-foreground">Uber</span>{" "}
                 for flexibility while constantly improving my skills—grinding{" "}
                 <span className="text-accent-foreground">LeetCode</span> and
@@ -137,12 +158,12 @@ const Intro = ({ className }: Props) => {
                 </span>{" "}
                 get online more easily and quickly.
               </p>
-              <p className="text-foreground mb-10 text-left text-lg">
+              <p className="text-foreground text-md mb-10 text-justify sm:text-left sm:text-lg">
                 I enjoy running outdoors and listening to{" "}
                 <span className="text-accent-foreground">good music</span>
                 —here&apos;s my{" "}
                 <Link
-                  href="https://open.spotify.com/playlist/37i9dQZF1DX9wC2gBpHpJ3?si=1b10000000000000"
+                  href="https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=Q7wYapo7RAmX4E-A72OdWg"
                   className="text-accent-foreground hover:text-accent-foreground/80 underline"
                   target="_blank"
                 >
@@ -157,7 +178,7 @@ const Intro = ({ className }: Props) => {
                 </Link>
                 , and you can view my{" "}
                 <Link
-                  href="/resume"
+                  href="/files/resume.pdf"
                   className="text-accent-foreground hover:text-accent-foreground/80 underline"
                 >
                   resume here
