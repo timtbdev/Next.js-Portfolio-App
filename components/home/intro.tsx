@@ -52,7 +52,7 @@ const Intro = ({ className }: Props) => {
                     <Image
                       src="/images/about/about_me_01.jpg"
                       alt="Wedding photo"
-                      className="z-2 translate-x-12 -rotate-3 cursor-pointer rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
+                      className="z-2 aspect-2/3 w-[500px] translate-x-12 -rotate-3 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:w-[200px]"
                       width={200}
                       height={300}
                       priority={true}
@@ -72,7 +72,7 @@ const Intro = ({ className }: Props) => {
                     <Image
                       src="/images/about/about_me_02.jpg"
                       alt="Family photo"
-                      className="z-1 rotate-2 cursor-pointer rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
+                      className="z-1 aspect-2/3 w-[500px] rotate-2 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:w-[200px]"
                       width={200}
                       height={300}
                       priority={true}
@@ -92,7 +92,7 @@ const Intro = ({ className }: Props) => {
                     <Image
                       src="/images/about/about_me_03.jpg"
                       alt="Running photo"
-                      className="z-0 -translate-x-12 rotate-2 cursor-pointer rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"
+                      className="z-0 aspect-2/3 w-[500px] -translate-x-12 rotate-2 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:w-[200px]"
                       width={200}
                       height={300}
                       priority={true}
@@ -108,63 +108,89 @@ const Intro = ({ className }: Props) => {
               Frontend Developer & Runner
             </h2>
             <div className="text-foreground space-y-6 text-lg leading-8">
-              <p className="text-foreground text-md text-justify sm:text-left sm:text-lg">
+              <p className="text-foreground text-md text-center text-balance sm:text-lg">
                 Hi, I&apos;m{" "}
-                <span className="text-accent-foreground">
+                <span className="text-accent-foreground font-medium">
                   Tumur Bazarragchaa
                 </span>{" "}
                 (preferred name:{" "}
-                <span className="text-accent-foreground">Tim</span>). I&apos;m a{" "}
-                <span className="text-accent-foreground">
+                <span className="text-accent-foreground font-medium">Tim</span>
+                ). I&apos;m a{" "}
+                <span className="text-accent-foreground font-medium">
                   frontend developer
                 </span>{" "}
-                with <span className="text-accent-foreground">4 years</span> of
-                experience in{" "}
-                <span className="text-accent-foreground">
+                with{" "}
+                <span className="text-accent-foreground font-medium">
+                  4 years
+                </span>{" "}
+                of experience in{" "}
+                <span className="text-accent-foreground font-medium">
                   React, Next.js, TailwindCSS, JavaScript, and TypeScript
                 </span>
                 . I live in{" "}
-                <span className="text-accent-foreground">Walnut Creek, CA</span>{" "}
+                <span className="text-accent-foreground font-medium">
+                  Walnut Creek, CA
+                </span>{" "}
                 with my wife and daughter.
               </p>
-              <p className="text-foreground text-md text-justify sm:text-left sm:text-lg">
+              <p className="text-foreground text-md text-center text-balance sm:text-lg">
                 Originally from{" "}
-                <span className="text-accent-foreground">Mongolia</span>, I
-                studied Computer Science at the{" "}
-                <span className="text-accent-foreground">
+                <span className="text-accent-foreground font-medium">
+                  Mongolia
+                </span>
+                , I studied Computer Science at the{" "}
+                <Link
+                  href="https://www.hs-mittweida.de/en/"
+                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
+                  target="_blank"
+                >
                   University of Mittweida
-                </span>{" "}
+                </Link>{" "}
                 in Germany and speak{" "}
-                <span className="text-accent-foreground">English</span>,{" "}
-                <span className="text-accent-foreground">German</span>, and{" "}
-                <span className="text-accent-foreground">Mongolian</span>.
+                <span className="text-accent-foreground font-medium">
+                  English
+                </span>
+                ,{" "}
+                <span className="text-accent-foreground font-medium">
+                  German
+                </span>
+                , and{" "}
+                <span className="text-accent-foreground font-medium">
+                  Mongolian
+                </span>
+                .
               </p>
-              <p className="text-foreground text-md text-justify sm:text-left sm:text-lg">
-                I drive for <span className="text-accent-foreground">Uber</span>{" "}
+              <p className="text-foreground text-md text-center text-balance sm:text-lg">
+                I drive for{" "}
+                <span className="text-accent-foreground font-medium">Uber</span>{" "}
                 for flexibility while constantly improving my skills—grinding{" "}
-                <span className="text-accent-foreground">LeetCode</span> and
-                learning the latest frontend technologies. Right now, I&apos;m
-                building a{" "}
+                <span className="text-accent-foreground font-medium">
+                  LeetCode
+                </span>{" "}
+                and learning the latest frontend technologies. Right now,
+                I&apos;m building a{" "}
                 <Link
                   href="/projects/nextjs-supabase-boilerplate"
-                  className="text-accent-foreground hover:text-accent-foreground/80 underline"
+                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
                   target="_blank"
                 >
                   Next.js & Supabase boilerplate template
                 </Link>{" "}
                 to help{" "}
-                <span className="text-accent-foreground">
+                <span className="text-accent-foreground font-medium">
                   restaurants and food trucks
                 </span>{" "}
-                get online more easily and quickly.
+                get online quickly.
               </p>
-              <p className="text-foreground text-md mb-10 text-justify sm:text-left sm:text-lg">
+              <p className="text-foreground text-md mb-10 text-center text-balance sm:text-lg">
                 I enjoy running outdoors and listening to{" "}
-                <span className="text-accent-foreground">good music</span>
+                <span className="text-accent-foreground font-medium">
+                  good music
+                </span>
                 —here&apos;s my{" "}
                 <Link
                   href="https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=Q7wYapo7RAmX4E-A72OdWg"
-                  className="text-accent-foreground hover:text-accent-foreground/80 underline"
+                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
                   target="_blank"
                 >
                   playlist
@@ -172,14 +198,15 @@ const Intro = ({ className }: Props) => {
                 . Please find below my selected{" "}
                 <Link
                   href="/projects"
-                  className="text-accent-foreground hover:text-accent-foreground/80 underline"
+                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
                 >
                   works
                 </Link>
                 , and you can view my{" "}
                 <Link
                   href="/files/resume.pdf"
-                  className="text-accent-foreground hover:text-accent-foreground/80 underline"
+                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
+                  target="_blank"
                 >
                   resume here
                 </Link>
