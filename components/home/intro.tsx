@@ -105,11 +105,11 @@ const Intro = ({ className }: Props) => {
 
           <div className="mx-auto mt-6 max-w-2xl px-6 text-center md:px-2 lg:px-2">
             <h2 className="text-accent-foreground mb-4 text-2xl font-bold sm:text-3xl">
-              Frontend Developer & Runner
+              Oh Hello There!
             </h2>
             <div className="text-foreground space-y-6 text-lg leading-8">
-              <p className="text-foreground text-md text-center text-balance sm:text-lg">
-                Hi, I&apos;m{" "}
+              <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
+                I&apos;m{" "}
                 <span className="text-accent-foreground font-medium">
                   Tumur Bazarragchaa
                 </span>{" "}
@@ -133,7 +133,7 @@ const Intro = ({ className }: Props) => {
                 </span>{" "}
                 with my wife and daughter.
               </p>
-              <p className="text-foreground text-md text-center text-balance sm:text-lg">
+              <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
                 Originally from{" "}
                 <span className="text-accent-foreground font-medium">
                   Mongolia
@@ -160,7 +160,7 @@ const Intro = ({ className }: Props) => {
                 </span>
                 .
               </p>
-              <p className="text-foreground text-md text-center text-balance sm:text-lg">
+              <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
                 I drive for{" "}
                 <span className="text-accent-foreground font-medium">Uber</span>{" "}
                 for flexibility while constantly improving my skills—grinding{" "}
@@ -182,7 +182,7 @@ const Intro = ({ className }: Props) => {
                 </span>{" "}
                 get online quickly.
               </p>
-              <p className="text-foreground text-md mb-10 text-center text-balance sm:text-lg">
+              <p className="text-foreground text-md mb-10 text-center sm:text-left sm:text-lg">
                 I enjoy running outdoors and listening to{" "}
                 <span className="text-accent-foreground font-medium">
                   good music
