@@ -241,12 +241,6 @@ export default async function AboutPage() {
                   </article>
                 </MotionEffect>
                 <div className="mt-8 flex w-full flex-col gap-3 sm:mx-auto sm:flex-row">
-                  <Link href="/story">
-                    <Button className="group hover:ring-border w-full px-5 py-2 transition-colors duration-200 hover:border-black/20 hover:ring-2 dark:hover:border-white/20">
-                      <LearnMoreIcon className="size-4" aria-hidden="true" />
-                      Learn more
-                    </Button>
-                  </Link>
                   <Link
                     href="/files/resume.pdf"
                     target="_blank"
