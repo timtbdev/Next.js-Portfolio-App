@@ -43,10 +43,25 @@ export default async function DocsPage() {
               <Link href={`/docs/posts/${doc.data._meta.path}`}>
                 <div className="bg-card hover:bg-accent rounded-lg p-6 transition-colors">
                   <h3 className="text-lg font-semibold">{doc.data.title}</h3>
+                  <p className="text-muted-foreground mt-2 text-sm">
+                    {doc.data.date} • {doc.data.category}
+                  </p>
                   {doc.data.description && (
-                    <p className="text-muted-foreground mt-2 text-sm">
-                      {doc.data.description}
-                    </p>
+                    <>
+                      <p className="text-muted-foreground mt-2 text-sm">
+                        {doc.data.description}
+                      </p>
+                      <p className="text-muted-foreground mt-2 text-sm">
+                        {doc.data.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-muted-foreground text-sm"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </p>
+                    </>
                   )}
                 </div>
               </Link>

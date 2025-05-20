@@ -16,7 +16,6 @@ import {
 } from "fumadocs-ui/components/ui/collapsible";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
 import { useNav, usePageStyles } from "fumadocs-ui/contexts/layout";
-import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
 import { cn } from "fumadocs-ui/utils/cn";
 import { isActive } from "fumadocs-ui/utils/is-active";
@@ -31,11 +30,13 @@ import {
   type HTMLAttributes,
 } from "react";
 
+// Context for managing the TOC (Table of Contents) popover state
 const TocPopoverContext = createContext<{
   open: boolean;
   setOpen: (open: boolean) => void;
 }>("TocPopoverContext");
 
+// Trigger component for the TOC popover that shows current reading progress
 export function TocPopoverTrigger({
   items,
   ...props
@@ -48,7 +49,7 @@ export function TocPopoverTrigger({
     [items, active],
   );
   const path = useTreePath().at(-1);
-  const showCurrent = selected !== -1 && !open;
+  const showItem = selected !== -1 && !open;
 
   return (
     <CollapsibleTrigger
@@ -63,16 +64,12 @@ export function TocPopoverTrigger({
         max={1}
         className={cn(open && "text-fd-primary")}
       />
-      <span
-        className={cn(
-          "grid flex-1 *:col-start-1 *:row-start-1",
-          open && "text-fd-foreground",
-        )}
-      >
+      <span className="grid flex-1 *:col-start-1 *:row-start-1 *:my-auto">
         <span
           className={cn(
             "truncate transition-all",
-            showCurrent && "pointer-events-none -translate-y-full opacity-0",
+            open && "text-fd-foreground",
+            showItem && "pointer-events-none -translate-y-full opacity-0",
           )}
         >
           {path?.name ?? text.toc}
@@ -80,7 +77,7 @@ export function TocPopoverTrigger({
         <span
           className={cn(
             "truncate transition-all",
-            !showCurrent && "pointer-events-none translate-y-full opacity-0",
+            !showItem && "pointer-events-none translate-y-full opacity-0",
           )}
         >
           {items[selected]?.title}
@@ -93,6 +90,7 @@ export function TocPopoverTrigger({
   );
 }
 
+// Props interface for the progress circle component
 interface ProgressCircleProps
   extends Omit<React.ComponentProps<"svg">, "strokeWidth"> {
   value: number;
@@ -102,12 +100,14 @@ interface ProgressCircleProps
   max?: number;
 }
 
+// Utility function to clamp a value between min and max
 function clamp(input: number, min: number, max: number): number {
   if (input < min) return min;
   if (input > max) return max;
   return input;
 }
 
+// Circular progress indicator component used in the TOC trigger
 function ProgressCircle({
   value,
   strokeWidth = 2,
@@ -151,6 +151,7 @@ function ProgressCircle({
   );
 }
 
+// Content wrapper for the TOC popover
 export function TocPopoverContent(props: ComponentProps<"div">) {
   return (
     <CollapsibleContent
@@ -163,10 +164,10 @@ export function TocPopoverContent(props: ComponentProps<"div">) {
   );
 }
 
+// Main TOC popover component that manages the collapsible navigation
 export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
   const ref = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
-  const sidebar = useSidebar();
   const { tocNav } = usePageStyles();
   const { isTransparent } = useNav();
 
@@ -191,7 +192,7 @@ export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
       className={cn("sticky z-10 overflow-visible", tocNav, props.className)}
       style={{
         ...props.style,
-        top: "calc(var(--fd-banner-height) + var(--fd-nav-height))",
+        top: "4.5rem",
       }}
     >
       <TocPopoverContext.Provider
@@ -209,10 +210,9 @@ export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
             id="nd-tocnav"
             {...props}
             className={cn(
-              "border-fd-foreground/10 border-b backdrop-blur-sm transition-colors",
+              "border-b backdrop-blur-sm transition-colors",
               (!isTransparent || open) && "bg-fd-background/80",
               open && "shadow-lg",
-              sidebar.open && "max-md:hidden",
             )}
           >
             {props.children}
@@ -223,6 +223,7 @@ export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
   );
 }
 
+// Main content wrapper for the documentation page
 export function PageBody(props: HTMLAttributes<HTMLDivElement>) {
   const { page } = usePageStyles();
 
@@ -237,6 +238,7 @@ export function PageBody(props: HTMLAttributes<HTMLDivElement>) {
   );
 }
 
+// Article container for the main documentation content
 export function PageArticle(props: HTMLAttributes<HTMLElement>) {
   const { article } = usePageStyles();
 
@@ -254,6 +256,7 @@ export function PageArticle(props: HTMLAttributes<HTMLElement>) {
   );
 }
 
+// Component to display the last update date of the documentation
 export function LastUpdate(props: { date: Date }) {
   const { text } = useI18n();
   const [date, setDate] = useState("");
@@ -270,7 +273,10 @@ export function LastUpdate(props: { date: Date }) {
   );
 }
 
+// Type definition for navigation items
 type Item = Pick<PageTree.Item, "name" | "description" | "url">;
+
+// Props interface for the footer navigation component
 export interface FooterProps {
   /**
    * Items including information for the next and previous page
@@ -281,6 +287,7 @@ export interface FooterProps {
   };
 }
 
+// Utility function to scan the page tree and create a flat list of pages
 function scanNavigationList(tree: PageTree.Node[]) {
   const list: PageTree.Item[] = [];
 
@@ -302,8 +309,10 @@ function scanNavigationList(tree: PageTree.Node[]) {
   return list;
 }
 
+// Cache for storing the flattened page list to improve performance
 const listCache = new WeakMap<PageTree.Root, PageTree.Item[]>();
 
+// Footer component that shows navigation links to previous and next pages
 export function Footer({ items }: FooterProps) {
   const { root } = useTreeContext();
   const pathname = usePathname();
@@ -337,6 +346,7 @@ export function Footer({ items }: FooterProps) {
   );
 }
 
+// Individual navigation item in the footer
 function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
   const { text } = useI18n();
   const Icon = index === 0 ? ChevronLeft : ChevronRight;
@@ -365,8 +375,10 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
   );
 }
 
+// Breadcrumb navigation component type definition
 export type BreadcrumbProps = BreadcrumbOptions;
 
+// Breadcrumb component that shows the current page's location in the documentation hierarchy
 export function Breadcrumb(options: BreadcrumbProps) {
   const path = useTreePath();
   const { root } = useTreeContext();

@@ -3,14 +3,13 @@ import SingleBlogPost from "@/components/blog/single-blog-post/main";
 import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
-import { FadeUp } from "@/components/ui/animations/fade-up";
 import { MotionEffect } from "@/components/ui/animations/motion-effect";
 import MainTitle from "@/components/ui/main-title";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { HEAD } from "@/config/seo";
+import { source } from "@/lib/source";
 import { getBaseUrl } from "@/lib/utils";
 import { HeadType } from "@/types";
-import { allPosts } from "content-collections";
 import { Metadata } from "next";
 import { Fragment, Suspense } from "react";
 
@@ -42,15 +41,19 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    params: { slug: post._meta.path },
-  }));
+  return source.generateParams();
 }
 
 export default async function BlogPage() {
-  const posts = allPosts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
+  // const posts = allPosts.sort(
+  //   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  // );
+  const posts = source
+    .getPages()
+    .sort(
+      (a, b) =>
+        new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    );
 
   return (
     <Fragment>
@@ -75,11 +78,20 @@ export default async function BlogPage() {
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-3 py-10 md:grid-cols-3 lg:px-4 xl:px-0">
           {posts?.map((post, index) => (
-            <FadeUp key={index} delay={0.6} duration={0.3}>
+            <MotionEffect
+              key={index}
+              slide={{
+                direction: "down",
+              }}
+              fade
+              zoom
+              inView
+              delay={0.5 + index * 0.1}
+            >
               <Suspense key={index} fallback={<SingleBlogPostLoading />}>
-                <SingleBlogPost key={index} post={post} />
+                <SingleBlogPost key={index} post={post.data} />
               </Suspense>
-            </FadeUp>
+            </MotionEffect>
           ))}
         </div>
       </div>

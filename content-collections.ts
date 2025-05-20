@@ -11,9 +11,19 @@ import { rehypeParseCodeBlocks } from "./shiki-rehype.mjs";
 
 const docs = defineCollection({
   name: "docs",
-  directory: "content/docs",
+  directory: "content/posts",
   include: "**/*.mdx",
-  schema: createDocSchema,
+  schema: (z) => ({
+    title: z.string(),
+    description: z.string(),
+    image: z.string(),
+    author: z.string(),
+    authorAvatar: z.string(),
+    date: z.string(),
+    category: z.string(),
+    tags: z.array(z.string()),
+    seo: z.array(z.string()),
+  }),
   transform: transformMDX,
 });
 

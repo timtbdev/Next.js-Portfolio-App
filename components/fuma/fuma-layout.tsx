@@ -21,12 +21,12 @@ export function DocsLayout({
   ...props
 }: DocsLayoutProps): ReactNode {
   const variables = cn(
-    "[--fd-tocnav-height:36px] xl:[--fd-toc-width:286px] xl:[--fd-tocnav-height:0px]",
+    "[--fd-tocnav-height:36px] lg:[--fd-toc-width:286px] lg:[--fd-tocnav-height:0px]",
   );
 
   const pageStyles: PageStyles = {
-    tocNav: cn("xl:hidden"),
-    toc: cn("max-xl:hidden"),
+    tocNav: cn("lg:hidden"),
+    toc: cn("max-lg:hidden"),
   };
 
   return (

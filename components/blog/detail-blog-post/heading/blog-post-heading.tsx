@@ -1,4 +1,5 @@
 import { Separator } from "@radix-ui/react-separator";
+import Image from "next/image";
 import { FC } from "react";
 import BackButton from "./back-button";
 import InfoBarDetailDesktop from "./info-bar/info-bar-desktop";
@@ -12,6 +13,7 @@ interface Props {
   authorName: string;
   category: string;
   readTime: number;
+  imageUrl: string;
 }
 
 const BlogPostDetailHeading: FC<Props> = ({
@@ -22,6 +24,7 @@ const BlogPostDetailHeading: FC<Props> = ({
   authorName,
   category,
   readTime,
+  imageUrl,
 }) => {
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-10 sm:px-4 md:px-0">
@@ -54,6 +57,16 @@ const BlogPostDetailHeading: FC<Props> = ({
       <p className="text-md text-foreground line-clamp-3 max-w-3xl py-6 sm:text-lg md:py-4">
         {description}
       </p>
+      <Image
+        alt={title}
+        draggable={false}
+        width={768}
+        height={432}
+        decoding="async"
+        data-nimg="1"
+        className="blur-0 aspect-[768/432] overflow-hidden rounded-xl object-cover"
+        src={imageUrl}
+      />
     </div>
   );
 };

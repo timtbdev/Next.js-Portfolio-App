@@ -1,10 +1,10 @@
 import Footer from "@/components/footer/main";
-import { DocsLayout } from "@/components/fuma/doc-layout";
+import { DocsLayout } from "@/components/fuma/fuma-layout";
+import { DocsBody, DocsPage } from "@/components/fuma/fuma-page";
 import Header from "@/components/header/main";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 import { MDXContent } from "@content-collections/mdx/react";
-import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
@@ -21,7 +21,7 @@ export default async function Page(props: {
       <div className="border-border bg-background relative min-h-52 max-w-full border-t">
         <div className="mx-auto w-full max-w-5xl">
           <DocsLayout tree={source.pageTree}>
-            <DocsPage toc={page.data.toc} full={page.data.full}>
+            <DocsPage toc={page.data.toc}>
               <DocsBody>
                 <MDXContent
                   code={page.data.body}

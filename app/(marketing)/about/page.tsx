@@ -13,12 +13,10 @@ import {
   ArrowUpRightIcon,
   CheckIcon,
   PaperclipIcon as FileIcon,
-  TextIcon as LearnMoreIcon,
 } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
