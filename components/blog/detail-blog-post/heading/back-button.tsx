@@ -10,9 +10,7 @@ const BackButton = () => {
     <Button
       variant="outline"
       className="gap-2 px-4 py-1.5"
-      onClick={() => {
-        router.back();
-      }}
+      onClick={() => router.push("/blog")}
     >
       <ArrowLeftIcon className="size-4" />
       Back

@@ -1,11 +1,10 @@
-import { allPosts } from "@/.content-collections/generated";
 import BlogPostDetailHeading from "@/components/blog/detail-blog-post/heading/blog-post-heading";
-import DetailBlogPost from "@/components/blog/detail-blog-post/main";
 import Footer from "@/components/footer/main";
 import { DocsLayout } from "@/components/fuma/fuma-layout";
 import { DocsBody, DocsPage } from "@/components/fuma/fuma-page";
 import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
+import { MotionEffect } from "@/components/ui/animations/motion-effect";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 import { source } from "@/lib/source";
 import { getBaseUrl } from "@/lib/utils";
@@ -82,31 +81,51 @@ export default async function BlogPost({ params }: Props) {
     <Fragment>
       <Header showProgressBar={true} />
       <Heading variant="blog">
-        <BlogPostDetailHeading
-          title={post.data.title}
-          description={post.data.description}
-          date={post.data.date}
-          authorImage={post.data.authorAvatar}
-          authorName={post.data.author}
-          category={post.data.category}
-          readTime={
-            readingTime(post.data.content, { wordsPerMinute: 100 }).minutes
-          }
-          imageUrl={post.data.image}
-        />
+        <MotionEffect
+          fade
+          blur="10px"
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+          }}
+          inView
+        >
+          <BlogPostDetailHeading
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            authorImage={post.data.authorAvatar}
+            authorName={post.data.author}
+            category={post.data.category}
+            readTime={
+              readingTime(post.data.content, { wordsPerMinute: 100 }).minutes
+            }
+            imageUrl={post.data.image}
+          />
+        </MotionEffect>
       </Heading>
       <div className="border-border bg-background relative border-t">
         <div className="mx-auto w-full max-w-5xl">
-          <DocsLayout tree={source.pageTree}>
-            <DocsPage toc={post.data.toc}>
-              <DocsBody>
-                <MDXContent
-                  code={post.data.body}
-                  components={getMDXComponents()}
-                />
-              </DocsBody>
-            </DocsPage>
-          </DocsLayout>
+          <MotionEffect
+            fade
+            blur="10px"
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
+            inView
+          >
+            <DocsLayout tree={source.pageTree}>
+              <DocsPage toc={post.data.toc}>
+                <DocsBody>
+                  <MDXContent
+                    code={post.data.body}
+                    components={getMDXComponents()}
+                  />
+                </DocsBody>
+              </DocsPage>
+            </DocsLayout>
+          </MotionEffect>
         </div>
       </div>
       <Footer />
