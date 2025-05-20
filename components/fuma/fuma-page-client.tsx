@@ -204,7 +204,7 @@ export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
             {...props}
             className={cn(
               "border-b backdrop-blur-sm transition-colors",
-              (!isTransparent || open) && "bg-fd-background/80",
+              (!isTransparent || open) && "bg-fd-background",
               open && "shadow-lg",
             )}
           >
