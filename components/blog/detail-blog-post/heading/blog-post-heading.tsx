@@ -30,27 +30,18 @@ const BlogPostDetailHeading: FC<Props> = ({
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-10 sm:px-4 md:px-0">
       <MotionEffect
-        slide={{
-          direction: "down",
-        }}
         fade
-        zoom
+        blur="10px"
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }}
         inView
-        delay={0.5}
       >
         <div className="mx-auto flex w-full max-w-3xl items-center space-x-4">
           <BackButton />
         </div>
-      </MotionEffect>
-      <MotionEffect
-        slide={{
-          direction: "down",
-        }}
-        fade
-        zoom
-        inView
-        delay={0.7}
-      >
+
         <h1 className="font-display text-accent-foreground mx-auto mt-4 mb-4 w-full max-w-3xl text-left text-4xl font-medium text-ellipsis sm:mb-0 sm:text-4xl sm:leading-[1.25]">
           {title}
         </h1>
@@ -82,15 +73,7 @@ const BlogPostDetailHeading: FC<Props> = ({
           {description}
         </p>
       </MotionEffect>
-      <MotionEffect
-        slide={{
-          direction: "down",
-        }}
-        fade
-        zoom
-        inView
-        delay={0.9}
-      >
+      <MotionEffect fade zoom inView delay={0.5}>
         <Image
           alt={title}
           draggable={false}
