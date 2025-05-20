@@ -27,7 +27,7 @@ const InfoBarDetailDesktop: FC<Props> = ({
   return (
     <div
       className={cn(
-        "flex-row items-center justify-start gap-4 pt-2",
+        "mx-auto w-full max-w-3xl flex-row items-center justify-start gap-4 pt-2",
         className,
       )}
     >
