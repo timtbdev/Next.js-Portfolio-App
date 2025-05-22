@@ -80,13 +80,10 @@ export default async function BlogPage() {
           {posts?.map((post, index) => (
             <MotionEffect
               key={index}
-              slide={{
-                direction: "down",
-              }}
               fade
               zoom
               inView
-              delay={0.5 + index * 0.1}
+              delay={0.1 + index * 0.1}
             >
               <Suspense key={index} fallback={<SingleBlogPostLoading />}>
                 <SingleBlogPost key={index} post={post.data} />

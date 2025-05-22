@@ -72,8 +72,7 @@ const BlogPostDetailHeading: FC<Props> = ({
         <p className="text-md text-foreground mx-auto line-clamp-3 w-full max-w-3xl py-6 sm:text-lg md:py-4">
           {description}
         </p>
-      </MotionEffect>
-      <MotionEffect fade zoom inView delay={0.5}>
+
         <Image
           alt={title}
           draggable={false}
