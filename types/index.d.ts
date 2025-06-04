@@ -1,5 +1,4 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { JSX } from "react";
 import { IconType } from "react-icons";
 
 export type HeadType = {

@@ -9,7 +9,7 @@ import { HeadType } from "@/types";
 import { Analytics } from "@vercel/analytics/next";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Metadata, Viewport } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Geist as FontSans } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 // Validate SEO configuration to ensure all required fields are present
@@ -36,7 +36,7 @@ const PAGE = "Home";
 // Get SEO configuration for the current page from the HEAD array
 const page = HEAD.find((page: HeadType) => page.page === PAGE) as HeadType;
 
-// Configure the Inter font with Latin subset and variable font support
+// Configure the Geist font with Latin subset and variable font support
 // This sets up the primary font for the application
 const fontSans = FontSans({
   subsets: ["latin"],

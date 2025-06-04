@@ -17,7 +17,7 @@ const techLinks: TechLink[] = [
   { label: "Next.js", href: "https://nextjs.org/" },
   { label: "Tailwind CSS", href: "https://tailwindcss.com/" },
   { label: "Vercel", href: "https://vercel.com/" },
-  { label: "Inter", href: "https://fonts.google.com/specimen/Inter" },
+  { label: "Geist", href: "https://fonts.google.com/specimen/Geist" },
   {
     label: "GitHub",
     href: "https://github.com/timtbdev/Next.js-Portfolio-App-v2",
