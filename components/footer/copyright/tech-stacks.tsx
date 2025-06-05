@@ -12,7 +12,7 @@ const defaultClass =
   "text-muted-foreground hover:text-accent-foreground underline underline-offset-4 transition-colors";
 
 const techLinks: TechLink[] = [
-  { label: "Figma", href: "https://www.figma.com/" },
+  { label: "v0", href: "https://v0.dev/" },
   { label: "Cursor", href: "https://www.cursor.com/" },
   { label: "Next.js", href: "https://nextjs.org/" },
   { label: "Tailwind CSS", href: "https://tailwindcss.com/" },
@@ -97,7 +97,12 @@ const TechStacks: React.FC = () => (
     </p>
     <p className="text-foreground text-center text-sm leading-5">
       Code is available on{" "}
-      <Link href={techLinks[6].href} target="_blank" rel="noopener noreferrer">
+      <Link
+        href={techLinks[6].href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={defaultClass}
+      >
         {techLinks[6].label}
       </Link>
       .
