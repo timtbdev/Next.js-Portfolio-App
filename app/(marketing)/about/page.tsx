@@ -188,7 +188,7 @@ export default async function AboutPage() {
                             rel="noopener noreferrer"
                             className="text-foreground hover:text-accent-foreground font-semibold underline transition-colors"
                           >
-                            🌟380+ GitHub stars
+                            🌟400+ GitHub stars
                           </a>{" "}
                           and is used by over{" "}
                           <a
@@ -197,7 +197,7 @@ export default async function AboutPage() {
                             rel="noopener noreferrer"
                             className="text-foreground hover:text-accent-foreground font-semibold underline transition-colors"
                           >
-                            👨‍💻60 developers
+                            👨‍💻80 developers
                           </a>
                           .
                         </span>
