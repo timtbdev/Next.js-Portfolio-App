@@ -17,7 +17,7 @@ A modern, blazing-fast portfolio website built with cutting-edge web technologie
 
 ## 🚀 Live Demo
 
-Visit [timtb.dev](https://timtb.dev) to see the portfolio in action!
+Visit [hire-tim.com](https://hire-tim.com) to see the portfolio in action!
 
 ## 🛠️ Tech Stack
 
@@ -98,4 +98,4 @@ For questions, feedback, or collaboration:
 
 ---
 
-Made with ❤️ by [Tim](https://timtb.dev)
+Made with ❤️ by [Tim](https://hire-tim.com)
