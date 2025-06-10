@@ -56,8 +56,8 @@ const navigationLinks: NavigationLink[] = [
   },
   {
     icon: ShoutoutIcon,
-    href: "/shoutout",
-    label: "Shoutout",
+    href: "/shoutouts",
+    label: "Shoutouts",
   },
   {
     icon: MailIcon,
