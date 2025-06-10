@@ -1,5 +1,5 @@
 import { truncateDescription } from "@/lib/seo";
-import { NavigationLink, ProjectSubNavType } from "@/types";
+import { NavigationLink } from "@/types";
 import {
   UserIcon as AboutMeIcon,
   RssIcon as BlogIcon,
@@ -10,8 +10,6 @@ import {
   FileTextIcon as ResumeIcon,
   SpeechIcon as ShoutoutIcon,
 } from "lucide-react";
-import categories from "./category";
-import projects from "./projects";
 
 const navigationLinks: NavigationLink[] = [
   {

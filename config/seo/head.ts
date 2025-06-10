@@ -42,9 +42,9 @@ const HEAD: HeadType[] = [
     page: "Shoutouts",
     title: truncateTitle("Shoutouts | Feature your post here"),
     description: truncateDescription(
-      "Give me a shoutout, and I’ll feature your post here!",
+      "Give me a shoutout, and I'll feature your post here!",
     ),
-    slug: "/shoutout",
+    slug: "/shoutouts",
   },
   {
     page: "Contact",
