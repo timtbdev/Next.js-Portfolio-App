@@ -8,6 +8,7 @@ import {
   MailIcon,
   ArchiveIcon as ProjectsIcon,
   FileTextIcon as ResumeIcon,
+  SpeechIcon as ShoutoutIcon,
 } from "lucide-react";
 import categories from "./category";
 import projects from "./projects";
@@ -52,6 +53,11 @@ const navigationLinks: NavigationLink[] = [
     icon: BlogIcon,
     href: "/blog",
     label: "Blog",
+  },
+  {
+    icon: ShoutoutIcon,
+    href: "/shoutout",
+    label: "Shoutout",
   },
   {
     icon: MailIcon,

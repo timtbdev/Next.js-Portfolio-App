@@ -39,6 +39,14 @@ const HEAD: HeadType[] = [
     slug: "/projects",
   },
   {
+    page: "Shoutout",
+    title: truncateTitle("Shoutout | Feature your post here"),
+    description: truncateDescription(
+      "Give me a shoutout, and I’ll feature your post here!",
+    ),
+    slug: "/shoutout",
+  },
+  {
     page: "Contact",
     title: truncateTitle("Contact | Get in Touch with Tim"),
     description: truncateDescription(
