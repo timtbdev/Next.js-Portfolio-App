@@ -64,7 +64,11 @@ export const metadata: Metadata = {
 };
 
 // Predefined tweet IDs for better maintainability
-const TWEET_IDS = ["1930094628885471387", "1916331166984245599"] as const;
+const TWEET_IDS = [
+  "1930094628885471387",
+  "1916331166984245599",
+  "1932667733964886198",
+] as const;
 
 export default async function ShoutoutsPage() {
   const tweetText = encodeURIComponent("Someone hire Tim! @hire_tim_com");
