@@ -1,3 +1,4 @@
+import { FaStrava as StravaIcon } from "react-icons/fa";
 import {
   FaEnvelope as EmailIcon,
   FaFacebook as FacebookIcon,
@@ -8,6 +9,11 @@ import {
 import { SocialType } from "../types";
 
 const socialConfig: SocialType[] = [
+  {
+    href: "https://www.strava.com/athletes/128944314",
+    icon: StravaIcon,
+    label: "Strava",
+  },
   {
     href: "mailto:timtb.dev@gmail.com",
     icon: EmailIcon,
