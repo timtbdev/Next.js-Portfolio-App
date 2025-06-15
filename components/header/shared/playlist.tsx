@@ -17,7 +17,7 @@ interface Props {
   className?: string;
   title?: string;
   description?: string;
-  playlistUrl: string;
+  playlistUrl?: string;
 }
 
 const Playlist = ({
