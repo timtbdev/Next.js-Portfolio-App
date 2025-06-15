@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FC, memo, Suspense, useCallback } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import Playlist from "../shared/playlist";
 import SearchButton from "../shared/search";
 import { ThemeSwitcher } from "../shared/theme-switcher";
 import LogoButton from "./logo";
@@ -125,6 +126,7 @@ const DesktopHeader: FC<Props> = memo(({ activePath }) => {
         <div className="flex flex-1 justify-end gap-2">
           <SearchButton />
           <ThemeSwitcher />
+          <Playlist />
         </div>
       </div>
     </NavigationMenu>
