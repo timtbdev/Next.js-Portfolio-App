@@ -167,35 +167,33 @@ const Intro = ({ className }: Props) => {
                 <span className="text-accent-foreground font-medium">
                   LeetCode
                 </span>{" "}
-                and learning the latest frontend technologies. Right now,
-                I&apos;m building a{" "}
+                and learning the latest frontend technologies.
+              </p>
+              <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
+                Currently, I&apos;m building a{" "}
                 <Link
-                  href="https://github.com/timtbdev/your-next-web"
+                  href="https://playlist.fan"
                   className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
                   target="_blank"
                 >
-                  Next.js & Supabase boilerplate template
+                  a platform
                 </Link>{" "}
                 to help{" "}
-                <span className="text-accent-foreground font-medium">
-                  restaurants and food trucks
+                <span className="text-md">
+                  runners easily find and share battle-tested running tracks. I
+                  enjoy running outdoors with good music. Here&apos;s my{" "}
+                  <Link
+                    href="https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=Q7wYapo7RAmX4E-A72OdW"
+                    className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
+                    target="_blank"
+                  >
+                    playlist
+                  </Link>
+                  .
                 </span>{" "}
-                get online quickly.
               </p>
               <p className="text-foreground text-md mb-10 text-center sm:text-left sm:text-lg">
-                I enjoy running outdoors and listening to{" "}
-                <span className="text-accent-foreground font-medium">
-                  good music
-                </span>
-                —here&apos;s my{" "}
-                <Link
-                  href="https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=Q7wYapo7RAmX4E-A72OdWg"
-                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
-                  target="_blank"
-                >
-                  playlist
-                </Link>
-                . Please find below my selected{" "}
+                Please find below my selected{" "}
                 <Link
                   href="/projects"
                   className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
