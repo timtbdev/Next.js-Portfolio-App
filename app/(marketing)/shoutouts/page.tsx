@@ -68,6 +68,7 @@ const TWEET_IDS = [
   "1930094628885471387",
   "1916331166984245599",
   "1932667733964886198",
+  "1937084213175456041",
 ] as const;
 
 export default async function ShoutoutsPage() {
