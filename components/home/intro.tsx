@@ -161,9 +161,7 @@ const Intro = ({ className }: Props) => {
                 .
               </p>
               <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
-                I drive for{" "}
-                <span className="text-accent-foreground font-medium">Uber</span>{" "}
-                for flexibility while constantly improving my skills—grinding{" "}
+                I constantly improve my skills by grinding{" "}
                 <span className="text-accent-foreground font-medium">
                   LeetCode
                 </span>{" "}
