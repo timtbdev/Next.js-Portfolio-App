@@ -1,0 +1,108 @@
+---
+title: "How to Update Tailwind CSS to v4 in Next.js"
+description: "Learn how to update Tailwind CSS to version 4 in your Next.js 15 project using the App Router. A step-by-step guide with easy-to-follow instructions."
+image: "/images/posts/update-tailwindcss-v4/cover.jpg"
+author: "Tim Baz"
+authorAvatar: "/images/avatar.jpg"
+date: "2025-02-07"
+category: "Tailwind CSS"
+tags: ["Tailwind CSS", "Next.js", "PostCSS", "Upgrade TailwindCSS"]
+seo:
+  [
+    "Tailwind CSS v4 update",
+    "Upgrade Tailwind CSS Next.js",
+    "Next.js 15 Tailwind v4",
+    "Tailwind CSS breaking changes",
+    "App Router Tailwind setup",
+    "Next.js Tailwind tutorial",
+    "Frontend upgrade guide",
+    "Tailwind v4 config",
+    "Migrate Tailwind CSS v4",
+    "PostCSS Tailwind v4",
+  ]
+---
+
+# How to Update Tailwind CSS to v4 in Next.js 15 App Router
+
+Tailwind CSS just dropped version 4, and if you're using Next.js 15 with the App Router, you might be wondering how to upgrade smoothly. Don't worry—I've got you covered. Let's walk through the update step by step.
+
+## Why Upgrade to Tailwind CSS v4?
+
+Tailwind v4 brings performance improvements, better tree-shaking, and a few breaking changes. Updating ensures your project stays up to date and benefits from the latest features and optimizations.
+
+## Step 1: Update Tailwind CSS
+
+First, open your terminal and run the following command:
+
+```sh
+npm install tailwindcss@latest postcss@latest autoprefixer@latest
+```
+
+Or if you're using Yarn:
+
+```sh
+yarn add tailwindcss@latest postcss@latest autoprefixer@latest
+```
+
+This will install the latest Tailwind CSS along with PostCSS and Autoprefixer.
+
+## Step 2: Update Tailwind Config
+
+Tailwind v4 removes support for CommonJS config files, so you need to update your `tailwind.config.js` to `tailwind.config.ts`:
+
+1. Rename `tailwind.config.js` to `tailwind.config.ts`
+2. Update the file like this:
+
+```ts
+import { defineConfig } from "tailwindcss";
+
+export default defineConfig({
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+});
+```
+
+## Step 3: Update `postcss.config.js`
+
+Tailwind v4 requires PostCSS 8+, so make sure your `postcss.config.js` file looks like this:
+
+```js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+
+## Step 4: Check for Breaking Changes
+
+Some class names and configurations have changed. If your build breaks after updating, check the [Tailwind CSS v4 release notes](https://tailwindcss.com/docs/upgrade-guide) for any breaking changes that might affect your project.
+
+## Step 5: Restart Your Dev Server
+
+After making these updates, restart your development server:
+
+```sh
+npm run dev
+```
+
+or
+
+```sh
+yarn dev
+```
+
+Now, your Next.js 15 project should be running with Tailwind CSS v4!
+
+## Conclusion
+
+Updating Tailwind CSS to v4 in a Next.js 15 project with the App Router is pretty straightforward. Just update the dependencies, adjust your config files, and check for any breaking changes. Now you're all set to use the latest Tailwind features!
+
+---

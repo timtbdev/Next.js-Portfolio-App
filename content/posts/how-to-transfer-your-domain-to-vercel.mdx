@@ -1,0 +1,129 @@
+---
+title: "How to transfer your domain to Vercel"
+description: "Why transfer your domain to Vercel? Because it's easier to manage everything in one place."
+image: "/images/posts/how-to-transfer-your-domain-to-vercel/cover.jpg"
+author: "Tim Baz"
+authorAvatar: "/images/avatar.jpg"
+date: "2025-06-14"
+category: "Vercel"
+tags: ["Vercel", "DNS", "Domain Transfer"]
+seo:
+  [
+    "Vercel",
+    "DNS",
+    "Domain Transfer",
+    "Vercel DNS",
+    "Vercel DNS records",
+    "Vercel DNS setup",
+    "Vercel DNS transfer",
+    "Vercel DNS configuration",
+    "Vercel DNS management",
+    "Vercel DNS setup guide",
+  ]
+---
+
+## Step 1: Check Transfer Eligibility
+
+Before transferring your domain to Vercel, make sure it is at least 60 days old.
+
+I have the following domains registered with Namecheap, and all of them are at least 60 days old as of June 14, 2025.
+
+## Prerequisites
+
+Before getting started, ensure you have:
+
+- A domain registered with a domain registrar (e.g. Namecheap, GoDaddy, etc.)
+- Basic knowledge of DNS records and how to manage them
+
+## Step 1: Install Dependencies
+
+Run the following command to install the required dependencies:
+
+```sh
+npm install next-mdx-remote next-mdx-remote/serialize remark-gfm remark-math rehype-slug
+```
+
+## Step 2: Create an MDX Rendering Component
+
+Create a new component `MDXRenderer.tsx` inside the `components` folder:
+
+```tsx
+"use client";
+
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import React from "react";
+
+interface MDXRendererProps {
+  source: MDXRemoteSerializeResult;
+}
+
+const MDXRenderer: React.FC<MDXRendererProps> = ({ source }) => {
+  return <MDXRemote {...source} />;
+};
+
+export default MDXRenderer;
+```
+
+## Step 3: Create an MDX Fetching Function
+
+Next, create a helper function to serialize and fetch the MDX content in `lib/mdx.ts`:
+
+```tsx
+import { serialize } from "next-mdx-remote/serialize";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+
+export async function getMdxContent(content: string) {
+  return await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm, remarkMath],
+      rehypePlugins: [rehypeSlug],
+    },
+  });
+}
+```
+
+## Step 4: Implement Dynamic MDX Rendering in a Page
+
+Now, create a dynamic page to display the MDX content. Inside `app/mdx/page.tsx`, add the following code:
+
+```tsx
+import MDXRenderer from "@/components/MDXRenderer";
+import { getMdxContent } from "@/lib/mdx";
+
+const mdxContent = `
+# Hello MDX
+
+This is a sample MDX content with **bold text** and a [link](https://nextjs.org/).
+
+> Blockquotes work too!
+
+\`\`\`tsx
+console.log("Hello, Next.js 15!");
+\`\`\`
+`;
+
+export default async function MdxPage() {
+  const mdxSource = await getMdxContent(mdxContent);
+  return (
+    <div className="prose mx-auto p-5">
+      <MDXRenderer source={mdxSource} />
+    </div>
+  );
+}
+```
+
+## Step 5: Test the MDX Integration
+
+Start the development server:
+
+```sh
+npm run dev
+```
+
+Navigate to `http://localhost:3000/mdx`, and you should see the rendered MDX content!
+
+## Conclusion
+
+Using `next-mdx-remote`, you can load and render raw MDX dynamically in Next.js 15 with the App Router. This approach enables fetching MDX from various sources, making it ideal for blog engines, CMS integrations, and dynamic documentation sites.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0">
+      <channel>
+        <title>Your Blog</title>
+        <link>http://localhost:3000/blog</link>
+        <description>Latest posts from Tim's blog</description>
+        
+      <item>
+        <title>The Future of AI in Mobile Development 1</title>
+        <link>http://localhost:3000/blog/post/sample-post-1</link>
+        <description>Purus morbi dignissim senectus mattis adipiscing. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.</description>
+        <pubDate>Wed, 29 Jan 2025 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>The Future of AI in Mobile Development 2</title>
+        <link>http://localhost:3000/blog/post/sample-post-2</link>
+        <description>Purus morbi dignissim senectus mattis adipiscing. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.</description>
+        <pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>The Future of AI in Mobile Development 3</title>
+        <link>http://localhost:3000/blog/post/sample-post-3</link>
+        <description>Purus morbi dignissim senectus mattis adipiscing. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.</description>
+        <pubDate>Thu, 09 Jan 2025 00:00:00 GMT</pubDate>
+      </item>
+    
+      </channel>
+    </rss>
